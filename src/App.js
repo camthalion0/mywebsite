@@ -11,7 +11,7 @@ import {withRouter} from 'react-router'
 const Routes = withRouter(({location}) => (
   <TransitionGroup className={'router-wrapper'}>
     <CSSTransition
-      timeout={500}
+      timeout={600}
       classNames={'fade'}
       key={location.pathname}
     >
