@@ -1,3 +1,17 @@
+
+@font-face {
+  font-family: bodytext;
+  src: url(./fonts/Altero-Regular.otf) format("opentype");
+}
+
+html ,body, #root, .App{
+  height: 100%;
+}
+
+#root > div{
+  height: 100%;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -6,9 +20,24 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* background: url(./img/beach.jpg) fixed no-repeat; */
+  /* background: url(./img/europe.jpg) fixed no-repeat; */
+  background-size:cover;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+/*小於480*/
+@media screen and (max-width: 480px)
+{
+ body{
+   /* background: url(./img/europe.jpg) fixed no-repeat; */
+   /* background: url(./img/beach.jpg) fixed no-repeat; */
+   background-size:cover;
+  }
+}
+
+

@@ -1,26 +1,41 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
+import './AppLittle.css';
+import Hello from './components/Hello'
+import Menu from './components/Menu'
+import About from './components/About'
+import { Route, Switch } from 'react-router-dom';
+import {TransitionGroup,CSSTransition } from 'react-transition-group'
+import {withRouter} from 'react-router'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const Routes = withRouter(({location}) => (
+  <TransitionGroup className={'router-wrapper'}>
+    <CSSTransition
+      timeout={500}
+      classNames={'fade'}
+      key={location.pathname}
+    >
+      <Switch location={location}>
+        <Route exact path={'/'} component={Hello} />
+        <Route exact path={'/about'} component={About} />
+      </Switch>
+    </CSSTransition>
+  </TransitionGroup>
+));
+
+class App extends Component{
+  render(){
+    return(
+        <div className="App">
+          <div className='pagebody'>       
+            <Routes />
+          </div>     
+          <div className='pagefoot'>       
+            <Menu className="menu"/>           
+          </div>
+        </div>
+    )
+  }
 }
 
 export default App;

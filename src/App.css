@@ -1,33 +1,110 @@
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  /* 排列 */    
   display: flex;
+  min-height: 100%;
   flex-direction: column;
+}
+
+.pagebody {
+  flex: 1;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.pagebody >div{
+  height: 100%;  
+}
+
+.Hello {
+  height: 100%;  
+  display: flex;
+  justify-content:center;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  border: 2px solid red;
+  background-color: rgb(127, 255, 212);
 }
 
-.App-link {
-  color: #61dafb;
+.About {
+  height: 100%;  
+  display: flex;
+
+  /* align-items: center; */ 
+  border: 2px solid orange;
+  flex-direction: column;
+  justify-content: space-around;
+
+  background-color:rgb(197, 121, 121);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+
+.pagefoot {
+  height: 8%;  
+  width: 100%;
+  align-self: flex-end;
+  background-color: black;
+}
+
+h1 {
+  text-align: center;
+  font-size:5rem;
+  margin-bottom: 0;
+}
+
+h3 { 
+  text-align: center;
+  font-size:2.5rem;
+}
+
+.Menu {
+  height: 100%;
+  display: flex;
+  justify-content:space-around;
+  align-items: center;
+}
+
+.MenuItem {
+  color: aliceblue;
+}
+
+
+/* 轉場效果 */
+.fade-enter {
+  opacity: 0;
+  /* transform: translateX(100%); */
+}
+
+.fade-enter-active {
+  opacity: 1;
+  /* transform: translateX(0); */
+  transition: all 500ms;
+}
+
+.fade-exit {
+  opacity: 0;
+  /* transform: translateX(0); */
+}
+
+.fade-exit-active {
+  opacity: 1;
+  /* transform: translateX(-100%); */
+  transition: all 500ms;
+}
+
+/*小於480*/
+@media screen and (max-width: 480px)
+{
+  h1 {
+    font-size:3rem;
   }
-  to {
-    transform: rotate(360deg);
+
+  h3 { 
+    font-size:1.5rem;
+
   }
 }
+
+
+
+
+
+
