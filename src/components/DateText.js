@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
-
+import alice from '../img/alice.png'
+import clouds from '../img/clouds.png';
+import storm from '../img/storm.png';
+import sun from '../img/sun.png';
+import rain from '../img/rain.png';
+import atmosphere from '../img/atmosphere.png';
 
 class DateText extends Component {
     constructor() {
@@ -9,7 +14,11 @@ class DateText extends Component {
         this.state={};
         this.state.timeText=`${timeText.hours}:${timeText.minutes}:${timeText.seconds}`;
         this.state.dateText=`${timeText.date} ${timeText.monthNames}, ${timeText.year}`;       
-        this.getWeatherData().then((res)=> this.state.temp = res.temp);    //取得fetch結果後assign給this.state.temp      
+        this.getWeatherData().then((res)=> {
+            this.state.temp = res.temp
+            this.state.main = res.main
+            this.state.mainImg = res.mainImg          
+        });    //fetch天氣結果後assign給this.state         
     }
 
     componentDidMount() {
@@ -24,7 +33,9 @@ class DateText extends Component {
         if(timeText.minutes==="00"&&timeText.seconds==="00" ){  //整點
             this.getWeatherData().then((res)=>{
                 this.setState({
-                    temp: res.temp
+                    temp: res.temp,
+                    main: res.main,
+                    mainImg: res.mainImg
                 })
             });           
         }
@@ -91,18 +102,59 @@ class DateText extends Component {
         apiUrl+= `?APPID=${queryObj.APPID}&q=${queryObj.q}&units=${queryObj.units}`
         let res = await fetch(apiUrl)
         let data = await res.json();
-     //   console.log(data);
+        console.log(data);
         return {
-            temp: Math.round(data.main.temp*10)/10      //四捨五入到小數第一位       
+            temp: Math.round(data.main.temp*10)/10,      //四捨五入到小數第一位       
+            main: data.weather[0].main,
+            mainImg: this.getMainImg(data.weather[0].main)
         }
     }
+
+    getMainImg(main){
+        switch(main){
+            case 'Clouds':      //陰
+                return clouds;
+            case 'Thunderstorm':    //雷
+                return storm;
+            case 'Clear':       //晴
+                return sun;    
+            case 'Rain':        //雨
+            case 'Drizzle':
+                return rain;     
+            case 'Mist':     //霧霾沙塵
+            case 'Smoke': 
+            case 'Haze': 
+            case 'Dust': 
+            case 'Fog': 
+            case 'Sand': 
+            case 'Ash': 
+            case 'Squall': 
+            case 'Tornado': 
+                return atmosphere;     
+            default:            //其他
+                return alice;
+        }
+    }
+
+    // handleImageErrored() {
+    //     this.setState({ 
+    //         mainImg: alice
+    //     });
+    // }
 
     render() {
         return (
             <div>
                 <h1>{this.state.timeText}</h1>
                 <h3>{this.state.dateText}</h3>      
-                <h3>{this.state.temp}°C</h3>         
+                <h3>{this.state.temp}°C
+                    <span>
+                        <img className='mainImg' src={this.state.mainImg} alt={this.state.main}
+                        // onError={this.handleImageErrored.bind(this)}
+                        ></img>
+                    </span>
+                </h3>
+                
             </div>
         );       
     }
