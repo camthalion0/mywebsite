@@ -9,7 +9,7 @@ class AboutItemDescription extends Component{
 
         return (
             // <div hidden={!showDescription} className='AboutItemDescription'>
-            <div className={showDescription} >
+            <div className='AboutItemDescription' >
                 <span 
                     // hidden={!this.props.showDescription}
                 >
