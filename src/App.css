@@ -118,6 +118,15 @@ h3 {
   transition: all 500ms ease-out;
 }
 
+/*天氣icon*/
+.mainImg {
+  max-height: 2em;
+  max-width: 2em;
+  margin-bottom: -0.3em;
+  margin-left: 1em;
+  z-index: -1;
+}
+
 /*小於480*/
 @media screen and (max-width: 480px)
 {
