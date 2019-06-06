@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import './style/style.css';
 import './AppLittle.css';
 import Hello from './components/Hello'
 import Menu from './components/Menu'

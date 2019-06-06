@@ -145,15 +145,15 @@ class DateText extends Component {
     render() {
         return (
             <div>
-                <h1>{this.state.timeText}</h1>
-                <h3>{this.state.dateText}</h3>      
-                <h3>{this.state.temp}°C
+                <div className='timeText'>{this.state.timeText}</div>
+                <div className='dateText'>{this.state.dateText}</div>      
+                <div className='temp'>{this.state.temp}°C
                     <span>
                         <img className='mainImg' src={this.state.mainImg} alt={this.state.main}
                         // onError={this.handleImageErrored.bind(this)}
                         ></img>
                     </span>
-                </h3>
+                </div>
                 
             </div>
         );       

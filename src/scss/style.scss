@@ -1,0 +1,260 @@
+$fontsize: 1rem;    //基準文字大小
+$lineheight: $fontsize * 1.6;     //基準行高
+$padWidth: 992px;
+$phoneWidth: 415px;
+$tabletsize: 0.8;   //平板倍數
+$phonesize: 0.5;    //手機倍數
+
+@mixin tablet {
+    @media screen and (max-width: $padWidth) {
+        @content;
+    }
+}
+
+@mixin phone {
+    @media screen and (max-width: $phoneWidth) {
+        @content;
+    }
+}
+
+//flexbox
+%flexbox100 {
+    height: 100%;  
+    display: flex;
+}
+
+//各級字型大小
+%fontlevel1{
+    font-size: $fontsize * 3.5;
+    line-height: $lineheight * 3.5 ;
+    font-weight:bold;
+
+    @include tablet {
+        font-size: $fontsize * 3.5 * $tabletsize;
+        line-height: $lineheight * 3.5 * $tabletsize;
+    }
+    @include phone {
+        font-size: $fontsize * 3.5 * $phonesize;
+        line-height: $lineheight * 3.5 * $phonesize;
+    }
+}
+
+%fontlevel2{
+    font-size: $fontsize * 2;
+    line-height: $lineheight * 2;
+    font-weight:bold;
+
+    @include tablet {
+        font-size: $fontsize * 2 * $tabletsize;
+        line-height: $lineheight * 2 * $tabletsize;
+    }
+    @include phone {
+        font-size: $fontsize * 2 * $phonesize;
+        line-height: $lineheight * 2 * $phonesize;
+    }
+}
+
+%fontlevel3{
+    font-size: $fontsize * 1.5;
+    line-height: $lineheight * 1.5;
+    font-weight:bold;
+
+    @include tablet {
+        font-size: $fontsize * 1.5 * $tabletsize;
+        line-height: $lineheight * 1.5 * $tabletsize;
+    }
+    @include phone {
+        font-size: $fontsize * 1.5 * $phonesize;
+        line-height: $lineheight * 1.5 * $phonesize;
+    }
+}
+
+%fontlevel4{
+    font-size: $fontsize * 1.2;
+    line-height: $lineheight * 1.2;
+
+    @include tablet {
+        font-size: $fontsize * 1.2 * $tabletsize;
+        line-height: $lineheight * 1.2 * $tabletsize;
+    }
+    @include phone {
+        font-size: $fontsize * 1.2 * $phonesize;
+        line-height: $lineheight * 1.2 * $phonesize;
+    }
+}
+
+%fontlevel5{
+    font-size: $fontsize * 1;
+    line-height: $lineheight ;
+
+    @include tablet {
+        font-size: $fontsize * 1 * $tabletsize;
+        line-height: $lineheight * 1 * $tabletsize;
+    }
+    @include phone {
+        font-size: $fontsize * 1 * $phonesize;
+        line-height: $lineheight * 1 * $phonesize;
+    }
+}
+
+%iconsize{
+    max-height: $fontsize * 3;
+    max-width: $fontsize * 3;
+    margin-bottom: $fontsize * -0.3;
+    margin-left:  $fontsize * 2;
+    z-index: -1;
+    @include tablet {
+        max-height: $fontsize * 3 * $tabletsize;
+        max-width: $fontsize * 3 * $tabletsize;
+        margin-bottom: $fontsize * -0.3 * $tabletsize;
+        margin-left:  $fontsize * 2 * $tabletsize;
+    }
+    @include phone {
+        max-height: $fontsize * 3 * $phonesize;
+        max-width: $fontsize * 3 * $phonesize;
+        margin-bottom: $fontsize * -0.3 * $phonesize;
+        margin-left:  $fontsize * 2 * $phonesize;
+    }
+}
+
+
+.App {
+    /* 排列 */    
+    @extend %flexbox100;    
+    flex-direction: column;
+
+    .pagebody {
+        flex: 1;
+        overflow-y: scroll;
+        overflow-x: hidden;
+
+        > div{
+            height: 100%;
+        }  
+
+        .Hello {
+            @extend %flexbox100;
+            justify-content:center;
+            align-items: center;
+            background-color: rgb(127, 255, 212);
+            font-weight:bold;
+            text-align: center;
+
+            .timeText{
+                @extend %fontlevel1;
+            }
+            .dateText{
+                @extend %fontlevel2;
+            }
+            .temp{
+                @extend %fontlevel2;
+            }
+        } 
+
+        .About {         
+            @extend %flexbox100;            
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            background-color:rgb(197, 121, 121);
+
+            .AboutTitle{
+                @extend %fontlevel3;
+            }
+
+            .AboutSection{
+                @extend %fontlevel4;
+
+                width: 80%;
+                padding: 15px;
+                border-radius: 0.5em;
+                box-shadow: 0 -1px 10px rgba(0, 0, 0, .7);
+                background: rgba(238, 183, 183, 0.68);
+                list-style: none;
+
+                .AboutItemOn {
+                  
+                    max-height: 1000px;
+                    transition: height 0.5s ease;
+
+                    > .AboutItemDescription{
+                        @extend %fontlevel5;
+                        color: dimgray;
+                        word-break: break-all;
+                        transform-origin:50% 0%;
+                        transform: scaleY(1);
+                        transition: all 0.5s ease-out;
+                    }
+                }
+
+                .AboutItemOff {
+                    max-height: 1.2em;
+                    transition: max-height 0.5s ease;
+
+                    > .AboutItemDescription{
+                        @extend %fontlevel5;
+                        word-break: break-all;
+                        transform-origin:50% 0%;
+                        transform: scaleY(0);
+                        overflow: hidden;
+                        transition: all 0.5s ease-out;
+                    }
+                }
+            }
+        }
+    }
+
+    .pagefoot {
+        height: 8%;  
+        width: 100%;
+        align-self: flex-end;
+        background-color: black;
+
+        .Menu {
+            @extend %flexbox100;
+            justify-content:space-around;
+            align-items: center;
+            font-size: $fontsize * 1;
+
+            a {
+                text-decoration:none;
+                color: aliceblue;
+            }
+        }
+    }  
+}
+
+h1 {
+    text-align: center;
+    font-size: $fontsize * 5;
+    margin-bottom: 0;
+}
+  
+h3 { 
+    text-align: center;
+    font-size: $fontsize * 2.5;
+}
+
+/* 轉場效果 */
+.fade-enter {
+    opacity: 0;
+  }
+  
+.fade-enter-active {
+    opacity: 1;
+    transition: all 500ms ease-out;
+}
+  
+.fade-exit {
+    opacity: 0;
+}
+  
+.fade-exit-active {
+    opacity: 1;
+    transition: all 500ms ease-out;
+}
+
+/*天氣icon*/
+.mainImg {
+    @extend %iconsize;
+}
