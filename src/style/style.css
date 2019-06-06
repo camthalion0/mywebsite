@@ -1,10 +1,41 @@
 @charset "UTF-8";
-.App {
-  /* 排列 */
+.App, .App .pagebody .Hello, .App .pagebody .About, .App .pagefoot .Menu {
+  height: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  min-height: 100%;
+}
+
+.App .pagebody .Hello .timeText {
+  font-size: 3.5rem;
+  line-height: 5.6rem;
+  font-weight: bold;
+}
+
+.App .pagebody .Hello .dateText, .App .pagebody .Hello .temp {
+  font-size: 2rem;
+  line-height: 3.2rem;
+  font-weight: bold;
+}
+
+.App .pagebody .About .AboutTitle {
+  font-size: 1.5rem;
+  line-height: 2.4rem;
+  font-weight: bold;
+}
+
+.App .pagebody .About .AboutSection {
+  font-size: 1.2rem;
+  line-height: 1.92rem;
+}
+
+.App .pagebody .About .AboutSection .AboutItemOn > .AboutItemDescription, .App .pagebody .About .AboutSection .AboutItemOff > .AboutItemDescription {
+  font-size: 1rem;
+  line-height: 1.6rem;
+}
+
+.App {
+  /* 排列 */
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
@@ -19,15 +50,11 @@
   overflow-x: hidden;
 }
 
-.App .pagebody .pagebody > div {
+.App .pagebody > div {
   height: 100%;
 }
 
 .App .pagebody .Hello {
-  height: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -35,13 +62,11 @@
       -ms-flex-align: center;
           align-items: center;
   background-color: aquamarine;
+  font-weight: bold;
+  text-align: center;
 }
 
 .App .pagebody .About {
-  height: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
@@ -77,8 +102,8 @@
           transform-origin: 50% 0%;
   -webkit-transform: scaleY(1);
           transform: scaleY(1);
-  transition: all 0.5s ease-out;
   -webkit-transition: all 0.5s ease-out;
+  transition: all 0.5s ease-out;
 }
 
 .App .pagebody .About .AboutSection .AboutItemOff {
@@ -107,18 +132,16 @@
 }
 
 .App .pagefoot .Menu {
-  height: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
   -ms-flex-pack: distribute;
       justify-content: space-around;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  font-size: 1rem;
 }
 
-.App .pagefoot .Menu .MenuItem {
+.App .pagefoot .Menu a {
+  text-decoration: none;
   color: aliceblue;
 }
 
@@ -156,10 +179,10 @@ h3 {
 
 /*天氣icon*/
 .mainImg {
-  max-height: 2em;
-  max-width: 2em;
-  margin-bottom: -0.3em;
-  margin-left: 1em;
+  max-height: 3rem;
+  max-width: 3rem;
+  margin-bottom: -0.3rem;
+  margin-left: 2rem;
   z-index: -1;
 }
 /*# sourceMappingURL=style.css.map */

@@ -1,9 +1,44 @@
-$fontsize: 1rem;    //基準size
+$fontsize: 1rem;    //基準文字大小
+$lineheight: $fontsize * 1.6;     //基準行高
+
+//flexbox
+%flexbox100 {
+    height: 100%;  
+    display: flex;
+}
+
+//各級字型大小
+%fontlevel1{
+    font-size: $fontsize * 3.5;
+    line-height: $lineheight * 3.5 ;
+    font-weight:bold;
+}
+
+%fontlevel2{
+    font-size: $fontsize * 2;
+    line-height: $lineheight * 2;
+    font-weight:bold;
+}
+
+%fontlevel3{
+    font-size: $fontsize * 1.5;
+    line-height: $lineheight * 1.5;
+    font-weight:bold;
+}
+
+%fontlevel4{
+    font-size: $fontsize * 1.2;
+    line-height: $lineheight * 1.2;
+}
+
+%fontlevel5{
+    font-size: $fontsize * 1;
+    line-height: $lineheight ;
+}
 
 .App {
     /* 排列 */    
-    display: flex;
-    min-height: 100%;
+    @extend %flexbox100;    
     flex-direction: column;
 
     .pagebody {
@@ -11,27 +46,43 @@ $fontsize: 1rem;    //基準size
         overflow-y: scroll;
         overflow-x: hidden;
 
-        .pagebody >div{
-            height: 100%;  
-        }
+        > div{
+            height: 100%;
+        }  
 
         .Hello {
-            height: 100%;  
-            display: flex;
+            @extend %flexbox100;
             justify-content:center;
             align-items: center;
             background-color: rgb(127, 255, 212);
+            font-weight:bold;
+            text-align: center;
+
+            .timeText{
+                @extend %fontlevel1;
+            }
+            .dateText{
+                @extend %fontlevel2;
+            }
+            .temp{
+                @extend %fontlevel2;
+            }
         } 
 
-        .About {
-            height: 100%;  
-            display: flex;
+        .About {         
+            @extend %flexbox100;            
             flex-direction: column;
             justify-content: space-around;
             align-items: center;
             background-color:rgb(197, 121, 121);
 
+            .AboutTitle{
+                @extend %fontlevel3;
+            }
+
             .AboutSection{
+                @extend %fontlevel4;
+
                 width: 80%;
                 padding: 15px;
                 border-radius: 0.5em;
@@ -40,31 +91,30 @@ $fontsize: 1rem;    //基準size
                 list-style: none;
 
                 .AboutItemOn {
+                  
                     max-height: 1000px;
-                    -webkit-transition: height 0.5s ease;
                     transition: height 0.5s ease;
 
                     > .AboutItemDescription{
+                        @extend %fontlevel5;
                         color: dimgray;
                         word-break: break-all;
                         transform-origin:50% 0%;
                         transform: scaleY(1);
                         transition: all 0.5s ease-out;
-                        -webkit-transition: all 0.5s ease-out;
                     }
                 }
 
                 .AboutItemOff {
                     max-height: 1.2em;
-                    -webkit-transition: max-height 0.5s ease;
                     transition: max-height 0.5s ease;
 
                     > .AboutItemDescription{
+                        @extend %fontlevel5;
                         word-break: break-all;
                         transform-origin:50% 0%;
                         transform: scaleY(0);
                         overflow: hidden;
-                        -webkit-transition: all 0.5s ease-out;
                         transition: all 0.5s ease-out;
                     }
                 }
@@ -79,12 +129,13 @@ $fontsize: 1rem;    //基準size
         background-color: black;
 
         .Menu {
-            height: 100%;
-            display: flex;
+            @extend %flexbox100;
             justify-content:space-around;
             align-items: center;
+            font-size: $fontsize * 1;
 
-            .MenuItem {
+            a {
+                text-decoration:none;
                 color: aliceblue;
             }
         }
@@ -123,9 +174,9 @@ h3 {
 
 /*天氣icon*/
 .mainImg {
-    max-height: 2em;
-    max-width: 2em;
-    margin-bottom: -0.3em;
-    margin-left: 1em;
+    max-height: $fontsize * 3;
+    max-width: $fontsize * 3;
+    margin-bottom: $fontsize * -0.3;
+    margin-left:  $fontsize * 2;
     z-index: -1;
 }
