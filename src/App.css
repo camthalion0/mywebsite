@@ -120,10 +120,10 @@ h3 {
 
 /*天氣icon*/
 .mainImg {
-  max-height: 2em;
-  max-width: 2em;
-  margin-bottom: -0.3em;
-  margin-left: 1em;
+  max-height: 2rem;
+  max-width: 2rem;
+  margin-bottom: -0.3rem;
+  margin-left: 1rem;
   z-index: -1;
 }
 
