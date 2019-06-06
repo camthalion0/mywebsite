@@ -1,5 +1,21 @@
 $fontsize: 1rem;    //基準文字大小
 $lineheight: $fontsize * 1.6;     //基準行高
+$padWidth: 992px;
+$phoneWidth: 415px;
+$tabletsize: 0.8;   //平板倍數
+$phonesize: 0.5;    //手機倍數
+
+@mixin tablet {
+    @media screen and (max-width: $padWidth) {
+        @content;
+    }
+}
+
+@mixin phone {
+    @media screen and (max-width: $phoneWidth) {
+        @content;
+    }
+}
 
 //flexbox
 %flexbox100 {
@@ -12,29 +28,95 @@ $lineheight: $fontsize * 1.6;     //基準行高
     font-size: $fontsize * 3.5;
     line-height: $lineheight * 3.5 ;
     font-weight:bold;
+
+    @include tablet {
+        font-size: $fontsize * 3.5 * $tabletsize;
+        line-height: $lineheight * 3.5 * $tabletsize;
+    }
+    @include phone {
+        font-size: $fontsize * 3.5 * $phonesize;
+        line-height: $lineheight * 3.5 * $phonesize;
+    }
 }
 
 %fontlevel2{
     font-size: $fontsize * 2;
     line-height: $lineheight * 2;
     font-weight:bold;
+
+    @include tablet {
+        font-size: $fontsize * 2 * $tabletsize;
+        line-height: $lineheight * 2 * $tabletsize;
+    }
+    @include phone {
+        font-size: $fontsize * 2 * $phonesize;
+        line-height: $lineheight * 2 * $phonesize;
+    }
 }
 
 %fontlevel3{
     font-size: $fontsize * 1.5;
     line-height: $lineheight * 1.5;
     font-weight:bold;
+
+    @include tablet {
+        font-size: $fontsize * 1.5 * $tabletsize;
+        line-height: $lineheight * 1.5 * $tabletsize;
+    }
+    @include phone {
+        font-size: $fontsize * 1.5 * $phonesize;
+        line-height: $lineheight * 1.5 * $phonesize;
+    }
 }
 
 %fontlevel4{
     font-size: $fontsize * 1.2;
     line-height: $lineheight * 1.2;
+
+    @include tablet {
+        font-size: $fontsize * 1.2 * $tabletsize;
+        line-height: $lineheight * 1.2 * $tabletsize;
+    }
+    @include phone {
+        font-size: $fontsize * 1.2 * $phonesize;
+        line-height: $lineheight * 1.2 * $phonesize;
+    }
 }
 
 %fontlevel5{
     font-size: $fontsize * 1;
     line-height: $lineheight ;
+
+    @include tablet {
+        font-size: $fontsize * 1 * $tabletsize;
+        line-height: $lineheight * 1 * $tabletsize;
+    }
+    @include phone {
+        font-size: $fontsize * 1 * $phonesize;
+        line-height: $lineheight * 1 * $phonesize;
+    }
 }
+
+%iconsize{
+    max-height: $fontsize * 3;
+    max-width: $fontsize * 3;
+    margin-bottom: $fontsize * -0.3;
+    margin-left:  $fontsize * 2;
+    z-index: -1;
+    @include tablet {
+        max-height: $fontsize * 3 * $tabletsize;
+        max-width: $fontsize * 3 * $tabletsize;
+        margin-bottom: $fontsize * -0.3 * $tabletsize;
+        margin-left:  $fontsize * 2 * $tabletsize;
+    }
+    @include phone {
+        max-height: $fontsize * 3 * $phonesize;
+        max-width: $fontsize * 3 * $phonesize;
+        margin-bottom: $fontsize * -0.3 * $phonesize;
+        margin-left:  $fontsize * 2 * $phonesize;
+    }
+}
+
 
 .App {
     /* 排列 */    
@@ -174,9 +256,5 @@ h3 {
 
 /*天氣icon*/
 .mainImg {
-    max-height: $fontsize * 3;
-    max-width: $fontsize * 3;
-    margin-bottom: $fontsize * -0.3;
-    margin-left:  $fontsize * 2;
-    z-index: -1;
+    @extend %iconsize;
 }

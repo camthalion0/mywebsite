@@ -12,10 +12,38 @@
   font-weight: bold;
 }
 
+@media screen and (max-width: 992px) {
+  .App .pagebody .Hello .timeText {
+    font-size: 2.8rem;
+    line-height: 4.48rem;
+  }
+}
+
+@media screen and (max-width: 415px) {
+  .App .pagebody .Hello .timeText {
+    font-size: 1.75rem;
+    line-height: 2.8rem;
+  }
+}
+
 .App .pagebody .Hello .dateText, .App .pagebody .Hello .temp {
   font-size: 2rem;
   line-height: 3.2rem;
   font-weight: bold;
+}
+
+@media screen and (max-width: 992px) {
+  .App .pagebody .Hello .dateText, .App .pagebody .Hello .temp {
+    font-size: 1.6rem;
+    line-height: 2.56rem;
+  }
+}
+
+@media screen and (max-width: 415px) {
+  .App .pagebody .Hello .dateText, .App .pagebody .Hello .temp {
+    font-size: 1rem;
+    line-height: 1.6rem;
+  }
 }
 
 .App .pagebody .About .AboutTitle {
@@ -24,14 +52,82 @@
   font-weight: bold;
 }
 
+@media screen and (max-width: 992px) {
+  .App .pagebody .About .AboutTitle {
+    font-size: 1.2rem;
+    line-height: 1.92rem;
+  }
+}
+
+@media screen and (max-width: 415px) {
+  .App .pagebody .About .AboutTitle {
+    font-size: 0.75rem;
+    line-height: 1.2rem;
+  }
+}
+
 .App .pagebody .About .AboutSection {
   font-size: 1.2rem;
   line-height: 1.92rem;
 }
 
+@media screen and (max-width: 992px) {
+  .App .pagebody .About .AboutSection {
+    font-size: 0.96rem;
+    line-height: 1.536rem;
+  }
+}
+
+@media screen and (max-width: 415px) {
+  .App .pagebody .About .AboutSection {
+    font-size: 0.6rem;
+    line-height: 0.96rem;
+  }
+}
+
 .App .pagebody .About .AboutSection .AboutItemOn > .AboutItemDescription, .App .pagebody .About .AboutSection .AboutItemOff > .AboutItemDescription {
   font-size: 1rem;
   line-height: 1.6rem;
+}
+
+@media screen and (max-width: 992px) {
+  .App .pagebody .About .AboutSection .AboutItemOn > .AboutItemDescription, .App .pagebody .About .AboutSection .AboutItemOff > .AboutItemDescription {
+    font-size: 0.8rem;
+    line-height: 1.28rem;
+  }
+}
+
+@media screen and (max-width: 415px) {
+  .App .pagebody .About .AboutSection .AboutItemOn > .AboutItemDescription, .App .pagebody .About .AboutSection .AboutItemOff > .AboutItemDescription {
+    font-size: 0.5rem;
+    line-height: 0.8rem;
+  }
+}
+
+.mainImg {
+  max-height: 3rem;
+  max-width: 3rem;
+  margin-bottom: -0.3rem;
+  margin-left: 2rem;
+  z-index: -1;
+}
+
+@media screen and (max-width: 992px) {
+  .mainImg {
+    max-height: 2.4rem;
+    max-width: 2.4rem;
+    margin-bottom: -0.24rem;
+    margin-left: 1.6rem;
+  }
+}
+
+@media screen and (max-width: 415px) {
+  .mainImg {
+    max-height: 1.5rem;
+    max-width: 1.5rem;
+    margin-bottom: -0.15rem;
+    margin-left: 1rem;
+  }
 }
 
 .App {
@@ -178,11 +274,4 @@ h3 {
 }
 
 /*天氣icon*/
-.mainImg {
-  max-height: 3rem;
-  max-width: 3rem;
-  margin-bottom: -0.3rem;
-  margin-left: 2rem;
-  z-index: -1;
-}
 /*# sourceMappingURL=style.css.map */
