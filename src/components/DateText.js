@@ -21,11 +21,17 @@ class DateText extends Component {
         });    //fetch天氣結果後assign給this.state         
     }
 
-    componentDidMount() {
-        setInterval(()=>{
-            this.resetState()},
-            1000
+    componentDidMount() {       //當元件被寫入 DOM 之後觸發
+        this.timer = setInterval(()=>{
+            this.resetState()
+            console.log('resetState');
+        },
+            1000          
         );
+    }
+
+    componentWillUnmount(){     //當元件準備要被移除或破壞時觸發
+        clearInterval(this.timer);
     }
 
     resetState() {
