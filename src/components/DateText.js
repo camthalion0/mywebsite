@@ -7,6 +7,7 @@ import rain from '../img/rain.png';
 import atmosphere from '../img/atmosphere.png';
 
 import { connect } from 'react-redux'
+import { updateTime } from '../actions/index'
 
 
 
@@ -26,15 +27,13 @@ class DateText extends Component {
     // }
 
     componentDidMount() {       //當元件被寫入 DOM 之後觸發
-    //    console.log(store.getState());
+        this.timer = setInterval(()=>{
+             this.props.dispatch(updateTime())
+          //   console.log('resetState');
+         },
+             1000          
+         );
 
-        // this.timer = setInterval(()=>{
-        //     this.resetState()
-        //     console.log('resetState');
-        // },
-        //     1000          
-        // );
-        const {currentTime} = this.props;
     }
 
     componentWillUnmount(){     //當元件準備要被移除或破壞時觸發
@@ -150,18 +149,14 @@ class DateText extends Component {
     }
 
     render() {
-
-        const {currentTime} = this.props;
-
+        const {currentTime} = this.props;   //this.props已透過mapStateToProps綁定
         return (
             <div>
                 <div className='timeText'>{currentTime.timeText}</div>
                 <div className='dateText'>{currentTime.dateText}</div>      
                 <div className='temp'>{currentTime.temp}°C
                     <span>
-                        <img className='mainImg' src={this.getMainImg(currentTime.weather)} alt={currentTime.weather}
-                        // onError={this.handleImageErrored.bind(this)}
-                        ></img>
+                        <img className='mainImg' src={this.getMainImg(currentTime.weather)} alt={currentTime.weather}></img>
                     </span>
                 </div>
                 
@@ -169,20 +164,21 @@ class DateText extends Component {
         );       
     }
 }
-  
+
+//將store state tree 的值轉為this.props
 const mapStateToProps = state => {
-    console.log(state);
+    //console.log(state);
     return {
         currentTime: state.currentTime
     }
 }
 
-const mapDispatchToProps = dispatch => {
-    return {
-        toggledescription: id => {
-            dispatch()
-        }
-    }
-}
+// const mapDispatchToProps = dispatch => {
+//     return{
+//         currentTime=>{dispatch(updateTime()}
+//         // currentTime: dispatch(updateTime())
+//     }
+// }
+
 
 export default connect(mapStateToProps)(DateText) //DateText;

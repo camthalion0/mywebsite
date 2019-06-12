@@ -5,15 +5,16 @@ export const SHOW_DESCRIPTION = 'SHOW_DESCRIPTION';
 //更新時間
 export const updateTime = () => {
     let currentTime = getCurrentTime();
-    let weatherData = getWeatherData();
+  //  let weatherData = getWeatherData();
 
+   // console.log(currentTime);
     return {
         type: UPDATE_TIME,
         payload:{
            timeText:`${currentTime.hours}:${currentTime.minutes}:${currentTime.seconds}`,
            dateText:`${currentTime.date} ${currentTime.monthNames}, ${currentTime.year}`,
-           temp:"",
-           weather:""
+           temp:"123",
+           weather:"test"
         }
     }
 }
@@ -74,22 +75,22 @@ function getCurrentTime() {
     }
 
 //取得天氣資料
-    async function getWeatherData() {
+    // async function getWeatherData() {
 
-        let apiUrl = "http://api.openweathermap.org/data/2.5/weather";
-        let queryObj = {
-            APPID:"f8aeb1b2e591f2c787f3c774b6c8f631",
-            q: "Taipei",
-            units: "metric"
-        }
-        apiUrl+= `?APPID=${queryObj.APPID}&q=${queryObj.q}&units=${queryObj.units}`
-        let res = await fetch(apiUrl)
-        let data = await res.json();
-        console.log(data);
-        return {
-            temp: Math.round(data.main.temp*10)/10,      //四捨五入到小數第一位       
-            main: data.weather[0].main,
-            mainImg: this.getMainImg(data.weather[0].main)
-        }
-    }
+    //     let apiUrl = "http://api.openweathermap.org/data/2.5/weather";
+    //     let queryObj = {
+    //         APPID:"f8aeb1b2e591f2c787f3c774b6c8f631",
+    //         q: "Taipei",
+    //         units: "metric"
+    //     }
+    //     apiUrl+= `?APPID=${queryObj.APPID}&q=${queryObj.q}&units=${queryObj.units}`
+    //     let res = await fetch(apiUrl)
+    //     let data = await res.json();
+    //   //  console.log(data);
+    //     return {
+    //         temp: Math.round(data.main.temp*10)/10,      //四捨五入到小數第一位       
+    //         main: data.weather[0].main,
+    //      //   mainImg: this.getMainImg(data.weather[0].main)
+    //     }
+    // }
 
