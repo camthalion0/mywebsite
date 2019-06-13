@@ -7,7 +7,8 @@ import rain from '../img/rain.png';
 import atmosphere from '../img/atmosphere.png';
 
 import { connect } from 'react-redux'
-import { updateTime } from '../actions/index'
+import { updateTime, fetchWeather } from '../actions/index'
+//import { store } from '../App';
 
 
 
@@ -27,8 +28,13 @@ class DateText extends Component {
     // }
 
     componentDidMount() {       //當元件被寫入 DOM 之後觸發
+        // console.log(store.getState());
+        // console.log(this.props);
+        // console.log(store);
+        this.props.dispatch(fetchWeather());
+
         this.timer = setInterval(()=>{
-             this.props.dispatch(updateTime())
+             this.props.dispatch(updateTime())      //等同store.dispatch(action)
           //   console.log('resetState');
          },
              1000          
@@ -149,14 +155,14 @@ class DateText extends Component {
     }
 
     render() {
-        const {currentTime} = this.props;   //this.props已透過mapStateToProps綁定
+        const {currentTime,currentWeather} = this.props;   //this.props已透過mapStateToProps綁定
         return (
             <div>
                 <div className='timeText'>{currentTime.timeText}</div>
                 <div className='dateText'>{currentTime.dateText}</div>      
-                <div className='temp'>{currentTime.temp}°C
+                <div className='temp'>{currentWeather.temp}°C
                     <span>
-                        <img className='mainImg' src={this.getMainImg(currentTime.weather)} alt={currentTime.weather}></img>
+                        <img className='mainImg' src={this.getMainImg(currentWeather.weather)} alt={currentWeather.weather}></img>
                     </span>
                 </div>
                 

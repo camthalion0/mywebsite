@@ -9,12 +9,14 @@ import {TransitionGroup,CSSTransition } from 'react-transition-group';
 import {withRouter} from 'react-router';
 
 import appReducer from './reducers/index';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';  //處理Async Action用
 import { Provider } from 'react-redux';
 
 import { connect } from 'react-redux'
 
-let store = createStore(appReducer); 
+let store = createStore(appReducer, applyMiddleware(thunk));
+
 
 const Routes = withRouter(({location}) => (
   <TransitionGroup className={'router-wrapper'}>
