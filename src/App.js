@@ -1,12 +1,22 @@
 import React, { Component } from 'react';
 import './style/style.css';
 import './AppLittle.css';
-import Hello from './components/Hello'
-import Menu from './components/Menu'
-import About from './components/About'
+import Hello from './components/Hello';
+import Menu from './components/Menu';
+import About from './components/About';
 import { Route, Switch } from 'react-router-dom';
-import {TransitionGroup,CSSTransition } from 'react-transition-group'
-import {withRouter} from 'react-router'
+import {TransitionGroup,CSSTransition } from 'react-transition-group';
+import {withRouter} from 'react-router';
+
+import appReducer from './reducers/index';
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';  //處理Async Action用
+import { Provider } from 'react-redux';
+
+import { connect } from 'react-redux'
+
+let store = createStore(appReducer, applyMiddleware(thunk));
+
 
 const Routes = withRouter(({location}) => (
   <TransitionGroup className={'router-wrapper'}>
@@ -17,7 +27,7 @@ const Routes = withRouter(({location}) => (
     >
       <Switch location={location}>
         <Route exact path={'/'} component={Hello} />
-        <Route exact path={'/about'} component={About} />
+        {/* <Route exact path={'/about'} component={About} /> */}
       </Switch>
     </CSSTransition>
   </TransitionGroup>
@@ -26,6 +36,7 @@ const Routes = withRouter(({location}) => (
 class App extends Component{
   render(){
     return(
+      <Provider store = {store}>
         <div className="App">
           <div className='pagebody'>       
             <Routes />
@@ -34,6 +45,7 @@ class App extends Component{
             <Menu className="menu"/>           
           </div>
         </div>
+      </Provider>
     )
   }
 }
