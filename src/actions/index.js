@@ -4,45 +4,59 @@ export const UPDATE_WEATHER = 'UPDATE_WEATHER';
 export const SHOW_DESCRIPTION = 'SHOW_DESCRIPTION';
 export const REQUEST_WEATHER = 'REQUEST_WEATHER';
 export const RECEIVE_WEATHER = 'RECEIVE_WEATHER';
+export const RECEIVE_WEATHER_ERROR = 'RECEIVE_WEATHER_ERROR';
+
 
 //更新時間
 export const updateTime = () => {
     let currentTime = getCurrentTime();
-   // console.log(currentTime);
     return {
         type: UPDATE_TIME,
         payload:{
            timeText:`${currentTime.hours}:${currentTime.minutes}:${currentTime.seconds}`,
            dateText:`${currentTime.date} ${currentTime.monthNames}, ${currentTime.year}`,
-        //    temp:"123",
-        //    weather:"test"
         }
     }
 }
 
-//更新天氣
+//發送api請求天氣
 const requestWeather = () => {  //發送api請求
     return {
-      type: REQUEST_WEATHER
+      type: REQUEST_WEATHER,
+      payload:{
+        temp: `Loading...`,          
+        weather: null
+        }
     }
   }
 
 const receiveWeather =(weatherData) => {    //更新天氣結果
     console.log(weatherData);
     return {
-      type: RECEIVE_WEATHER,
-      currentTime:{
-        temp: Math.round(weatherData.main.temp*10)/10,      //四捨五入到小數第一位       
-      }
+        type: RECEIVE_WEATHER,
+        payload:{
+            temp: Math.round(weatherData.main.temp*10)/10,      //四捨五入到小數第一位      
+            weather: weatherData.weather[0].main
+        }
     }
   }
 
+const receiveWeatherError =() => {    //更新天氣失敗
+    return {
+        type: RECEIVE_WEATHER_ERROR,
+        payload:{
+            temp: `Oops! Failed to get the weather.`,          
+            weather: null
+        }
+    }
+  }  
 
 //dispatch requestWeather then call api then dispatch receiveWeather 
 export const fetchWeather = () => dispatch => {  
     dispatch(requestWeather()); //api請求前  
     
     let apiUrl = "http://api.openweathermap.org/data/2.5/weather";
+
     let queryObj = {
         APPID:"f8aeb1b2e591f2c787f3c774b6c8f631",
         q: "Taipei",
@@ -53,6 +67,7 @@ export const fetchWeather = () => dispatch => {
         fetch(apiUrl)
         .then(response => response.json())
         .then(json => dispatch(receiveWeather(json)))  
+        .catch(() => dispatch(receiveWeatherError()))
     )
 }
 

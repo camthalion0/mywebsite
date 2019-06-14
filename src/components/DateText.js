@@ -5,129 +5,35 @@ import storm from '../img/storm.png';
 import sun from '../img/sun.png';
 import rain from '../img/rain.png';
 import atmosphere from '../img/atmosphere.png';
-
 import { connect } from 'react-redux'
 import { updateTime, fetchWeather } from '../actions/index'
-//import { store } from '../App';
-
 
 
 class DateText extends Component {
-    // constructor() {
-    //     super();
-
-    //     let timeText = this.getTimetext();
-    //     this.state={};
-    //     this.state.timeText=`${timeText.hours}:${timeText.minutes}:${timeText.seconds}`;
-    //     this.state.dateText=`${timeText.date} ${timeText.monthNames}, ${timeText.year}`;       
-    //     this.getWeatherData().then((res)=> {
-    //         this.state.temp = res.temp
-    //         this.state.main = res.main
-    //         this.state.mainImg = res.mainImg          
-    //     });    //fetch天氣結果後assign給this.state         
-    // }
 
     componentDidMount() {       //當元件被寫入 DOM 之後觸發
-        // console.log(store.getState());
-        // console.log(this.props);
-        // console.log(store);
-        this.props.dispatch(fetchWeather());
+        this.props.dispatch(updateTime());  //取得時間
+        this.props.dispatch(fetchWeather());    //取得天氣
 
-        this.timer = setInterval(()=>{
-             this.props.dispatch(updateTime())      //等同store.dispatch(action)
-          //   console.log('resetState');
-         },
-             1000          
-         );
+        this.timeTimer = setInterval(()=>{
+            this.props.dispatch(updateTime())      //等同store.dispatch(action)
+        },
+            1000          
+        );
 
+        this.weatherTimer = setInterval(()=>{
+            this.props.dispatch(fetchWeather())    
+        },
+            1000 * 60 * 60          
+        );
     }
 
     componentWillUnmount(){     //當元件準備要被移除或破壞時觸發
-        clearInterval(this.timer);
+        clearInterval(this.timeTimer);
+        clearInterval(this.weatherTimer);
     }
 
-    // resetState() {
-    //     let timeText = this.getTimetext();
-    //     if(timeText.minutes==="00"&&timeText.seconds==="00" ){  //整點
-    //         this.getWeatherData().then((res)=>{
-    //             this.setState({
-    //                 temp: res.temp,
-    //                 main: res.main,
-    //                 mainImg: res.mainImg
-    //             })
-    //         });           
-    //     }
-
-    //     this.setState({     //顯示時鐘
-    //        timeText:`${timeText.hours}:${timeText.minutes}:${timeText.seconds}`,
-    //        dateText:`${timeText.date} ${timeText.monthNames}, ${timeText.year}`})
-    // }
-
-    // // 取得時間
-    // getTimetext(addseconds=0) {
-    //     let now = new Date(),
-    //         datetime = new Date(now.getTime() + addseconds),
-    //         hours = datetime.getHours(),
-    //         minutes=datetime.getMinutes(),
-    //         seconds=datetime.getSeconds(),
-    //         date = datetime.getDate(),
-    //         month = datetime.getMonth() + 1,    //0~11 > 1~12
-    //         year = datetime.getFullYear();
-
-    //     // 補0
-    //     hours = hours < 10 ? "0" + hours : hours.toString();
-    //     seconds = seconds < 10 ? "0" + seconds : seconds.toString();
-    //     minutes = minutes < 10 ? "0" + minutes : minutes.toString();
-    //     month = month < 10 ? "0" + month : month.toString();
-    //     date = date < 10 ? "0" + date : date.toString();
-
-    //     // Months Names
-    //     Date.prototype.monthNames = [
-    //         "January",
-    //         "February",
-    //         "March",
-    //         "April",
-    //         "May",
-    //         "June",
-    //         "July",
-    //         "August",
-    //         "September",
-    //         "October",
-    //         "November",
-    //         "December"
-    //     ];
-
-    //     return {
-    //         hours,
-    //         seconds,
-    //         minutes,  
-    //         year,     
-    //         month,
-    //         date, 
-    //         monthNames:  datetime.monthNames[month - 1]         
-    //     }
-    // }
-
-    // // 取得天氣資料
-    // async getWeatherData() {
-
-    //     let apiUrl = "http://api.openweathermap.org/data/2.5/weather";
-    //     let queryObj = {
-    //         APPID:"f8aeb1b2e591f2c787f3c774b6c8f631",
-    //         q: "Taipei",
-    //         units: "metric"
-    //     }
-    //     apiUrl+= `?APPID=${queryObj.APPID}&q=${queryObj.q}&units=${queryObj.units}`
-    //     let res = await fetch(apiUrl)
-    //     let data = await res.json();
-    //     console.log(data);
-    //     return {
-    //         temp: Math.round(data.main.temp*10)/10,      //四捨五入到小數第一位       
-    //         main: data.weather[0].main,
-    //         mainImg: this.getMainImg(data.weather[0].main)
-    //     }
-    // }
-
+    //對應天氣icon
     getMainImg(main){
         switch(main){
             case 'Clouds':      //陰
@@ -160,7 +66,7 @@ class DateText extends Component {
             <div>
                 <div className='timeText'>{currentTime.timeText}</div>
                 <div className='dateText'>{currentTime.dateText}</div>      
-                <div className='temp'>{currentWeather.temp}°C
+                <div className='temp'>{currentWeather.temp}
                     <span>
                         <img className='mainImg' src={this.getMainImg(currentWeather.weather)} alt={currentWeather.weather}></img>
                     </span>
@@ -175,16 +81,9 @@ class DateText extends Component {
 const mapStateToProps = state => {
     //console.log(state);
     return {
-        currentTime: state.currentTime
+        currentTime: state.currentTime,
+        currentWeather: state.currentWeather
     }
 }
 
-// const mapDispatchToProps = dispatch => {
-//     return{
-//         currentTime=>{dispatch(updateTime()}
-//         // currentTime: dispatch(updateTime())
-//     }
-// }
-
-
-export default connect(mapStateToProps)(DateText) //DateText;
+export default connect(mapStateToProps)(DateText);

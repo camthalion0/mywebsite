@@ -1,14 +1,13 @@
-import { UPDATE_TIME, SHOW_DESCRIPTION, RECEIVE_WEATHER } from '../actions/index'
+import { UPDATE_TIME, SHOW_DESCRIPTION, RECEIVE_WEATHER, RECEIVE_WEATHER_ERROR } from '../actions/index'
 
 const initState = {
         currentTime:{       //目前時間
-            timeText:"00:01:02",
-            dateText:"12 Jun, 2019",
-            items:null
+            timeText: ``,
+            dateText: ``,
         }, 
         currentWeather:{    //目前天氣
-            temp:"15",
-            weather:"Clouds"
+            temp:``,
+            weather: null
         },  
         showDescription:{
             educations:[false,false,false], //顯示學歷描述
@@ -29,10 +28,17 @@ const appReducer = (state = initState, action) => {
         case RECEIVE_WEATHER:
             return Object.assign({}, state,{
                 currentWeather:{
-                    temp: action.payload,
-                    weather: action.payload
+                    temp: `${action.payload.temp} °C`,
+                    weather: action.payload.weather
                 }
             })
+        case RECEIVE_WEATHER_ERROR:
+            return Object.assign({}, state,{
+                currentWeather:{
+                    temp: action.payload.temp,
+                    weather: action.payload.weather
+                }
+            })           
         case SHOW_DESCRIPTION:
             return Object.assign({}, state,{
                 showDescription:{
