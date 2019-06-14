@@ -183,6 +183,8 @@
           box-shadow: 0 -1px 10px rgba(0, 0, 0, 0.7);
   background: rgba(238, 183, 183, 0.68);
   list-style: none;
+  -ms-flex-preferred-size: 40%;
+      flex-basis: 40%;
 }
 
 .App .pagebody .About .AboutSection .AboutItemOn {
