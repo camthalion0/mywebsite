@@ -1,15 +1,11 @@
-import React, { Component } from 'react';
-import DateText from './DateText';
+import React from 'react';
+import DateText from '../containers/DateText';
 
 
-class Hello extends Component {
-    render() {
-        return (
+const Hello = () => (
             <div className='Hello' id='Hello'>
                 <DateText/>
             </div>
         );
-    }
-}
-  
+
 export default Hello;

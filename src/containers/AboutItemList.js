@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import AboutItemDescription from './AboutItemDescription';
-import { toggleDescription,updateTime } from '../actions/index'
+import AboutItemDescription from '../components/AboutItemDescription';
+import { toggleDescription } from '../actions/index'
 import { connect } from 'react-redux'
 
 class AboutItemList extends Component {
@@ -8,7 +8,6 @@ class AboutItemList extends Component {
     render() {
 
         let showDescription =  this.props.showDescription;
-        console.log(showDescription)
 
         return (
             <div className='AboutItem'>
@@ -16,7 +15,7 @@ class AboutItemList extends Component {
                     this.props.items.map((item,index)=>{
 
                         let ifShow = showDescription[this.props.title][index];    
-                     //   console.log(ifShow)
+                        
                         return (
                        
                             <li key={index} 

@@ -1,13 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class AboutTitle extends Component {
-    render() {
-        return (          
+const AboutTitle = (props) => (          
             <div className='AboutTitle'>
-                {this.props.title}
+                {props.title}
             </div>
         );
-    }
-}
-  
+
 export default AboutTitle;

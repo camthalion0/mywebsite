@@ -1,9 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './style/style.css';
-import './AppLittle.css';
 import Hello from './components/Hello';
 import Menu from './components/Menu';
-import About from './components/About';
+import About from './containers/About';
 import { Route, Switch } from 'react-router-dom';
 import {TransitionGroup,CSSTransition } from 'react-transition-group';
 import {withRouter} from 'react-router';
@@ -16,16 +15,14 @@ const Routes = withRouter(({location}) => (
       key={location.pathname}
     >
       <Switch location={location}>
-        <Route exact path={'/'} component={Hello} />
-        <Route exact path={'/about'} component={About} />
+        <Route exact path={'/'} render={()=><Hello />} />
+        <Route exact path={'/about'} render={()=><About />} />
       </Switch>
     </CSSTransition>
   </TransitionGroup>
 ));
 
-class App extends Component{
-  render(){
-    return(
+const App =  () => (
         <div className="App">
           <div className='pagebody'>       
             <Routes />
@@ -35,7 +32,7 @@ class App extends Component{
           </div>
         </div>
     )
-  }
-}
+  
+
 
 export default App;
