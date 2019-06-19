@@ -1,11 +1,12 @@
+import {store} from '../../src/index';
+
 //定義type屬性名稱
 export const UPDATE_TIME = 'UPDATE_TIME';
 export const UPDATE_WEATHER = 'UPDATE_WEATHER';
-export const SHOW_DESCRIPTION = 'SHOW_DESCRIPTION';
+export const TOGGLE_DESCRIPTION = 'TOGGLE_DESCRIPTION';
 export const REQUEST_WEATHER = 'REQUEST_WEATHER';
 export const RECEIVE_WEATHER = 'RECEIVE_WEATHER';
 export const RECEIVE_WEATHER_ERROR = 'RECEIVE_WEATHER_ERROR';
-
 
 //更新時間
 export const updateTime = () => {
@@ -31,7 +32,6 @@ const requestWeather = () => {  //發送api請求
   }
 
 const receiveWeather =(weatherData) => {    //更新天氣結果
-    console.log(weatherData);
     return {
         type: RECEIVE_WEATHER,
         payload:{
@@ -71,24 +71,18 @@ export const fetchWeather = () => dispatch => {
     )
 }
 
-// export const updateWeather = ()=> {
-//     let weatherData = getWeatherData();
-//     console.log(weatherData);
-//     return {
-//         type: UPDATE_WEATHER,
-//         payload:{
-//             temp: Math.round(weatherData.main.temp*10)/10,      //四捨五入到小數第一位       
-//             weather: weatherData.weather[0].main,
-//          }
-//     }
-// }
-
 //是否顯示DESCRIPTION
-export const showDescription = () => {
+export const toggleDescription = (itemIndex,title,newState) => {
+    
+   // console.log(`${itemIndex},${title},${newState}`)
+    let showDescription = Object.assign({},store.getState().showDescription);
+    showDescription[title] = showDescription[title].map(x=>false);    //隱藏全部
+    showDescription[title][itemIndex] = newState;
+
     return {
-        type: SHOW_DESCRIPTION,
+        type: TOGGLE_DESCRIPTION,
         payload:{
-                 
+            showDescription: showDescription      
         }
     }
 }
@@ -110,11 +104,6 @@ function getCurrentTime() {
         minutes = minutes < 10 ? "0" + minutes : minutes.toString();
         month = month < 10 ? "0" + month : month.toString();
         date = date < 10 ? "0" + date : date.toString();
-
-     //   if(hours=== "00" && seconds=== "00" && minutes === "00" ){  //整點
-     //      let test = (dispatch) => dispatch(updateWeather());
-     //   }
-
 
         // Months Names
         Date.prototype.monthNames = [
@@ -142,24 +131,3 @@ function getCurrentTime() {
             monthNames:  datetime.monthNames[month - 1]         
         }
     }
-
-//取得天氣資料
-    async function getWeatherData() {
-
-        let apiUrl = "http://api.openweathermap.org/data/2.5/weather";
-        let queryObj = {
-            APPID:"f8aeb1b2e591f2c787f3c774b6c8f631",
-            q: "Taipei",
-            units: "metric"
-        }
-        apiUrl+= `?APPID=${queryObj.APPID}&q=${queryObj.q}&units=${queryObj.units}`
-        let res = await fetch(apiUrl)
-        let data = await res.json();
-      //  console.log(data);
-        return {
-            temp: Math.round(data.main.temp*10)/10,      //四捨五入到小數第一位       
-            main: data.weather[0].main,
-         //   mainImg: this.getMainImg(data.weather[0].main)
-        }
-    }
-

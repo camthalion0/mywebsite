@@ -5,8 +5,7 @@ import data from './../data'
 class About extends Component {
     
     render() {
-        let educations = data.educations;
-        let experiences = data.experiences;
+        let {educations, experiences} =  data;
 
         return (
             <div className='About' id='About'>

@@ -11,7 +11,7 @@ class AboutSection extends Component {
         return (
             <div className='AboutSection'>
                 <AboutTitle title={this.props.title}/>
-                <AboutItemList items={this.props.items} />
+                <AboutItemList title={this.props.title} items={this.props.items} />
             </div>
         );
     }

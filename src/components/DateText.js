@@ -10,7 +10,7 @@ import { updateTime, fetchWeather } from '../actions/index'
 
 
 class DateText extends Component {
-
+    
     componentDidMount() {       //當元件被寫入 DOM 之後觸發
         this.props.dispatch(updateTime());  //取得時間
         this.props.dispatch(fetchWeather());    //取得天氣

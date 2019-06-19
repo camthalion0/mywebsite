@@ -1,4 +1,4 @@
-import { UPDATE_TIME, SHOW_DESCRIPTION, RECEIVE_WEATHER, RECEIVE_WEATHER_ERROR } from '../actions/index'
+import { UPDATE_TIME, TOGGLE_DESCRIPTION, RECEIVE_WEATHER, RECEIVE_WEATHER_ERROR } from '../actions/index'
 
 const initState = {
         currentTime:{       //目前時間
@@ -10,8 +10,8 @@ const initState = {
             weather: null
         },  
         showDescription:{
-            educations:[false,false,false], //顯示學歷描述
-            experiences:[false,false]       //顯示經歷描述
+            education:[false,false,false], //顯示學歷描述
+            experience:[false,false]       //顯示經歷描述
         }
     };
 
@@ -19,6 +19,7 @@ const initState = {
 const appReducer = (state = initState, action) => {
     switch(action.type){
         case UPDATE_TIME:
+            // console.log('UPDATE_TIME');
             return Object.assign({}, state,{
                 currentTime:{
                     timeText: action.payload.timeText,
@@ -26,6 +27,7 @@ const appReducer = (state = initState, action) => {
                 }
             })
         case RECEIVE_WEATHER:
+            // console.log('RECEIVE_WEATHER');
             return Object.assign({}, state,{
                 currentWeather:{
                     temp: `${action.payload.temp} °C`,
@@ -39,12 +41,9 @@ const appReducer = (state = initState, action) => {
                     weather: action.payload.weather
                 }
             })           
-        case SHOW_DESCRIPTION:
+        case TOGGLE_DESCRIPTION: 
             return Object.assign({}, state,{
-                showDescription:{
-                    educations: action.educations,
-                    experiences: action.experiences
-                }
+                showDescription: action.payload.showDescription
             })
 
         default:
