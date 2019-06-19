@@ -2,10 +2,10 @@ import React from 'react';
 import AboutTitle from './AboutTitle'
 import AboutItemList from '../containers/AboutItemList'
 
-const AboutSection = () => (
+const AboutSection = (props) => (
             <div className='AboutSection'>
-                <AboutTitle title={this.props.title}/>
-                <AboutItemList title={this.props.title} items={this.props.items} />
+                <AboutTitle title={props.title}/>
+                <AboutItemList title={props.title} items={props.items} />
             </div>
         );
   

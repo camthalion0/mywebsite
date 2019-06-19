@@ -1,8 +1,8 @@
 import React from 'react';
 
-const AboutTitle = () => (          
+const AboutTitle = (props) => (          
             <div className='AboutTitle'>
-                {this.props.title}
+                {props.title}
             </div>
         );
 

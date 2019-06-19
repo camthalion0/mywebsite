@@ -1,7 +1,7 @@
 import React from 'react';
 
-const AboutItemDescription = () => {
-        let description = this.props.description;
+const AboutItemDescription = (props) => {
+        let description = props.description;
 
         return (
             <div className='AboutItemDescription' >

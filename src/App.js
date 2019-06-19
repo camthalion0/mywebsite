@@ -1,6 +1,5 @@
 import React from 'react';
 import './style/style.css';
-import './AppLittle.css';
 import Hello from './components/Hello';
 import Menu from './components/Menu';
 import About from './containers/About';
