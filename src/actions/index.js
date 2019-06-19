@@ -1,4 +1,5 @@
 import {store} from '../../src/index';
+import data from './../data';
 
 //定義type屬性名稱
 export const UPDATE_TIME = 'UPDATE_TIME';
@@ -7,6 +8,7 @@ export const TOGGLE_DESCRIPTION = 'TOGGLE_DESCRIPTION';
 export const REQUEST_WEATHER = 'REQUEST_WEATHER';
 export const RECEIVE_WEATHER = 'RECEIVE_WEATHER';
 export const RECEIVE_WEATHER_ERROR = 'RECEIVE_WEATHER_ERROR';
+export const GET_ABOUT_DATA =  'GET_ABOUT_DATA';
 
 //更新時間
 export const updateTime = () => {
@@ -86,6 +88,21 @@ export const toggleDescription = (itemIndex,title,newState) => {
         }
     }
 }
+
+//取得自介資料
+export const getAboutData = () => {
+    let {educations, experiences} =  data;
+
+    return {
+        type: GET_ABOUT_DATA,
+        payload:{
+            aboutMe:{
+                educations,
+                experiences
+            }
+        }
+    }
+} 
 
  // 取得時間
 function getCurrentTime() {

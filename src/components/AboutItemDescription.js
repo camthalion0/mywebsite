@@ -1,18 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class AboutItemDescription extends Component{
-
-    render(){
-        let showDescription = this.props.showDescription?"AboutItemDescriptionOn":"AboutItemDescriptionOff";
-     //   let showDescriptionTxt = 
+const AboutItemDescription = () => {
         let description = this.props.description;
 
         return (
-            // <div hidden={!showDescription} className='AboutItemDescription'>
             <div className='AboutItemDescription' >
-                <span 
-                    // hidden={!this.props.showDescription}
-                >
+                <span>
                     {description}
                     {description}{description}
                     {description}{description}
@@ -33,6 +26,5 @@ class AboutItemDescription extends Component{
             </div>
         )    
     }
-}
 
 export default AboutItemDescription;

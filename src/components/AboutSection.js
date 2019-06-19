@@ -1,20 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 import AboutTitle from './AboutTitle'
-import AboutItemList from './AboutItemList'
+import AboutItemList from '../containers/AboutItemList'
 
-class AboutSection extends Component {
-    // constructor(){
-    //     super();
-    // }
-
-    render() {
-        return (
+const AboutSection = () => (
             <div className='AboutSection'>
                 <AboutTitle title={this.props.title}/>
                 <AboutItemList title={this.props.title} items={this.props.items} />
             </div>
         );
-    }
-}
   
 export default AboutSection;

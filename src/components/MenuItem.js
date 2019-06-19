@@ -1,13 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class MenuItem extends Component{
-
-    render(){
-        return(
+const MenuItem = ()=>
+        (
             <a className='MenuItem' src={this.props.link}>{this.props.title}</a>
         )
-    }
-
-}
+  
 
 export default MenuItem;

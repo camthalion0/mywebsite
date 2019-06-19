@@ -1,4 +1,8 @@
-import { UPDATE_TIME, TOGGLE_DESCRIPTION, RECEIVE_WEATHER, RECEIVE_WEATHER_ERROR } from '../actions/index'
+import { UPDATE_TIME, 
+         TOGGLE_DESCRIPTION, 
+         RECEIVE_WEATHER, 
+         RECEIVE_WEATHER_ERROR,
+         GET_ABOUT_DATA } from '../actions/index'
 
 const initState = {
         currentTime:{       //目前時間
@@ -12,6 +16,10 @@ const initState = {
         showDescription:{
             education:[false,false,false], //顯示學歷描述
             experience:[false,false]       //顯示經歷描述
+        },
+        aboutMe:{
+            educations:[],
+            experiences:[]
         }
     };
 
@@ -44,6 +52,13 @@ const appReducer = (state = initState, action) => {
         case TOGGLE_DESCRIPTION: 
             return Object.assign({}, state,{
                 showDescription: action.payload.showDescription
+            })
+
+        case GET_ABOUT_DATA:
+        // console.log('GET_ABOUT_DATA')
+        // console.log(action.payload.aboutMe)
+            return Object.assign({}, state,{
+                aboutMe: action.payload.aboutMe
             })
 
         default:
