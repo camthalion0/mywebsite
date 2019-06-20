@@ -203,6 +203,11 @@ $phonesize: 0.5;    //手機倍數
                 }
             }
         }
+
+        .Skills {
+            @extend %flexbox100; 
+            background-color:powderblue;
+        }
     }
 
     .pagefoot {

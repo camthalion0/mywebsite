@@ -1,5 +1,5 @@
 @charset "UTF-8";
-.App, .App .pagebody .Hello, .App .pagebody .About, .App .pagefoot .Menu {
+.App, .App .pagebody .Hello, .App .pagebody .About, .App .pagebody .Skills, .App .pagefoot .Menu {
   height: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -219,6 +219,10 @@
   overflow: hidden;
   -webkit-transition: all 0.5s ease-out;
   transition: all 0.5s ease-out;
+}
+
+.App .pagebody .Skills {
+  background-color: powderblue;
 }
 
 .App .pagefoot {
