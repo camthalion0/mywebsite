@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {skillItemList} from './../data';
 
 class SkillsTree extends Component {
     componentDidMount() {
@@ -12,13 +13,21 @@ class SkillsTree extends Component {
         let w = 70;  //width
         let h = 50;    //height
         let m = 30;    //margin
-        let xCorrection = 20; //x校正
-        let yCorrection = 5;  //y校正
+        // let xCorrection = 20; //x校正
+        // let yCorrection = 5;  //y校正
+
+
+        //技能框實際位置
+        const Realcoor = (x,y) => ({
+            Xcoor: x * w + m,
+            Ycoor: y * h + m
+        })
 
         //技能方塊 x座標,y座標,文字內容,x校正,y校正,字體大小
-        const square = (x, y, textArr, x1=xCorrection, y1=yCorrection, fontSize=12 ) => {
-            let Xcoor = x * w + m;  
-            let Ycoor = y * h + m;
+        const square = (x, y, textArr, x1, y1, fontSize=12 ) => {
+            // let Xcoor = x * w + m;  
+            // let Ycoor = y * h + m;
+            let {Xcoor,Ycoor} = Realcoor(x,y);  
     
             ctx.font = `${fontSize}px Arial`;    
             ctx.beginPath();  //開始繪圖區塊
@@ -36,6 +45,8 @@ class SkillsTree extends Component {
             textArr.forEach((item,index)=>{
                 ctx.strokeText(item, Xcoor+x1, Ycoor+h/2 + y1 + index*fontSize );  //內文
             })
+
+            return {Xcoor, Ycoor, textArr};
         }
   
         const arrow = ( direction,...points ) => {
@@ -86,8 +97,7 @@ class SkillsTree extends Component {
             ctx.closePath();  //閉合繪圖區塊  
             ctx.fill();
             ctx.stroke(); //繪製相連點的線
-        }    
-
+        }          
 
         const canvas = this.refs.canvas;
         const container = document.getElementById('Skills');
@@ -114,22 +124,27 @@ class SkillsTree extends Component {
         arrow( 'down', {x:6,y:10}, {x:6,y:12} ); //React > Redux
         arrow( 'up', {x:6,y:12}, {x:6,y:10} ); //React > Redux
   
-        square(2, 0, ['C++'], );
-        square(0, 2, ['Linux'],  );
-        square(2, 2, ['Shell'],  );
-        square(4, 2, ['Pro*C'],  );
-        square(6, 2, ['Oracle', 'SQL'], xCorrection,0);
-        square(8, 2, ['Oracle', 'Forms'], xCorrection,0);
-        square(4, 4, ['C#'],  );
-        square(6, 4, ['Linq'],  );
-        square(6, 6, ['Asp.net','MVC'], 15,0);
-        square(1, 5, ['Lua'],  );
-        square(1, 8, ['Git'],  );
-        square(4, 8, ['HTML'],  );
-        square(6, 8, ['CSS','SCSS','Bootstrap'],10,-5  );
-        square(8, 8, ['JavaScript','JQuery'], 5,0 );
-        square(6, 10, ['React'],  );
-        square(6, 12, ['Redux'],  );
+        let skillitem = [];
+        //畫出技能塊並取得itemlist
+        skillItemList.forEach((item)=>{
+            skillitem.push(square(item.x, item.y, item.text, item.xCorrection, item.yCorrection));
+
+        })
+       // console.log(skillitem);
+
+        const clickEvent = (x,y) => {
+            let sqaure = 
+            skillitem.find((item)=>{
+                return( x > item.Xcoor && x < item.Xcoor + w &&
+                    y > item.Ycoor && y < item.Ycoor + h )
+            })
+            return sqaure? sqaure.textArr : null;
+        }
+        //綁定點擊事件
+        canvas.addEventListener('click', function(e){
+            console.log(clickEvent(e.layerX,e.layerY));
+        }, false);
+
     }
 
     render() {
