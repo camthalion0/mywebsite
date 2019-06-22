@@ -136,18 +136,27 @@ $phonesize: 0.5;    //手機倍數
             @extend %flexbox100;
             justify-content:center;
             align-items: center;
-            background-color: rgb(127, 255, 212);
             font-weight:bold;
             text-align: center;
-
-            .timeText{
-                @extend %fontlevel1;
-            }
-            .dateText{
-                @extend %fontlevel2;
-            }
-            .temp{
-                @extend %fontlevel2;
+            background-image: url('/A_background.jpg');
+            background-repeat:no-repeat;
+            background-position: center; 
+            background-size: cover;
+            
+            .time_date_temp_container{
+                position: relative;
+                bottom: 10%;
+                .timeText{
+                    mix-blend-mode: difference;
+                    color: white;
+                    @extend %fontlevel1;
+                }
+                .dateText{
+                    @extend %fontlevel2;
+                }
+                .temp{
+                    @extend %fontlevel2;
+                }
             }
         } 
 

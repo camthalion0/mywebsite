@@ -63,7 +63,7 @@ class DateText extends Component {
     render() {
         const {currentTime,currentWeather} = this.props;   //this.props已透過mapStateToProps綁定
         return (
-            <div>
+            <div className='time_date_temp_container'>
                 <div className='timeText'>{currentTime.timeText}</div>
                 <div className='dateText'>{currentTime.dateText}</div>      
                 <div className='temp'>{currentWeather.temp}
