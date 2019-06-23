@@ -4,46 +4,71 @@ import {skillItemList} from './../data';
 class SkillsTree extends Component {
     componentDidMount() {
         //當元件被寫入 DOM 之後開始畫
+
+    //     const canvas = document.getElementById('skillcanvas'); 
+    //     const container = document.getElementById('Skills');
+    //     canvas.width = container.clientWidth;    //初始化大小
+    //    // canvas.height = container.clientHeight;
+    //    canvas.height = container.clientWidth; 
+    //    // let w = container.clientWidth / 12;  //square width
+    //     // let h = w / 1.3;    //square height
+
         this.updateCanvas();
+        window.addEventListener("resize", this.updateCanvas);
+
     }
 
     updateCanvas() {
 
-        let r = 10;  //radius
-        let w = 70;  //width
-        let h = 50;    //height
-        let m = 30;    //margin
-        // let xCorrection = 20; //x校正
-        // let yCorrection = 5;  //y校正
+        const canvas = document.getElementById('skillcanvas'); 
 
+        const container = document.getElementById('Skills');
+
+        canvas.width = container.clientWidth;    //初始化大小
+        //canvas.height = container.clientHeight;
+       //  canvas.width = 1000;  
+         canvas.height =  container.clientWidth; 
+        let w = canvas.width / 12;  //square width
+        let h = w / 1.3;    //square height
+  
+        const ctx = canvas.getContext('2d');
+
+        let r = 5,  //radius
+            ml = (canvas.width / 12) * 1.5,    //margin left
+            mt = (canvas.height / 15) ;    //margin top
+
+        let f = w / 4.5;
+        
 
         //技能框實際位置
         const Realcoor = (x,y) => ({
-            Xcoor: x * w + m,
-            Ycoor: y * h + m
+            Xcoor: x * w + ml,
+            Ycoor: y * h + mt
         })
 
         //技能方塊 x座標,y座標,文字內容,x校正,y校正,字體大小
-        const square = (x, y, textArr, x1, y1, fontSize=12 ) => {
-            // let Xcoor = x * w + m;  
-            // let Ycoor = y * h + m;
+        const square = (x, y, textArr, x1, y1, fontSize = f ) => {
             let {Xcoor,Ycoor} = Realcoor(x,y);  
     
             ctx.font = `${fontSize}px Arial`;    
             ctx.beginPath();  //開始繪圖區塊
             ctx.moveTo(Xcoor+r,Ycoor);
-            ctx.arcTo(Xcoor+w, Ycoor, Xcoor+w, Ycoor+h, r);
-            ctx.arcTo(Xcoor+w, Ycoor+h, Xcoor, Ycoor+h, r);
-            ctx.arcTo(Xcoor, Ycoor+h, Xcoor, Ycoor, r);
-            ctx.arcTo(Xcoor, Ycoor, Xcoor+w, Ycoor, r);  
+            ctx.arcTo(Xcoor+w*1.1, Ycoor, Xcoor+w*1.1, Ycoor+h*1.1, r);
+            ctx.arcTo(Xcoor+w*1.1, Ycoor+h*1.1, Xcoor, Ycoor+h*1.1, r);
+            ctx.arcTo(Xcoor, Ycoor+h*1.1, Xcoor, Ycoor, r);
+            ctx.arcTo(Xcoor, Ycoor, Xcoor+w*1.1, Ycoor, r);  
     
             ctx.closePath();  //閉合繪圖區塊
             //用fillStyle指定填滿色彩
             ctx.fillStyle = "#e0bcb1"; 
             ctx.fill();
             ctx.stroke(); //繪製相連點的線
+            ctx.fillStyle = "#000000"; 
             textArr.forEach((item,index)=>{
-                ctx.strokeText(item, Xcoor+x1, Ycoor+h/2 + y1 + index*fontSize );  //內文
+                let textWidth = ctx.measureText(item).width;
+                x1 = (w - textWidth) /2;
+                y1 = (h - textArr.length*f) /2;
+                ctx.fillText(item, Xcoor+x1, Ycoor + y1 + f*(index+1) );  //內文
             })
 
             return {Xcoor, Ycoor, textArr};
@@ -52,8 +77,9 @@ class SkillsTree extends Component {
         const arrow = ( direction,...points ) => {
             //起始點
             let { x, y } = points[0];
-            let Xcoor = (x + 0.5) * w + m;  
-            let Ycoor = (y + 0.5) * h + m;
+            let {Xcoor,Ycoor} = Realcoor(x + 0.5,y + 0.5);  
+            // let Xcoor = (x + 0.5) * w + m;  
+            // let Ycoor = (y + 0.5) * h + m;
             ctx.beginPath();  //開始繪圖區塊
             ctx.moveTo(Xcoor,Ycoor);
     
@@ -61,8 +87,8 @@ class SkillsTree extends Component {
             for(let i=1;i<points.length;i++){
                 x = points[i].x;
                 y = points[i].y;
-                Xcoor = (x + 0.5) * w + m;  
-                Ycoor = (y + 0.5) * h + m;   
+                Xcoor = Realcoor(x + 0.5,y + 0.5).Xcoor;
+                Ycoor = Realcoor(x + 0.5,y + 0.5).Ycoor; 
                 ctx.lineTo(Xcoor,Ycoor);
             }
             ctx.stroke(); //繪製相連點的線
@@ -98,12 +124,6 @@ class SkillsTree extends Component {
             ctx.fill();
             ctx.stroke(); //繪製相連點的線
         }          
-
-        const canvas = this.refs.canvas;
-        const container = document.getElementById('Skills');
-        canvas.width = container.clientWidth;    //初始化大小
-        canvas.height = container.clientHeight;
-        const ctx = canvas.getContext('2d');
 
         arrow( 'down', {x:2,y:0}, {x:4,y:0}, {x:4,y:2} ); //C++ > Pro*C
         arrow( 'right', {x:0,y:2}, {x:2,y:2} ); //Linux > Shell
@@ -150,7 +170,7 @@ class SkillsTree extends Component {
     render() {
        // console.log(this.props.width)
         return (
-            <canvas ref="canvas" >
+            <canvas ref="canvas" height='1000' id="skillcanvas" >
             </canvas>
         );    
     }

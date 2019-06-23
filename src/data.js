@@ -31,7 +31,7 @@ const data = {
     ]
 }
 
-let xCorrection = 20; //x校正
+let xCorrection = 5; //x校正
 let yCorrection = 5;  //y校正
 
 const skillItemList = [
@@ -95,7 +95,7 @@ const skillItemList = [
         x:6,
         y:6,
         text:['Asp.net','MVC'],
-        xCorrection:15,
+        xCorrection,
         yCorrection:0
     },
     {
@@ -116,14 +116,14 @@ const skillItemList = [
         x:6,
         y:8,
         text:['CSS','SCSS','Bootstrap'],
-        xCorrection:10,
+        xCorrection,
         yCorrection:-5
     },
     {
         x:8,
         y:8,
         text:['JavaScript','JQuery'],
-        xCorrection:5,
+        xCorrection,
         yCorrection:0
     },
     {
