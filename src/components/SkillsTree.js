@@ -35,29 +35,32 @@ class SkillsTree extends Component {
         }))
 
         /* 綁定視窗大小改變event */
-        window.addEventListener("resize", ()=>{
-            this.setState(()=>({
-                skillsTree:this.updateCanvas(container.clientWidth,container.clientHeight),
-                canvasWidth:container.clientWidth,
-                canvasHeight:container.clientHeight
-            }))
-        },false); 
+        window.addEventListener("resize", this.eventObj,false); 
 
         /* 綁定click event */
         canvas.addEventListener("click",(e)=>{
-            console.log(findSqaure(e.layerX,e.layerY,this.state.skillsTree))
+            let result = findSqaure(e.layerX,e.layerY,this.state.skillsTree);
+            if(result){
+                console.log(result);
+            }
         })
     }
 
+    eventObj = () =>{
+        const container = document.getElementById('Skills');
+        this.setState(()=>({
+            skillsTree:this.updateCanvas(container.clientWidth,container.clientHeight),
+            canvasWidth:container.clientWidth,
+            canvasHeight:container.clientHeight
+        })) 
+    }
+
     componentWillUnmount(){     //當元件準備要被移除或破壞時觸發
-    //    window.removeEventListener("resize", this.setNewState,false);      //移除視窗大小改變時重畫
+       window.removeEventListener("resize", this.eventObj,false);      //移除視窗大小改變時重畫
     }
 
     updateCanvas(canvasWidth,canvasHeight) {
-        // const container = document.getElementById('Skills');
         const canvas = document.getElementById('skillcanvas'); 
-        // canvas.width = container.clientWidth;    //初始化大小
-        // canvas.height = container.clientHeight;
         canvas.width =canvasWidth;
         canvas.height=canvasHeight;
 
@@ -71,10 +74,8 @@ class SkillsTree extends Component {
         let r = 5,  //radius
             ml = (canvas.width / 11) ,    //margin left
             mt = (canvas.height / 15) ;    //margin top
-
         let f = w / 4.5;
         
-
         //取得技能框實際位置中心點
         const Realcoor = (x,y) => ({
             Xcoor: x * w + ml,
@@ -87,7 +88,9 @@ class SkillsTree extends Component {
         const square = (x, y, textArr, fontSize = f ) => {
             let {Xcenter,Ycenter} = Realcoor(x,y);  
     
-            ctx.font = `${fontSize}px Arial`;    
+            //fontSize = 
+
+           // ctx.font = `${fontSize}px Arial`;    
             ctx.beginPath();  //開始繪圖區塊
             ctx.moveTo(Xcenter-0.5*sw+r,Ycenter-0.5*sh);//左上
             ctx.arcTo(Xcenter+0.5*sw, Ycenter-0.5*sh, Xcenter+0.5*sw, Ycenter+0.5*sh, r);  //右上 右下
@@ -101,11 +104,18 @@ class SkillsTree extends Component {
             ctx.fill();
             ctx.stroke(); //繪製相連點的線
             ctx.fillStyle = "#000000"; 
+
+            //若內文高度超出格子則縮小字型
+            if(fontSize*(textArr.length+1)>sh){               
+                fontSize = sh/((textArr.length+1))
+            }
+  
+            ctx.font = `${fontSize}px Arial`;  
             textArr.forEach((item,index)=>{
                 let textWidth = ctx.measureText(item).width;
                 let x1 = (textWidth) /2;
-                let y1 = (textArr.length*f) /2;
-                ctx.fillText(item, Xcenter-x1, Ycenter - y1 + f*(index+1) );  //內文
+                let y1 = (textArr.length*fontSize) /2;
+                ctx.fillText(item, Xcenter-x1, Ycenter - y1 + fontSize*(index+1) );  //內文
             })
 
             return {Xcenter, Ycenter, textArr};
@@ -184,7 +194,7 @@ class SkillsTree extends Component {
         skillItemList.forEach((item)=>{
             skillitems.push(square(item.x, item.y, item.text));
         })
-        console.log(skillitems)
+       // console.log(skillitems)
         return skillitems;
     }
 
