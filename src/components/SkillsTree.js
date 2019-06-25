@@ -13,6 +13,7 @@ class SkillsTree extends Component {
         /* 第一次改變state */
         const container = document.getElementById('Skills');
         const canvas = document.getElementById('skillcanvas');        
+
         //傳入點擊座標判斷哪個squre 
         let w = container.clientWidth / 11;  //square width
         let h = container.clientHeight / 15;    //square height
@@ -29,7 +30,7 @@ class SkillsTree extends Component {
         }
 
         this.setState(()=>({
-            skillsTree:this.updateCanvas(container.clientWidth,container.clientHeight),
+            skillsTree: this.updateCanvas(container.clientWidth,container.clientHeight),
             canvasWidth:container.clientWidth,
             canvasHeight:container.clientHeight
         }))
@@ -87,10 +88,7 @@ class SkillsTree extends Component {
         //技能方塊 x座標,y座標,文字內容,x校正,y校正,字體大小
         const square = (x, y, textArr, fontSize = f ) => {
             let {Xcenter,Ycenter} = Realcoor(x,y);  
-    
-            //fontSize = 
-
-           // ctx.font = `${fontSize}px Arial`;    
+ 
             ctx.beginPath();  //開始繪圖區塊
             ctx.moveTo(Xcenter-0.5*sw+r,Ycenter-0.5*sh);//左上
             ctx.arcTo(Xcenter+0.5*sw, Ycenter-0.5*sh, Xcenter+0.5*sw, Ycenter+0.5*sh, r);  //右上 右下
@@ -99,18 +97,20 @@ class SkillsTree extends Component {
             ctx.arcTo(Xcenter-0.5*sw, Ycenter-0.5*sh, Xcenter+0.5*sw, Ycenter-0.5*sh, r);    //左上 右上
     
             ctx.closePath();  //閉合繪圖區塊
-            //用fillStyle指定填滿色彩
-            ctx.fillStyle = "#e0bcb1"; 
-            ctx.fill();
-            ctx.stroke(); //繪製相連點的線
-            ctx.fillStyle = "#000000"; 
-
-            //若內文高度超出格子則縮小字型
-            if(fontSize*(textArr.length+1)>sh){               
+        
+            //若內文高度超出格子則縮小字型 
+            if(fontSize*(textArr.length+1)>sh){                 
                 fontSize = sh/((textArr.length+1))
             }
-  
-            ctx.font = `${fontSize}px Arial`;  
+     //       const myFont = new FontFace('MyFont','url(../fonts/angostur.ttf)');
+            // ctx.font = `${fontSize}px ${myFont}`;  
+            ctx.font = `${fontSize}px bodytext`;  
+             
+            ctx.fillStyle = "#e0bcb1";  //用fillStyle指定填滿色彩
+            ctx.fill();
+            ctx.stroke(); //繪製相連點的線
+            ctx.fillStyle = "#000000";
+
             textArr.forEach((item,index)=>{
                 let textWidth = ctx.measureText(item).width;
                 let x1 = (textWidth) /2;

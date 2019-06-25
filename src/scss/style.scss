@@ -229,8 +229,10 @@ $phonesize: 0.5;    //手機倍數
         .Skills {
            // @extend %flexbox100; 
             height: 100%;
-            background-color:powderblue;
-            // overflow: auto auto;
+            background-image: url('/Skills_background.jpg');
+            background-repeat:no-repeat;
+            background-position: center; 
+            background-size: cover;
             canvas {
                 overflow: scroll;
             }
