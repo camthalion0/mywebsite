@@ -4,104 +4,67 @@ import {skillItemList} from './../data';
 class SkillsTree extends Component {
     constructor(props){
         super(props);
-        this.getNewSkillTree = this.getNewSkillTree.bind(this);
         this.state = { 
-            skillsTree:{}
-        }     
+            skillsTree:{},  //技能樹座標、內容
+        };
     }
 
     componentDidMount() {
-    //     const canvas = document.getElementById('skillcanvas'); 
-    //     const container = document.getElementById('Skills');
-    //     canvas.width = container.clientWidth;    //初始化大小
-    //    // canvas.height = container.clientHeight;
-    //    canvas.height = container.clientWidth; 
-    //    // let w = container.clientWidth / 12;  //square width
-    //     // let h = w / 1.3;    //square height
-    //    const canvas = document.getElementById('skillcanvas'); 
-    //    const container = document.getElementById('Skills');
-
-
-        /* 當元件被寫入 DOM 之後開始畫 */
-        this.getNewSkillTree();      
-
-        /* 視窗大小改變時重畫 */
-        window.addEventListener("resize", this.getNewSkillTree,false);    
-        
-        /* 綁定點擊事件 */
-        const canvas = document.getElementById('skillcanvas'); 
-        canvas.addEventListener("click",(e)=>{
-          //  console.log(e.layerX,e.layerY);
-          //  console.log(this.state.skillsTree);
-            this.state.skillsTree.find((item) => {
-                return( e.layerX > item.Xcoor && e.layerX < item.Xcoor + w && e.layerY > item.Ycoor && e.layerY < item.Ycoor + h )        
+        /* 第一次改變state */
+        const container = document.getElementById('Skills');
+        const canvas = document.getElementById('skillcanvas');        
+        //傳入點擊座標判斷哪個squre 
+        let w = container.clientWidth / 11;  //square width
+        let h = container.clientHeight / 15;    //square height
+        let sw = w*1.2;
+        let sh = h*1.2;
+        const findSqaure = (x,y,skillitem) => {
+            let sqaure = 
+            skillitem.find((item)=>{
+                return( x > item.Xcenter - 0.5*sw && x < item.Xcenter +0.5* sw &&
+                    y > item.Ycenter -0.5*sh && y < item.Ycenter + 0.5*sh )
             })
+            //console.log(sqaure? sqaure.textArr : null);
+           return sqaure? sqaure.textArr : null;
+        }
 
+        this.setState(()=>({
+            skillsTree:this.updateCanvas(container.clientWidth,container.clientHeight),
+            canvasWidth:container.clientWidth,
+            canvasHeight:container.clientHeight
+        }))
 
+        /* 綁定視窗大小改變event */
+        window.addEventListener("resize", ()=>{
+            this.setState(()=>({
+                skillsTree:this.updateCanvas(container.clientWidth,container.clientHeight),
+                canvasWidth:container.clientWidth,
+                canvasHeight:container.clientHeight
+            }))
+        },false); 
 
-
-
-        },false);
+        /* 綁定click event */
+        canvas.addEventListener("click",(e)=>{
+            console.log(findSqaure(e.layerX,e.layerY,this.state.skillsTree))
+        })
     }
-
-//傳入點擊座標判斷哪個squre 
-        // const findSqaure = (x,y) => {
-        //     let sqaure = 
-        //     skillitem.find((item)=>{
-        //         return( x > item.Xcoor && x < item.Xcoor + w &&
-        //             y > item.Ycoor && y < item.Ycoor + h )
-        //     })
-        //     //console.log(sqaure? sqaure.textArr : null);
-        //    return sqaure? sqaure.textArr : null;
-        // }
 
     componentWillUnmount(){     //當元件準備要被移除或破壞時觸發
-        window.removeEventListener("resize", this.updateCanvas,false);      //移除視窗大小改變時重畫
+    //    window.removeEventListener("resize", this.setNewState,false);      //移除視窗大小改變時重畫
     }
 
-    getNewSkillTree(){
-        /* 取得新canvas */
-        let newTree = this.updateCanvas();    //取得新canvas
-        /* set state */
-       // console.log(newTree);
-        this.setState(()=>({
-            skillsTree:newTree
-        }))
-    }
-
-    // componentDidUpdate(){
-    //     console.log(this.state);
-    //     this.refs.canvas.addEventListener('click',this.state.eventObj,false);
-    // }
-
-
-    updateCanvas() {
-        // canvas.removeEventListener('click', function(e){
-        //     //console.log(clickEvent(e.layerX,e.layerY));
-        // }, false);
-
-        // if(container.clientWidth> container.clientHeight){
-        //     canvas.width = container.clientWidth;    //初始化大小
-        //     canvas.height =  container.clientWidth; 
-        // }
-        // else{
-        //     canvas.width = container.clientHeight;    //初始化大小
-        //     canvas.height =  container.clientHeight;
-        // }
-
-      //  console.log(`container:${container.clientWidth},${container.clientHeight}`)
-      //  console.log(`canvas:${canvas.width},${canvas.height}`)
-
+    updateCanvas(canvasWidth,canvasHeight) {
+        // const container = document.getElementById('Skills');
+        const canvas = document.getElementById('skillcanvas'); 
         // canvas.width = container.clientWidth;    //初始化大小
         // canvas.height = container.clientHeight;
-
-        const container = document.getElementById('Skills');
-        const canvas = document.getElementById('skillcanvas'); 
-        canvas.width = container.clientWidth;    //初始化大小
-        canvas.height = container.clientHeight;
+        canvas.width =canvasWidth;
+        canvas.height=canvasHeight;
 
         let w = canvas.width / 11;  //square width
         let h = canvas.height / 15;    //square height
+        let sw = w*1.2;
+        let sh = h*1.2;
   
         const ctx = canvas.getContext('2d');
 
@@ -112,23 +75,25 @@ class SkillsTree extends Component {
         let f = w / 4.5;
         
 
-        //取得技能框實際位置
+        //取得技能框實際位置中心點
         const Realcoor = (x,y) => ({
             Xcoor: x * w + ml,
-            Ycoor: y * h + mt
+            Ycoor: y * h + mt,
+            Xcenter: (x +0.5)* w + ml,
+            Ycenter: (y +0.5)* h + mt,
         })
 
         //技能方塊 x座標,y座標,文字內容,x校正,y校正,字體大小
-        const square = (x, y, textArr, x1, y1, fontSize = f ) => {
-            let {Xcoor,Ycoor} = Realcoor(x,y);  
+        const square = (x, y, textArr, fontSize = f ) => {
+            let {Xcenter,Ycenter} = Realcoor(x,y);  
     
             ctx.font = `${fontSize}px Arial`;    
             ctx.beginPath();  //開始繪圖區塊
-            ctx.moveTo(Xcoor+r,Ycoor);
-            ctx.arcTo(Xcoor+w*1.1, Ycoor, Xcoor+w*1.1, Ycoor+h*1.1, r);
-            ctx.arcTo(Xcoor+w*1.1, Ycoor+h*1.1, Xcoor, Ycoor+h*1.1, r);
-            ctx.arcTo(Xcoor, Ycoor+h*1.1, Xcoor, Ycoor, r);
-            ctx.arcTo(Xcoor, Ycoor, Xcoor+w*1.1, Ycoor, r);  
+            ctx.moveTo(Xcenter-0.5*sw+r,Ycenter-0.5*sh);//左上
+            ctx.arcTo(Xcenter+0.5*sw, Ycenter-0.5*sh, Xcenter+0.5*sw, Ycenter+0.5*sh, r);  //右上 右下
+            ctx.arcTo(Xcenter+0.5*sw, Ycenter+0.5*sh, Xcenter-0.5*sw, Ycenter+0.5*sh, r);  //右下 左下
+            ctx.arcTo(Xcenter-0.5*sw, Ycenter+0.5*sh, Xcenter-0.5*sw, Ycenter-0.5*sh, r);    //左下 左上  
+            ctx.arcTo(Xcenter-0.5*sw, Ycenter-0.5*sh, Xcenter+0.5*sw, Ycenter-0.5*sh, r);    //左上 右上
     
             ctx.closePath();  //閉合繪圖區塊
             //用fillStyle指定填滿色彩
@@ -138,30 +103,28 @@ class SkillsTree extends Component {
             ctx.fillStyle = "#000000"; 
             textArr.forEach((item,index)=>{
                 let textWidth = ctx.measureText(item).width;
-                x1 = (w - textWidth) /2;
-                y1 = (h - textArr.length*f) /2;
-                ctx.fillText(item, Xcoor+x1, Ycoor + y1 + f*(index+1) );  //內文
+                let x1 = (textWidth) /2;
+                let y1 = (textArr.length*f) /2;
+                ctx.fillText(item, Xcenter-x1, Ycenter - y1 + f*(index+1) );  //內文
             })
 
-            return {Xcoor, Ycoor, textArr};
+            return {Xcenter, Ycenter, textArr};
         }
   
         const arrow = ( direction,...points ) => {
             //起始點
             let { x, y } = points[0];
-            let {Xcoor,Ycoor} = Realcoor(x + 0.5,y + 0.5);  
-            // let Xcoor = (x + 0.5) * w + m;  
-            // let Ycoor = (y + 0.5) * h + m;
+            let {Xcenter,Ycenter} = Realcoor(x ,y );  
             ctx.beginPath();  //開始繪圖區塊
-            ctx.moveTo(Xcoor,Ycoor);
+            ctx.moveTo(Xcenter,Ycenter);
     
             //畫直線
             for(let i=1;i<points.length;i++){
                 x = points[i].x;
                 y = points[i].y;
-                Xcoor = Realcoor(x + 0.5,y + 0.5).Xcoor;
-                Ycoor = Realcoor(x + 0.5,y + 0.5).Ycoor; 
-                ctx.lineTo(Xcoor,Ycoor);
+                Xcenter = Realcoor(x,y).Xcenter;
+                Ycenter = Realcoor(x ,y ).Ycenter; 
+                ctx.lineTo(Xcenter,Ycenter);
             }
             ctx.stroke(); //繪製相連點的線
     
@@ -169,24 +132,24 @@ class SkillsTree extends Component {
             ctx.beginPath();  //開始繪圖區塊   
             switch(direction){
                 case 'right':
-                    ctx.moveTo(Xcoor-w/2,Ycoor); 
-                    ctx.lineTo(Xcoor-w/2-5,Ycoor-3);
-                    ctx.lineTo(Xcoor-w/2-5,Ycoor+3);
+                    ctx.moveTo(Xcenter- 0.5*sw, Ycenter); 
+                    ctx.lineTo(Xcenter- 0.5*sw -5, Ycenter-3);
+                    ctx.lineTo(Xcenter- 0.5*sw -5, Ycenter+3);
                     break;
                 case 'left':
-                    ctx.moveTo(Xcoor+w/2,Ycoor); 
-                    ctx.lineTo(Xcoor+w/2+5,Ycoor-3);
-                    ctx.lineTo(Xcoor+w/2+5,Ycoor+3);
+                    ctx.moveTo(Xcenter+ 0.5*sw, Ycenter);  
+                    ctx.lineTo(Xcenter+ 0.5*sw+5, Ycenter-3);
+                    ctx.lineTo(Xcenter+ 0.5*sw+5, Ycenter+3);
                     break;    
                 case 'up':
-                    ctx.moveTo(Xcoor,Ycoor+h/2); 
-                    ctx.lineTo(Xcoor-3,Ycoor+h/2+5);
-                    ctx.lineTo(Xcoor+3,Ycoor+h/2+5);
+                    ctx.moveTo(Xcenter,Ycenter+0.5*sh); 
+                    ctx.lineTo(Xcenter-3,Ycenter+0.5*sh+5);
+                    ctx.lineTo(Xcenter+3,Ycenter+0.5*sh+5);
                     break;       
                 case 'down':
-                    ctx.moveTo(Xcoor,Ycoor-h/2); 
-                    ctx.lineTo(Xcoor-3,Ycoor-h/2-5);
-                    ctx.lineTo(Xcoor+3,Ycoor-h/2-5);
+                    ctx.moveTo(Xcenter,Ycenter-0.5*sh); 
+                    ctx.lineTo(Xcenter-3,Ycenter-0.5*sh-5);
+                    ctx.lineTo(Xcenter+3,Ycenter-0.5*sh-5);
                     break;      
                 default:
                     break;   
@@ -195,8 +158,8 @@ class SkillsTree extends Component {
             ctx.closePath();  //閉合繪圖區塊  
             ctx.fill();
             ctx.stroke(); //繪製相連點的線
-        }          
-
+        }        
+  
         arrow( 'down', {x:2,y:0}, {x:4,y:0}, {x:4,y:2} ); //C++ > Pro*C
         arrow( 'right', {x:0,y:2}, {x:2,y:2} ); //Linux > Shell
         arrow( 'right', {x:2,y:2}, {x:4,y:2} ); //Shell > Pro*C
@@ -219,71 +182,19 @@ class SkillsTree extends Component {
         let skillitems = [];
         //畫出技能塊並取得畫出來的itemlist
         skillItemList.forEach((item)=>{
-            skillitems.push(square(item.x, item.y, item.text, item.xCorrection, item.yCorrection));
+            skillitems.push(square(item.x, item.y, item.text));
         })
-
-        /////////////////////////////
-
-        //傳入點擊座標判斷哪個squre 
-        // const findSqaure = (x,y) => {
-        //     let sqaure = 
-        //     skillitem.find((item)=>{
-        //         return( x > item.Xcoor && x < item.Xcoor + w &&
-        //             y > item.Ycoor && y < item.Ycoor + h )
-        //     })
-        //     //console.log(sqaure? sqaure.textArr : null);
-        //    return sqaure? sqaure.textArr : null;
-        // }
-
-        // this.setState(()=>({
-        //     eventObj:{
-        //         handleEvent: function(e) {
-        //             console.log(e.layerX)
-        //         }
-        //     }
-        // }))
-
+        console.log(skillitems)
         return skillitems;
-
-
-        //    canvas.removeEventListener('click', this.state.eventObj, false);
-        //    canvas.addEventListener('click', this.state.eventObj, false);
-
-        // canvas.addEventListener('click', squareClickEvent().handelEvent(e), false);
-
-        // function squareClickEvent(e){       
-        //     console.log(findSqaure(e.layerX,e.layerY));
-        // }
-    
-
-        //綁定點擊事件
-        // canvas.addEventListener('click', function(e){
-        //     console.log(clickEvent(e.layerX,e.layerY));
-        // }, false);
-        // canvas.removeEventListener('click', clickEvent1(e))
-
-        // function clickEvent1(e){
-        //     let sqaure = 
-        //         skillitem.find((item)=>{
-        //             return( e.layerX > item.Xcoor && e.layerX < item.Xcoor + w &&
-        //                 e.layerY > item.Ycoor && e.layerY < item.Ycoor + h )
-        //     })
-        //     console.log(sqaure? sqaure.textArr : null);
-        // }
-
-        // canvas.addEventListener('click', clickEvent1(e)
-            
-        //, false);
     }
 
 
     render() {
-       // console.log(this.props.width)
-        return (
-            <canvas ref="canvas" id="skillcanvas" >
-            </canvas>
-        );    
-    }
+         return (
+             <canvas ref="canvas" id="skillcanvas" >
+             </canvas>
+         );    
+     }
 }
 
 export default SkillsTree;
