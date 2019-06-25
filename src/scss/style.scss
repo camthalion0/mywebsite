@@ -230,7 +230,7 @@ $phonesize: 0.5;    //手機倍數
            // @extend %flexbox100; 
             height: 100%;
             background-color:powderblue;
-            overflow: hidden scroll;
+            // overflow: auto auto;
             canvas {
                 overflow: scroll;
             }

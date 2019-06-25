@@ -2,9 +2,15 @@ import React, { Component } from 'react';
 import {skillItemList} from './../data';
 
 class SkillsTree extends Component {
-    componentDidMount() {
-        //當元件被寫入 DOM 之後開始畫
+    constructor(props){
+        super(props);
+        this.getNewSkillTree = this.getNewSkillTree.bind(this);
+        this.state = { 
+            skillsTree:{}
+        }     
+    }
 
+    componentDidMount() {
     //     const canvas = document.getElementById('skillcanvas'); 
     //     const container = document.getElementById('Skills');
     //     canvas.width = container.clientWidth;    //初始化大小
@@ -12,35 +18,101 @@ class SkillsTree extends Component {
     //    canvas.height = container.clientWidth; 
     //    // let w = container.clientWidth / 12;  //square width
     //     // let h = w / 1.3;    //square height
+    //    const canvas = document.getElementById('skillcanvas'); 
+    //    const container = document.getElementById('Skills');
 
-        this.updateCanvas();
-        window.addEventListener("resize", this.updateCanvas);
 
+        /* 當元件被寫入 DOM 之後開始畫 */
+        this.getNewSkillTree();      
+
+        /* 視窗大小改變時重畫 */
+        window.addEventListener("resize", this.getNewSkillTree,false);    
+        
+        /* 綁定點擊事件 */
+        const canvas = document.getElementById('skillcanvas'); 
+        canvas.addEventListener("click",(e)=>{
+          //  console.log(e.layerX,e.layerY);
+          //  console.log(this.state.skillsTree);
+            this.state.skillsTree.find((item) => {
+                return( e.layerX > item.Xcoor && e.layerX < item.Xcoor + w && e.layerY > item.Ycoor && e.layerY < item.Ycoor + h )        
+            })
+
+
+
+
+
+        },false);
     }
 
-    updateCanvas() {
+//傳入點擊座標判斷哪個squre 
+        // const findSqaure = (x,y) => {
+        //     let sqaure = 
+        //     skillitem.find((item)=>{
+        //         return( x > item.Xcoor && x < item.Xcoor + w &&
+        //             y > item.Ycoor && y < item.Ycoor + h )
+        //     })
+        //     //console.log(sqaure? sqaure.textArr : null);
+        //    return sqaure? sqaure.textArr : null;
+        // }
 
-        const canvas = document.getElementById('skillcanvas'); 
+    componentWillUnmount(){     //當元件準備要被移除或破壞時觸發
+        window.removeEventListener("resize", this.updateCanvas,false);      //移除視窗大小改變時重畫
+    }
+
+    getNewSkillTree(){
+        /* 取得新canvas */
+        let newTree = this.updateCanvas();    //取得新canvas
+        /* set state */
+       // console.log(newTree);
+        this.setState(()=>({
+            skillsTree:newTree
+        }))
+    }
+
+    // componentDidUpdate(){
+    //     console.log(this.state);
+    //     this.refs.canvas.addEventListener('click',this.state.eventObj,false);
+    // }
+
+
+    updateCanvas() {
+        // canvas.removeEventListener('click', function(e){
+        //     //console.log(clickEvent(e.layerX,e.layerY));
+        // }, false);
+
+        // if(container.clientWidth> container.clientHeight){
+        //     canvas.width = container.clientWidth;    //初始化大小
+        //     canvas.height =  container.clientWidth; 
+        // }
+        // else{
+        //     canvas.width = container.clientHeight;    //初始化大小
+        //     canvas.height =  container.clientHeight;
+        // }
+
+      //  console.log(`container:${container.clientWidth},${container.clientHeight}`)
+      //  console.log(`canvas:${canvas.width},${canvas.height}`)
+
+        // canvas.width = container.clientWidth;    //初始化大小
+        // canvas.height = container.clientHeight;
 
         const container = document.getElementById('Skills');
-
+        const canvas = document.getElementById('skillcanvas'); 
         canvas.width = container.clientWidth;    //初始化大小
-        //canvas.height = container.clientHeight;
-       //  canvas.width = 1000;  
-         canvas.height =  container.clientWidth; 
-        let w = canvas.width / 12;  //square width
-        let h = w / 1.3;    //square height
+        canvas.height = container.clientHeight;
+
+        let w = canvas.width / 11;  //square width
+        let h = canvas.height / 15;    //square height
   
         const ctx = canvas.getContext('2d');
 
         let r = 5,  //radius
-            ml = (canvas.width / 12) * 1.5,    //margin left
+            ml = (canvas.width / 11) ,    //margin left
             mt = (canvas.height / 15) ;    //margin top
 
         let f = w / 4.5;
         
 
-        //技能框實際位置
+        //取得技能框實際位置
         const Realcoor = (x,y) => ({
             Xcoor: x * w + ml,
             Ycoor: y * h + mt
@@ -144,33 +216,71 @@ class SkillsTree extends Component {
         arrow( 'down', {x:6,y:10}, {x:6,y:12} ); //React > Redux
         arrow( 'up', {x:6,y:12}, {x:6,y:10} ); //React > Redux
   
-        let skillitem = [];
-        //畫出技能塊並取得itemlist
+        let skillitems = [];
+        //畫出技能塊並取得畫出來的itemlist
         skillItemList.forEach((item)=>{
-            skillitem.push(square(item.x, item.y, item.text, item.xCorrection, item.yCorrection));
-
+            skillitems.push(square(item.x, item.y, item.text, item.xCorrection, item.yCorrection));
         })
-       // console.log(skillitem);
 
-        const clickEvent = (x,y) => {
-            let sqaure = 
-            skillitem.find((item)=>{
-                return( x > item.Xcoor && x < item.Xcoor + w &&
-                    y > item.Ycoor && y < item.Ycoor + h )
-            })
-            return sqaure? sqaure.textArr : null;
-        }
+        /////////////////////////////
+
+        //傳入點擊座標判斷哪個squre 
+        // const findSqaure = (x,y) => {
+        //     let sqaure = 
+        //     skillitem.find((item)=>{
+        //         return( x > item.Xcoor && x < item.Xcoor + w &&
+        //             y > item.Ycoor && y < item.Ycoor + h )
+        //     })
+        //     //console.log(sqaure? sqaure.textArr : null);
+        //    return sqaure? sqaure.textArr : null;
+        // }
+
+        // this.setState(()=>({
+        //     eventObj:{
+        //         handleEvent: function(e) {
+        //             console.log(e.layerX)
+        //         }
+        //     }
+        // }))
+
+        return skillitems;
+
+
+        //    canvas.removeEventListener('click', this.state.eventObj, false);
+        //    canvas.addEventListener('click', this.state.eventObj, false);
+
+        // canvas.addEventListener('click', squareClickEvent().handelEvent(e), false);
+
+        // function squareClickEvent(e){       
+        //     console.log(findSqaure(e.layerX,e.layerY));
+        // }
+    
+
         //綁定點擊事件
-        canvas.addEventListener('click', function(e){
-            console.log(clickEvent(e.layerX,e.layerY));
-        }, false);
+        // canvas.addEventListener('click', function(e){
+        //     console.log(clickEvent(e.layerX,e.layerY));
+        // }, false);
+        // canvas.removeEventListener('click', clickEvent1(e))
 
+        // function clickEvent1(e){
+        //     let sqaure = 
+        //         skillitem.find((item)=>{
+        //             return( e.layerX > item.Xcoor && e.layerX < item.Xcoor + w &&
+        //                 e.layerY > item.Ycoor && e.layerY < item.Ycoor + h )
+        //     })
+        //     console.log(sqaure? sqaure.textArr : null);
+        // }
+
+        // canvas.addEventListener('click', clickEvent1(e)
+            
+        //, false);
     }
+
 
     render() {
        // console.log(this.props.width)
         return (
-            <canvas ref="canvas" height='1000' id="skillcanvas" >
+            <canvas ref="canvas" id="skillcanvas" >
             </canvas>
         );    
     }

@@ -257,7 +257,6 @@
 .App .pagebody .Skills {
   height: 100%;
   background-color: powderblue;
-  overflow: hidden scroll;
 }
 
 .App .pagebody .Skills canvas {
