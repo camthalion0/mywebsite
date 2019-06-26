@@ -9,6 +9,7 @@ export const REQUEST_WEATHER = 'REQUEST_WEATHER';
 export const RECEIVE_WEATHER = 'RECEIVE_WEATHER';
 export const RECEIVE_WEATHER_ERROR = 'RECEIVE_WEATHER_ERROR';
 export const GET_ABOUT_DATA =  'GET_ABOUT_DATA';
+export const SWITCH_MENU = 'SWITCH_MENU';
 
 //更新時間
 export const updateTime = () => {
@@ -103,6 +104,16 @@ export const getAboutData = () => {
         }
     }
 } 
+
+//切換分頁
+export const switchMenu = (index)=>{   
+    return {
+        type: SWITCH_MENU,
+        payload:{
+            menuIndex: index      
+        }
+    }    
+}
 
  // 取得時間
 function getCurrentTime() {

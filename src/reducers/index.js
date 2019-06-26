@@ -2,7 +2,9 @@ import { UPDATE_TIME,
          TOGGLE_DESCRIPTION, 
          RECEIVE_WEATHER, 
          RECEIVE_WEATHER_ERROR,
-         GET_ABOUT_DATA } from '../actions/index'
+         GET_ABOUT_DATA,
+         SWITCH_MENU
+        } from '../actions/index'
 
 const initState = {
         currentTime:{       //目前時間
@@ -20,7 +22,8 @@ const initState = {
         aboutMe:{
             educations:[],
             experiences:[]
-        }
+        },
+        menuIndex:0,
     };
 
 //修改時間
@@ -55,11 +58,14 @@ const appReducer = (state = initState, action) => {
             })
 
         case GET_ABOUT_DATA:
-        // console.log('GET_ABOUT_DATA')
-        // console.log(action.payload.aboutMe)
             return Object.assign({}, state,{
                 aboutMe: action.payload.aboutMe
             })
+
+        case SWITCH_MENU:
+            return Object.assign({}, state,{
+                menuIndex: action.payload.menuIndex
+            })       
 
         default:
             return state;
