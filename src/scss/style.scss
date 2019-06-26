@@ -247,13 +247,25 @@ $phonesize: 0.5;    //手機倍數
 
         .Menu {
             @extend %flexbox100;
-            justify-content:space-around;
-            align-items: center;
+            justify-content:space-around;            
+            // align-items: stretch;
             font-size: $fontsize * 1;
+
+
+            div{
+                flex: 1 1;
+                display: flex;
+                justify-content:center;
+                align-items: center;
+            }
 
             a {
                 text-decoration:none;
                 color: aliceblue;
+            }
+
+            .MenuLink_on{
+                background-image: url('/heart2.png');
             }
         }
     }  

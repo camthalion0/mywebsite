@@ -6,9 +6,9 @@ import { Link } from 'react-router-dom'
 const Menu = ()=>
         (
             <nav className="Menu">
-                <Link to="/">Hello</Link>
-                <Link to="/about">About</Link>
-                <Link to="/skills">Skills</Link>
+            <div className="MenuLink_on"><Link to="/">Hello</Link></div>
+            <div className="MenuLink_off"><Link to="/about">About</Link></div>  
+            <div className="MenuLink_off"><Link to="/skills">Skills</Link></div>    
             </nav>
         )
 
