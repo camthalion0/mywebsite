@@ -11,6 +11,7 @@ export const RECEIVE_WEATHER_ERROR = 'RECEIVE_WEATHER_ERROR';
 export const GET_ABOUT_DATA =  'GET_ABOUT_DATA';
 export const SWITCH_MENU = 'SWITCH_MENU';
 export const UPDATE_SKILLS_CANVAS ='UPDATE_SKILLS_CANVAS';
+export const UPDATE_SKILLS_DESCRIPTION='UPDATE_SKILLS_DESCRIPTION';
 
 //更新時間
 export const updateTime = () => {
@@ -118,15 +119,24 @@ export const switchMenu = (index)=>{
 
 //重取SkillsTree
 export const updateSkillsCanvas = (skillsTree,canvasWidth,canvasHeight)=>{   
-  //  console.log(newState);
     return {
         type: UPDATE_SKILLS_CANVAS,
         payload:{
             skillCanvas:{
-                skillsTree: skillsTree,
-                canvasWidth: canvasWidth,    
-                canvasHeight: canvasHeight
+                skillsTree ,
+                canvasWidth,    
+                canvasHeight,
             }
+        }
+    }    
+}
+
+//變更SkillsDescription
+export const updateSkillsDescription = (skillsDescription)=>{   
+    return {
+        type: UPDATE_SKILLS_DESCRIPTION,
+        payload:{
+            skillsDescription           
         }
     }    
 }

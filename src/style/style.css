@@ -266,6 +266,11 @@
   overflow: scroll;
 }
 
+.App .pagebody .Skills .SkillsDescription {
+  z-index: 1;
+  margin-bottom: 10%;
+}
+
 .App .pagefoot {
   height: 8%;
   width: 100%;

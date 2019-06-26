@@ -1,7 +1,7 @@
 import React from 'react';
 import './style/style.css';
 import Hello from './components/Hello';
-import Menu from './components/Menu';
+import Menu from './containers/Menu';
 import About from './containers/About';
 import Skills from './containers/Skills';
 import { Route, Switch } from 'react-router-dom';

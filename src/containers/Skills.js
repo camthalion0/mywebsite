@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import SkillsTree from '../components/SkillsTree';
+import SkillsTree from '../containers/SkillsTree';
 
 class Skills extends Component {
 

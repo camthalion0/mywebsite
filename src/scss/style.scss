@@ -236,6 +236,11 @@ $phonesize: 0.5;    //手機倍數
             canvas {
                 overflow: scroll;
             }
+
+            .SkillsDescription{
+                z-index: 1;
+                margin-bottom: 10%;
+            }
         }
     }
 

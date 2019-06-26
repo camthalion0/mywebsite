@@ -7,9 +7,6 @@ class Menu extends Component{
 
     constructor(){
         super();
-        this.state={
-            menuIndex:0
-        }
     }
 
     render(){

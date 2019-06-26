@@ -27,9 +27,10 @@ const initState = {
         menuIndex:0,
         skillCanvas:{
             skillsTree: {},
-            canvasWidth: 400,    
-            canvasHeight: 400
+            canvasWidth: 0,    
+            canvasHeight: 0,
         },
+        skillsDescription:"",
     };
 
 //修改時間

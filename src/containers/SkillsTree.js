@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import {skillItemList} from './../data';
+import {skillItemList} from '../data';
 import { connect } from 'react-redux'
-import { updateSkillsCanvas } from '../actions/index'
+import { updateSkillsCanvas,updateSkillsDescription } from '../actions/index'
+import SkillsDescription from './SkillsDescription'
 
 class SkillsTree extends Component {
     constructor(props){
@@ -42,7 +43,7 @@ class SkillsTree extends Component {
         canvas.addEventListener("click",(e)=>{
             let result = findSqaure(e.layerX,e.layerY,this.props.skillCanvas.skillsTree);
             if(result){
-                console.log(result);
+                this.props.updateSkillsDescription(result.SkillsDescription);
             }
         })
     }
@@ -250,9 +251,11 @@ class SkillsTree extends Component {
 
 
     render() {
-         return (
-             <canvas ref="canvas" id="skillcanvas" >
-             </canvas>
+         return (    
+             <div>     
+                <canvas ref="canvas" id="skillcanvas" ></canvas>     
+                <SkillsDescription text={this.props.skillCanvas.skillsDescription}/>   
+             </div>   
          );    
      }
 }
@@ -261,11 +264,13 @@ class SkillsTree extends Component {
 const mapStateToProps = state => 
     ({
         skillCanvas: state.skillCanvas,
+        skillsDescription: state.skillsDescription
     })
 
 const mapDispatchToProps = (dispatch) => 
     ({
         updateSkillsCanvas: (skillsTree,canvasWidth,canvasHeight) => dispatch(updateSkillsCanvas(skillsTree,canvasWidth,canvasHeight)),
+        updateSkillsDescription: (desciption) => dispatch(updateSkillsDescription(desciption)),
     })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SkillsTree);
