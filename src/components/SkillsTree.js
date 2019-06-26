@@ -88,6 +88,14 @@ class SkillsTree extends Component {
         //技能方塊 x座標,y座標,文字內容,x校正,y校正,字體大小
         const square = (x, y, textArr, fontSize = f ) => {
             let {Xcenter,Ycenter} = Realcoor(x,y);  
+            
+            /* 開始繪製外框 */
+
+            //設定陰影
+            ctx.shadowColor = "rgba(0, 0, 0, 0.7)";
+            ctx.shadowBlur = 5;
+            ctx.shadowOffsetX = -1;
+            ctx.shadowOffsetY = 3;
  
             ctx.beginPath();  //開始繪圖區塊
             ctx.moveTo(Xcenter-0.5*sw+r,Ycenter-0.5*sh);//左上
@@ -97,18 +105,26 @@ class SkillsTree extends Component {
             ctx.arcTo(Xcenter-0.5*sw, Ycenter-0.5*sh, Xcenter+0.5*sw, Ycenter-0.5*sh, r);    //左上 右上
     
             ctx.closePath();  //閉合繪圖區塊
-        
+      
+            //用fillStyle指定填滿色彩
+            ctx.fillStyle = "rgba(240, 204, 249, 0.7)";
+            ctx.fill();
+            //  ctx.stroke(); //繪製相連點的線條
+
+            /* 開始書寫文字 */
+            
+            //取消陰影
+            ctx.shadowBlur = 0;
+            ctx.shadowOffsetX = 0;
+            ctx.shadowOffsetY = 0;
+
             //若內文高度超出格子則縮小字型 
             if(fontSize*(textArr.length+1)>sh){                 
                 fontSize = sh/((textArr.length+1))
-            }
-     //       const myFont = new FontFace('MyFont','url(../fonts/angostur.ttf)');
-            // ctx.font = `${fontSize}px ${myFont}`;  
+            };  
             ctx.font = `${fontSize}px bodytext`;  
-             
-            ctx.fillStyle = "#e0bcb1";  //用fillStyle指定填滿色彩
-            ctx.fill();
-            ctx.stroke(); //繪製相連點的線
+
+            //文字顏色
             ctx.fillStyle = "#000000";
 
             textArr.forEach((item,index)=>{
@@ -126,21 +142,57 @@ class SkillsTree extends Component {
             let { x, y } = points[0];
             let {Xcenter,Ycenter} = Realcoor(x ,y );  
             ctx.beginPath();  //開始繪圖區塊
-            ctx.moveTo(Xcenter,Ycenter);
-    
+
+            switch(direction.begin){
+                case 'right':
+                    ctx.moveTo(Xcenter+0.5*sw,Ycenter);
+                    break;
+                case 'left':
+                    ctx.moveTo(Xcenter-0.5*sw,Ycenter);
+                    break;    
+                case 'up':
+                    ctx.moveTo(Xcenter,Ycenter-0.5*sh);
+                    break;       
+                case 'down':
+                    ctx.moveTo(Xcenter,Ycenter+0.5*sh);
+                    break;      
+                default:
+                    break;   
+            }
+
             //畫直線
             for(let i=1;i<points.length;i++){
                 x = points[i].x;
                 y = points[i].y;
                 Xcenter = Realcoor(x,y).Xcenter;
                 Ycenter = Realcoor(x ,y ).Ycenter; 
-                ctx.lineTo(Xcenter,Ycenter);
+                if(i<points.length-1){
+                    ctx.lineTo(Xcenter,Ycenter);
+                }
             }
+
+            switch(direction.end){
+                case 'right':
+                    ctx.lineTo(Xcenter-0.5*sw,Ycenter);
+                    break;
+                case 'left':
+                    ctx.lineTo(Xcenter+0.5*sw,Ycenter);
+                    break;    
+                case 'up':
+                    ctx.lineTo(Xcenter,Ycenter+0.5*sh);
+                    break;       
+                case 'down':
+                    ctx.lineTo(Xcenter,Ycenter-0.5*sh);
+                    break;      
+                default:
+                    break;   
+            }
+            ctx.lineWidth='1.2';
             ctx.stroke(); //繪製相連點的線
     
             //畫箭頭 
             ctx.beginPath();  //開始繪圖區塊   
-            switch(direction){
+            switch(direction.end){
                 case 'right':
                     ctx.moveTo(Xcenter- 0.5*sw, Ycenter); 
                     ctx.lineTo(Xcenter- 0.5*sw -5, Ycenter-3);
@@ -169,25 +221,25 @@ class SkillsTree extends Component {
             ctx.fill();
             ctx.stroke(); //繪製相連點的線
         }        
-  
-        arrow( 'down', {x:2,y:0}, {x:4,y:0}, {x:4,y:2} ); //C++ > Pro*C
-        arrow( 'right', {x:0,y:2}, {x:2,y:2} ); //Linux > Shell
-        arrow( 'right', {x:2,y:2}, {x:4,y:2} ); //Shell > Pro*C
-        arrow( 'left', {x:6,y:2}, {x:4,y:2} ); //SQL > Pro*C
-        arrow( 'right', {x:6,y:2}, {x:8,y:2} ); //SQL > Forms
-        arrow( 'down', {x:6,y:2}, {x:6,y:4} ); //SQL > Linq
-        arrow( 'right', {x:4,y:4}, {x:6,y:4} ); //C# > Linq
-        arrow( 'right',{x:4,y:4}, {x:4,y:6}, {x:6,y:6} ); //C# > Asp.net MVC
-        arrow( 'down', {x:6,y:4}, {x:6,y:6} ); //Linq > Asp.net MVC
-        arrow( 'up', {x:6,y:6}, {x:6,y:4} ); //Asp.net MVC > Linq
-        arrow( 'right',{x:4,y:8}, {x:4,y:6}, {x:6,y:6} ); //HTML > Asp.net MVC
-        arrow( 'right',{x:4,y:8}, {x:4,y:10}, {x:6,y:10} ); //HTML > React
-        arrow( 'up', {x:6,y:8}, {x:6,y:6} ); //CSS > Asp.net MVC
-        arrow( 'down', {x:6,y:8}, {x:6,y:10} ); //CSS > React
-        arrow( 'left',{x:8,y:8}, {x:8,y:6}, {x:6,y:6} ); //JavaScript > Asp.net MVC
-        arrow( 'left',{x:8,y:8}, {x:8,y:10}, {x:6,y:10} ); //JavaScript > React
-        arrow( 'down', {x:6,y:10}, {x:6,y:12} ); //React > Redux
-        arrow( 'up', {x:6,y:12}, {x:6,y:10} ); //React > Redux
+   //     {begin:,end:}
+        arrow( {begin:'right',end:'down'}, {x:2,y:0}, {x:4,y:0}, {x:4,y:2} ); //C++ > Pro*C
+        arrow( {begin:'right',end:'right'}, {x:0,y:2}, {x:2,y:2} ); //Linux > Shell
+        arrow( {begin:'right',end:'right'}, {x:2,y:2}, {x:4,y:2} ); //Shell > Pro*C
+        arrow( {begin:'left',end:'left'}, {x:6,y:2}, {x:4,y:2} ); //SQL > Pro*C
+        arrow( {begin:'right',end:'right'}, {x:6,y:2}, {x:8,y:2} ); //SQL > Forms
+        arrow( {begin:'down',end:'down'}, {x:6,y:2}, {x:6,y:4} ); //SQL > Linq
+        arrow( {begin:'right',end:'right'}, {x:4,y:4}, {x:6,y:4} ); //C# > Linq
+        arrow( {begin:'down',end:'right'},{x:4,y:4}, {x:4,y:6}, {x:6,y:6} ); //C# > Asp.net MVC
+        arrow( {begin:'down',end:'down'}, {x:6,y:4}, {x:6,y:6} ); //Linq > Asp.net MVC
+        arrow( {begin:'up',end:'up'}, {x:6,y:6}, {x:6,y:4} ); //Asp.net MVC > Linq
+        arrow( {begin:'up',end:'right'},{x:4,y:8}, {x:4,y:6}, {x:6,y:6} ); //HTML > Asp.net MVC
+        arrow( {begin:'down',end:'right'},{x:4,y:8}, {x:4,y:10}, {x:6,y:10} ); //HTML > React
+        arrow( {begin:'up',end:'up'}, {x:6,y:8}, {x:6,y:6} ); //CSS > Asp.net MVC
+        arrow( {begin:'down',end:'down'}, {x:6,y:8}, {x:6,y:10} ); //CSS > React
+        arrow( {begin:'up',end:'left'},{x:8,y:8}, {x:8,y:6}, {x:6,y:6} ); //JavaScript > Asp.net MVC
+        arrow( {begin:'down',end:'left'},{x:8,y:8}, {x:8,y:10}, {x:6,y:10} ); //JavaScript > React
+        arrow( {begin:'down',end:'down'}, {x:6,y:10}, {x:6,y:12} ); //React > Redux
+        arrow( {begin:'up',end:'up'}, {x:6,y:12}, {x:6,y:10} ); //React > Redux
   
         let skillitems = [];
         //畫出技能塊並取得畫出來的itemlist

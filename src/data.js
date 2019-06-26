@@ -113,6 +113,13 @@ const skillItemList = [
         yCorrection
     },
     {
+        x:4,
+        y:8,
+        text:['HTML'],
+        xCorrection,
+        yCorrection
+    },
+    {
         x:6,
         y:8,
         text:['CSS','SCSS','Bootstrap'],
