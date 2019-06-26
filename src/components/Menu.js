@@ -31,15 +31,14 @@ class Menu extends Component{
  }
 
 //將store state tree 的值轉為this.props
-const mapStateToProps = state => {
-    return {
+const mapStateToProps = state => 
+    ({
         menuIndex: state.menuIndex,
-    }
-}
+    })
 
 const mapDispatchToProps = (dispatch) => 
-     ({
+    ({
         switchMenu: (index) => dispatch(switchMenu(index)),
-      })
+    })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Menu);

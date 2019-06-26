@@ -3,7 +3,8 @@ import { UPDATE_TIME,
          RECEIVE_WEATHER, 
          RECEIVE_WEATHER_ERROR,
          GET_ABOUT_DATA,
-         SWITCH_MENU
+         SWITCH_MENU,
+         UPDATE_SKILLS_CANVAS,
         } from '../actions/index'
 
 const initState = {
@@ -24,6 +25,11 @@ const initState = {
             experiences:[]
         },
         menuIndex:0,
+        skillCanvas:{
+            skillsTree: {},
+            canvasWidth: 400,    
+            canvasHeight: 400
+        },
     };
 
 //修改時間
@@ -66,7 +72,11 @@ const appReducer = (state = initState, action) => {
             return Object.assign({}, state,{
                 menuIndex: action.payload.menuIndex
             })       
-
+        case UPDATE_SKILLS_CANVAS:
+            return Object.assign({}, state,{
+                skillCanvas: action.payload.skillCanvas
+            })      
+            
         default:
             return state;
     }

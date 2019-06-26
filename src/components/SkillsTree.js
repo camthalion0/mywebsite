@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import {skillItemList} from './../data';
+import { connect } from 'react-redux'
+import { updateSkillsCanvas } from '../actions/index'
 
 class SkillsTree extends Component {
     constructor(props){
         super(props);
-        this.state = { 
-            skillsTree:{},  //技能樹座標、內容
-        };
     }
 
     componentDidMount() {
+
         /* 第一次改變state */
         const container = document.getElementById('Skills');
         const canvas = document.getElementById('skillcanvas');        
@@ -19,42 +19,42 @@ class SkillsTree extends Component {
         let h = container.clientHeight / 15;    //square height
         let sw = w*1.2;
         let sh = h*1.2;
+
+        this.props.updateSkillsCanvas(
+                this.updateCanvas(container.clientWidth,container.clientHeight),
+                container.clientWidth,
+                container.clientHeight       
+        )
+
+        /* 綁定視窗大小改變event */
+        window.addEventListener("resize", this.eventObj,false); 
+
         const findSqaure = (x,y,skillitem) => {
             let sqaure = 
             skillitem.find((item)=>{
                 return( x > item.Xcenter - 0.5*sw && x < item.Xcenter +0.5* sw &&
                     y > item.Ycenter -0.5*sh && y < item.Ycenter + 0.5*sh )
             })
-            //console.log(sqaure? sqaure.textArr : null);
            return sqaure? sqaure.textArr : null;
         }
 
-        this.setState(()=>({
-            skillsTree: this.updateCanvas(container.clientWidth,container.clientHeight),
-            canvasWidth:container.clientWidth,
-            canvasHeight:container.clientHeight
-        }))
-
-        /* 綁定視窗大小改變event */
-        window.addEventListener("resize", this.eventObj,false); 
-
         /* 綁定click event */
         canvas.addEventListener("click",(e)=>{
-            let result = findSqaure(e.layerX,e.layerY,this.state.skillsTree);
+            let result = findSqaure(e.layerX,e.layerY,this.props.skillCanvas.skillsTree);
             if(result){
                 console.log(result);
             }
         })
     }
 
+   //視窗大小改變event eventObj
     eventObj = () =>{
         const container = document.getElementById('Skills');
-        this.setState(()=>({
-            skillsTree:this.updateCanvas(container.clientWidth,container.clientHeight),
-            canvasWidth:container.clientWidth,
-            canvasHeight:container.clientHeight
-        })) 
-    }
+        this.props.updateSkillsCanvas(
+            this.updateCanvas(container.clientWidth,container.clientHeight),
+            container.clientWidth,
+            container.clientHeight       
+    )}
 
     componentWillUnmount(){     //當元件準備要被移除或破壞時觸發
        window.removeEventListener("resize", this.eventObj,false);      //移除視窗大小改變時重畫
@@ -95,7 +95,7 @@ class SkillsTree extends Component {
             ctx.shadowColor = "rgba(0, 0, 0, 0.7)";
             ctx.shadowBlur = 5;
             ctx.shadowOffsetX = -1;
-            ctx.shadowOffsetY = 3;
+            ctx.shadowOffsetY = 2;
  
             ctx.beginPath();  //開始繪圖區塊
             ctx.moveTo(Xcenter-0.5*sw+r,Ycenter-0.5*sh);//左上
@@ -107,7 +107,7 @@ class SkillsTree extends Component {
             ctx.closePath();  //閉合繪圖區塊
       
             //用fillStyle指定填滿色彩
-            ctx.fillStyle = "rgba(240, 204, 249, 0.7)";
+            ctx.fillStyle = "rgba(255, 239, 239, 0.68)";
             ctx.fill();
             //  ctx.stroke(); //繪製相連點的線條
 
@@ -122,10 +122,8 @@ class SkillsTree extends Component {
             if(fontSize*(textArr.length+1)>sh){                 
                 fontSize = sh/((textArr.length+1))
             };  
-            ctx.font = `${fontSize}px bodytext`;  
-
-            //文字顏色
-            ctx.fillStyle = "#000000";
+            ctx.font = `bold ${fontSize}px bodytext`;  
+            ctx.fillStyle = "#000000";              //文字顏色
 
             textArr.forEach((item,index)=>{
                 let textWidth = ctx.measureText(item).width;
@@ -221,7 +219,7 @@ class SkillsTree extends Component {
             ctx.fill();
             ctx.stroke(); //繪製相連點的線
         }        
-   //     {begin:,end:}
+
         arrow( {begin:'right',end:'down'}, {x:2,y:0}, {x:4,y:0}, {x:4,y:2} ); //C++ > Pro*C
         arrow( {begin:'right',end:'right'}, {x:0,y:2}, {x:2,y:2} ); //Linux > Shell
         arrow( {begin:'right',end:'right'}, {x:2,y:2}, {x:4,y:2} ); //Shell > Pro*C
@@ -246,7 +244,7 @@ class SkillsTree extends Component {
         skillItemList.forEach((item)=>{
             skillitems.push(square(item.x, item.y, item.text));
         })
-       // console.log(skillitems)
+
         return skillitems;
     }
 
@@ -259,4 +257,15 @@ class SkillsTree extends Component {
      }
 }
 
-export default SkillsTree;
+//將store state tree 的值轉為this.props
+const mapStateToProps = state => 
+    ({
+        skillCanvas: state.skillCanvas,
+    })
+
+const mapDispatchToProps = (dispatch) => 
+    ({
+        updateSkillsCanvas: (skillsTree,canvasWidth,canvasHeight) => dispatch(updateSkillsCanvas(skillsTree,canvasWidth,canvasHeight)),
+    })
+
+export default connect(mapStateToProps, mapDispatchToProps)(SkillsTree);
