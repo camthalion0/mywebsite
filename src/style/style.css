@@ -46,21 +46,21 @@
   }
 }
 
-.App .pagebody .About .AboutTitle {
+.App .pagebody .About .AboutTitle, .App .pagefoot .Menu {
   font-size: 1.5rem;
   line-height: 2.4rem;
   font-weight: bold;
 }
 
 @media screen and (max-width: 992px) {
-  .App .pagebody .About .AboutTitle {
+  .App .pagebody .About .AboutTitle, .App .pagefoot .Menu {
     font-size: 1.2rem;
     line-height: 1.92rem;
   }
 }
 
 @media screen and (max-width: 415px) {
-  .App .pagebody .About .AboutTitle {
+  .App .pagebody .About .AboutTitle, .App .pagefoot .Menu {
     font-size: 0.75rem;
     line-height: 1.2rem;
   }
@@ -277,7 +277,6 @@
 .App .pagefoot .Menu {
   -ms-flex-pack: distribute;
       justify-content: space-around;
-  font-size: 1rem;
 }
 
 .App .pagefoot .Menu div {
@@ -302,6 +301,9 @@
 
 .App .pagefoot .Menu .MenuLink_on {
   background-image: url("/heart2.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
 }
 
 h1 {
