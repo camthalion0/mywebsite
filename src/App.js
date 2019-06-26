@@ -3,6 +3,7 @@ import './style/style.css';
 import Hello from './components/Hello';
 import Menu from './components/Menu';
 import About from './containers/About';
+import Skills from './containers/Skills';
 import { Route, Switch } from 'react-router-dom';
 import {TransitionGroup,CSSTransition } from 'react-transition-group';
 import {withRouter} from 'react-router';
@@ -17,6 +18,7 @@ const Routes = withRouter(({location}) => (
       <Switch location={location}>
         <Route exact path={'/'} render={()=><Hello />} />
         <Route exact path={'/about'} render={()=><About />} />
+        <Route exact path={'/skills'} render={()=><Skills />} />
       </Switch>
     </CSSTransition>
   </TransitionGroup>

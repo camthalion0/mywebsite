@@ -8,6 +8,7 @@ const Menu = ()=>
             <nav className="Menu">
                 <Link to="/">Hello</Link>
                 <Link to="/about">About</Link>
+                <Link to="/skills">Skills</Link>
             </nav>
         )
 

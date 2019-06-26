@@ -125,29 +125,48 @@ $phonesize: 0.5;    //手機倍數
 
     .pagebody {
         flex: 1;
-        overflow-y: scroll;
         overflow-x: hidden;
 
         > div{
             height: 100%;
-        }  
+        }
+
+        .router-wrapper{
+            overflow: hidden;
+        }
 
         .Hello {
             @extend %flexbox100;
             justify-content:center;
             align-items: center;
-            background-color: rgb(127, 255, 212);
             font-weight:bold;
             text-align: center;
-
-            .timeText{
-                @extend %fontlevel1;
-            }
-            .dateText{
-                @extend %fontlevel2;
-            }
-            .temp{
-                @extend %fontlevel2;
+            background-image: url('/Hello_background.jpg');
+            background-repeat:no-repeat;
+            background-position: center; 
+            background-size: cover;
+            
+            .time_date_temp_container{
+                position: relative;
+                bottom: 10%;
+                mix-blend-mode: difference;
+                color: white;
+                .timeText{
+                    @extend %fontlevel1;
+                }
+                .dateText{
+                    @extend %fontlevel2;
+                }
+                .temp{
+                    @extend %fontlevel2;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    .weatherIcon{
+                        padding-left: 15px;
+                        font-size: 1.5em;
+                    }
+                }
             }
         } 
 
@@ -156,8 +175,11 @@ $phonesize: 0.5;    //手機倍數
             flex-direction: column;
             justify-content: space-around;
             align-items: center;
-            background-color:rgb(197, 121, 121);
-
+            // background-color:rgb(197, 121, 121);
+            background-image: url('/About_background.jpg');
+            background-repeat:no-repeat;
+            background-position: center; 
+            background-size: cover;
             .AboutTitle{
                 @extend %fontlevel3;
             }
@@ -169,7 +191,7 @@ $phonesize: 0.5;    //手機倍數
                 padding: 15px;
                 border-radius: 0.5em;
                 box-shadow: 0 -1px 10px rgba(0, 0, 0, .7);
-                background: rgba(238, 183, 183, 0.68);
+                background: rgba(255, 239, 239, 0.68);
                 list-style: none;
                 flex-basis: 40%;
 
@@ -201,6 +223,18 @@ $phonesize: 0.5;    //手機倍數
                         transition: all 0.5s ease-out;
                     }
                 }
+            }
+        }
+
+        .Skills {
+           // @extend %flexbox100; 
+            height: 100%;
+            background-image: url('/Skills_background.jpg');
+            background-repeat:no-repeat;
+            background-position: center; 
+            background-size: cover;
+            canvas {
+                overflow: scroll;
             }
         }
     }

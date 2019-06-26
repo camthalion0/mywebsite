@@ -37,14 +37,14 @@ class DateText extends Component {
     getMainImg(main){
         switch(main){
             case 'Clouds':      //陰
-                return clouds;
+                return '\u2601'
             case 'Thunderstorm':    //雷
                 return storm;
             case 'Clear':       //晴
-                return sun;    
+                return '\u26c5'
             case 'Rain':        //雨
             case 'Drizzle':
-                return rain;     
+                return '\u2614' 
             case 'Mist':     //霧霾沙塵
             case 'Smoke': 
             case 'Haze': 
@@ -54,21 +54,21 @@ class DateText extends Component {
             case 'Ash': 
             case 'Squall': 
             case 'Tornado': 
-                return atmosphere;     
+                return '\ud83c\udf01'  
             default:            //其他
-                return alice;
+                return '';
         }
     }
 
     render() {
         const {currentTime,currentWeather} = this.props;   //this.props已透過mapStateToProps綁定
         return (
-            <div>
+            <div className='time_date_temp_container'>
                 <div className='timeText'>{currentTime.timeText}</div>
                 <div className='dateText'>{currentTime.dateText}</div>      
                 <div className='temp'>{currentWeather.temp}
-                    <span>
-                        <img className='mainImg' src={this.getMainImg(currentWeather.weather)} alt={currentWeather.weather}></img>
+                    <span className='weatherIcon'>
+                        {this.getMainImg(currentWeather.weather)}
                     </span>
                 </div>
                 

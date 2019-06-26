@@ -31,4 +31,115 @@ const data = {
     ]
 }
 
-export default data;
+let xCorrection = 5; //x校正
+let yCorrection = 5;  //y校正
+
+const skillItemList = [
+    {
+        x:2, 
+        y:0,
+        text:['C++'],
+        xCorrection,
+        yCorrection
+    },
+    {
+        x:0,
+        y:2,
+        text:['Linux'],
+        xCorrection,
+        yCorrection
+    },
+    {
+        x:2,
+        y:2,
+        text:['Shell'],
+        xCorrection,
+        yCorrection
+    },
+    {
+        x:4,
+        y:2,
+        text:['Pro*C'],
+        xCorrection,
+        yCorrection
+    },
+    {
+        x:6,
+        y:2,
+        text:['Oracle','SQL'],
+        xCorrection,
+        yCorrection:0
+    },
+    {
+        x:8,
+        y:2,
+        text:['Oracle','Forms'],
+        xCorrection,
+        yCorrection:0
+    },
+    {
+        x:4,
+        y:4,
+        text:['C#'],
+        xCorrection,
+        yCorrection
+    },
+    {
+        x:6,
+        y:4,
+        text:['Linq'],
+        xCorrection,
+        yCorrection
+    },
+    {
+        x:6,
+        y:6,
+        text:['Asp.net','MVC'],
+        xCorrection,
+        yCorrection:0
+    },
+    {
+        x:1,
+        y:5,
+        text:['Shell'],
+        xCorrection,
+        yCorrection
+    },
+    {
+        x:1,
+        y:8,
+        text:['Git'],
+        xCorrection,
+        yCorrection
+    },
+    {
+        x:6,
+        y:8,
+        text:['CSS','SCSS','Bootstrap'],
+        xCorrection,
+        yCorrection:-5
+    },
+    {
+        x:8,
+        y:8,
+        text:['JavaScript','JQuery'],
+        xCorrection,
+        yCorrection:0
+    },
+    {
+        x:6,
+        y:10,
+        text:['React'],
+        xCorrection,
+        yCorrection
+    },
+    {
+        x:6,
+        y:12,
+        text:['Redux'],
+        xCorrection,
+        yCorrection
+    },
+]
+
+export {data, skillItemList} ;

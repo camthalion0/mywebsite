@@ -1,5 +1,5 @@
 import {store} from '../../src/index';
-import data from './../data';
+import {data} from './../data';
 
 //定義type屬性名稱
 export const UPDATE_TIME = 'UPDATE_TIME';
