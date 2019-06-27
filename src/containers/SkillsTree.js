@@ -5,9 +5,6 @@ import { updateSkillsCanvas,updateSkillsActive } from '../actions/index'
 import SkillsDescription from './SkillsDescription'
 
 class SkillsTree extends Component {
-    constructor(props){
-        super(props);
-    }
 
     componentDidMount() {
 

@@ -25,7 +25,7 @@ const initState = {
             educations:[],
             experiences:[]
         },
-        menuIndex:0,
+        pathname:"/",
         skillCanvas:{
             skillsTree: {}, // index:0,
                             // x:2, 
@@ -81,7 +81,7 @@ const appReducer = (state = initState, action) => {
 
         case SWITCH_MENU:
             return Object.assign({}, state,{
-                menuIndex: action.payload.menuIndex
+                pathname: action.payload.pathname
             })       
         case UPDATE_SKILLS_CANVAS:
             return Object.assign({}, state,{

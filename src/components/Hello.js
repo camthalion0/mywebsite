@@ -1,11 +1,22 @@
-import React from 'react';
+import React, { Component } from 'react';
 import DateText from '../containers/DateText';
+import { switchMenu } from '../actions/index'
+import { connect } from 'react-redux'
 
+class Hello extends Component {
+    componentDidMount = () => this.props.switchMenu(this.props.location.location.pathname); 
 
-const Hello = () => (
-            <div className='Hello' id='Hello'>
-                <DateText/>
-            </div>
-        );
+    render = () => (
+        <div className='Hello' id='Hello'>
+            <DateText/>
+        </div>
+    )
+    }
 
-export default Hello;
+const mapDispatchToProps = (dispatch) => 
+({
+    switchMenu: (pathname) => dispatch(switchMenu(pathname)),
+})
+
+export default connect(null,mapDispatchToProps)(Hello);
+

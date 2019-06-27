@@ -26,35 +26,29 @@ export const updateTime = () => {
 }
 
 //發送api請求天氣
-const requestWeather = () => {  //發送api請求
-    return {
-      type: REQUEST_WEATHER,
-      payload:{
+const requestWeather = () => ({  //發送api請求
+    type: REQUEST_WEATHER,
+    payload:{
         temp: `Loading...`,          
         weather: null
-        }
     }
-  }
+})
 
-const receiveWeather =(weatherData) => {    //更新天氣結果
-    return {
-        type: RECEIVE_WEATHER,
-        payload:{
-            temp: Math.round(weatherData.main.temp*10)/10,      //四捨五入到小數第一位      
-            weather: weatherData.weather[0].main
-        }
-    }
-  }
+const receiveWeather = (weatherData) => ({    //更新天氣結果
+    type: RECEIVE_WEATHER,
+    payload:{
+        temp: Math.round(weatherData.main.temp*10)/10,      //四捨五入到小數第一位      
+        weather: weatherData.weather[0].main
+    }   
+})
 
-const receiveWeatherError =() => {    //更新天氣失敗
-    return {
-        type: RECEIVE_WEATHER_ERROR,
-        payload:{
-            temp: `Oops! Failed to get the weather.`,          
-            weather: null
-        }
+const receiveWeatherError = () => ({    //更新天氣失敗
+    type: RECEIVE_WEATHER_ERROR,
+    payload:{
+        temp: `Oops! Failed to get the weather.`,          
+        weather: null
     }
-  }  
+})
 
 //dispatch requestWeather then call api then dispatch receiveWeather 
 export const fetchWeather = () => dispatch => {  
@@ -108,41 +102,35 @@ export const getAboutData = () => {
 } 
 
 //切換分頁
-export const switchMenu = (index)=>{   
-    return {
-        type: SWITCH_MENU,
-        payload:{
-            menuIndex: index      
-        }
-    }    
-}
+export const switchMenu = (pathname)=>({   
+    type: SWITCH_MENU,
+    payload:{
+        pathname 
+    }   
+})
 
 //重取SkillsTree
-export const updateSkillsCanvas = (skillsTree,canvasWidth,canvasHeight)=>{   
-    return {
-        type: UPDATE_SKILLS_CANVAS,
-        payload:{
-            skillCanvas:{
-                skillsTree ,
-                canvasWidth,    
-                canvasHeight,
-            }
+export const updateSkillsCanvas = (skillsTree,canvasWidth,canvasHeight)=>({   
+    type: UPDATE_SKILLS_CANVAS,
+    payload:{
+        skillCanvas:{
+            skillsTree ,
+            canvasWidth,    
+            canvasHeight,
         }
-    }    
-}
+    } 
+})
 
 //變更SkillsDescription
-export const updateSkillsActive = (activeIndex,description)=>{   
-    return {
-        type: UPDATE_SKILLS_ACTIVE,
-        payload:{
-            skillsActive:{
-                activeIndex,
-                description
-            }         
-        }
-    }    
-}
+export const updateSkillsActive = (activeIndex,description) => ({   
+    type: UPDATE_SKILLS_ACTIVE,
+    payload:{
+        skillsActive:{
+            activeIndex,
+            description
+        }         
+    }   
+})
 
  // 取得時間
 function getCurrentTime() {
@@ -155,36 +143,36 @@ function getCurrentTime() {
         month = datetime.getMonth() + 1,    //0~11 > 1~12
         year = datetime.getFullYear();
 
-        // 補0
-        hours = hours < 10 ? "0" + hours : hours.toString();
-        seconds = seconds < 10 ? "0" + seconds : seconds.toString();
-        minutes = minutes < 10 ? "0" + minutes : minutes.toString();
-        month = month < 10 ? "0" + month : month.toString();
-        date = date < 10 ? "0" + date : date.toString();
+    // 補0
+    hours = hours < 10 ? "0" + hours : hours.toString();
+    seconds = seconds < 10 ? "0" + seconds : seconds.toString();
+    minutes = minutes < 10 ? "0" + minutes : minutes.toString();
+    month = month < 10 ? "0" + month : month.toString();
+    date = date < 10 ? "0" + date : date.toString();
 
-        // Months Names
-        Date.prototype.monthNames = [
-            "January",
-            "February",
-            "March",
-            "April",
-            "May",
-            "June",
-            "July",
-            "August",
-            "September",
-            "October",
-            "November",
-            "December"
-        ];
+    // Months Names
+    Date.prototype.monthNames = [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December"
+    ];
 
-        return {
-            hours,
-            seconds,
-            minutes,  
-            year,     
-            month,
-            date, 
-            monthNames:  datetime.monthNames[month - 1]         
-        }
+    return {
+        hours,
+        seconds,
+        minutes,  
+        year,     
+        month,
+        date, 
+        monthNames:  datetime.monthNames[month - 1]         
     }
+}

@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import alice from '../img/alice.png'
-import clouds from '../img/clouds.png';
+// import alice from '../img/alice.png'
+// import clouds from '../img/clouds.png';
 import storm from '../img/storm.png';
-import sun from '../img/sun.png';
-import rain from '../img/rain.png';
-import atmosphere from '../img/atmosphere.png';
+// import sun from '../img/sun.png';
+// import rain from '../img/rain.png';
+// import atmosphere from '../img/atmosphere.png';
 import { connect } from 'react-redux'
 import { updateTime, fetchWeather } from '../actions/index'
 
