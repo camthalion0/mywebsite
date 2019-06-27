@@ -1,31 +1,31 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './style/style.css';
-import './AppLittle.css';
-import Hello from './components/Hello'
-import Menu from './components/Menu'
-import About from './components/About'
+import Hello from './containers/Hello';
+import Menu from './containers/Menu';
+import About from './containers/About';
+import Skills from './containers/Skills';
 import { Route, Switch } from 'react-router-dom';
-import {TransitionGroup,CSSTransition } from 'react-transition-group'
-import {withRouter} from 'react-router'
+import {TransitionGroup,CSSTransition } from 'react-transition-group';
+import {withRouter} from 'react-router';
 
 const Routes = withRouter(({location}) => (
   <TransitionGroup className={'router-wrapper'}>
     <CSSTransition
-      timeout={600}
+      timeout={400}
       classNames={'fade'}
       key={location.pathname}
     >
       <Switch location={location}>
-        <Route exact path={'/'} component={Hello} />
-        <Route exact path={'/about'} component={About} />
+        <Route exact path={'/'} render={(location)=><Hello location={location}/>} />
+        <Route exact path={'/Home'} render={(location)=><Hello location={location}/>} />
+        <Route exact path={'/About'} render={(location)=><About location={location}/>} />
+        <Route exact path={'/Skills'} render={(location)=><Skills location={location}/>} />
       </Switch>
     </CSSTransition>
   </TransitionGroup>
 ));
 
-class App extends Component{
-  render(){
-    return(
+const App =  () => (
         <div className="App">
           <div className='pagebody'>       
             <Routes />
@@ -35,7 +35,5 @@ class App extends Component{
           </div>
         </div>
     )
-  }
-}
 
 export default App;
