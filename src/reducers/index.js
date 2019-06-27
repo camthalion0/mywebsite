@@ -5,7 +5,7 @@ import { UPDATE_TIME,
          GET_ABOUT_DATA,
          SWITCH_MENU,
          UPDATE_SKILLS_CANVAS,
-         UPDATE_SKILLS_DESCRIPTION,
+         UPDATE_SKILLS_ACTIVE,
         } from '../actions/index'
 
 const initState = {
@@ -27,11 +27,20 @@ const initState = {
         },
         menuIndex:0,
         skillCanvas:{
-            skillsTree: {},
+            skillsTree: {}, // index:0,
+                            // x:2, 
+                            // y:0,
+                            // text:['C++'],
+                            // xCorrection,
+                            // yCorrection,
+            description:"C++ description",
             canvasWidth: 0,    
             canvasHeight: 0,
         },
-        skillsDescription:"",
+        skillsActive:{
+            activeIndex:0,
+            description:"C++ description"
+        },
     };
 
 //修改時間
@@ -78,9 +87,9 @@ const appReducer = (state = initState, action) => {
             return Object.assign({}, state,{
                 skillCanvas: action.payload.skillCanvas
             })      
-        case UPDATE_SKILLS_DESCRIPTION:
+        case UPDATE_SKILLS_ACTIVE:
             return Object.assign({}, state,{
-                skillsDescription: action.payload.skillsDescription
+                skillsActive: action.payload.skillsActive
             })               
             
         default:

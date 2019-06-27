@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {skillItemList} from '../data';
 import { connect } from 'react-redux'
-import { updateSkillsCanvas,updateSkillsDescription } from '../actions/index'
+import { updateSkillsCanvas,updateSkillsActive } from '../actions/index'
 import SkillsDescription from './SkillsDescription'
 
 class SkillsTree extends Component {
@@ -21,12 +21,10 @@ class SkillsTree extends Component {
         let sw = w*1.2;
         let sh = h*1.2;
 
-        
-        this.props.updateSkillsDescription(""); //清空desc
         this.props.updateSkillsCanvas(
-                this.updateCanvas(container.clientWidth,container.clientHeight),
+                this.updateCanvas(container.clientWidth,container.clientHeight, this.props.skillsActive.activeIndex),
                 container.clientWidth,
-                container.clientHeight       
+                container.clientHeight,     
         )
 
         /* 綁定視窗大小改變event */
@@ -38,15 +36,19 @@ class SkillsTree extends Component {
                 return( x > item.Xcenter - 0.5*sw && x < item.Xcenter +0.5* sw &&
                     y > item.Ycenter -0.5*sh && y < item.Ycenter + 0.5*sh )
             })
-           return sqaure? sqaure.desciption : null;
+           return sqaure? {activeIndex: sqaure.index, description:sqaure.description} : null;
         }
 
         /* 綁定click event */
         canvas.addEventListener("click",(e)=>{
             let result = findSqaure(e.layerX,e.layerY,this.props.skillCanvas.skillsTree);
-          //  console.log(result);
-            if(result){
-                this.props.updateSkillsDescription(result);
+            if(result){     //改變description，重畫canvas
+                this.props.updateSkillsActive(result.activeIndex,result.description);
+                this.props.updateSkillsCanvas(
+                    this.updateCanvas(container.clientWidth,container.clientHeight, this.props.skillsActive.activeIndex),
+                    container.clientWidth,
+                    container.clientHeight,     
+                )
             }
         })
     }
@@ -55,16 +57,16 @@ class SkillsTree extends Component {
     eventObj = () =>{
         const container = document.getElementById('Skills');
         this.props.updateSkillsCanvas(
-            this.updateCanvas(container.clientWidth,container.clientHeight),
+            this.updateCanvas(container.clientWidth,container.clientHeight,this.props.skillsActive.activeIndex ),
             container.clientWidth,
-            container.clientHeight       
+            container.clientHeight,                
     )}
 
     componentWillUnmount(){     //當元件準備要被移除或破壞時觸發
        window.removeEventListener("resize", this.eventObj,false);      //移除視窗大小改變時重畫
     }
 
-    updateCanvas(canvasWidth,canvasHeight) {
+    updateCanvas(canvasWidth,canvasHeight,activeIndex) {
         const canvas = document.getElementById('skillcanvas'); 
         canvas.width =canvasWidth;
         canvas.height=canvasHeight;
@@ -90,7 +92,7 @@ class SkillsTree extends Component {
         })
 
         //技能方塊 x座標,y座標,文字內容,x校正,y校正,字體大小
-        const square = (x, y, textArr,desciption, fontSize = f ) => {
+        const square = (x, y, textArr, active,index,description, fontSize = f ) => {
             let {Xcenter,Ycenter} = Realcoor(x,y);  
             
             /* 開始繪製外框 */
@@ -108,10 +110,10 @@ class SkillsTree extends Component {
             ctx.arcTo(Xcenter-0.5*sw, Ycenter+0.5*sh, Xcenter-0.5*sw, Ycenter-0.5*sh, r);    //左下 左上  
             ctx.arcTo(Xcenter-0.5*sw, Ycenter-0.5*sh, Xcenter+0.5*sw, Ycenter-0.5*sh, r);    //左上 右上
     
-            ctx.closePath();  //閉合繪圖區塊
-      
+            ctx.closePath();  //閉合繪圖區塊    
             //用fillStyle指定填滿色彩
-            ctx.fillStyle = "rgba(255, 239, 239, 0.68)";
+            ctx.fillStyle = (active)?"rgba(255, 239, 239, 1)": "rgba(255, 239, 239, 0.68)";
+            
             ctx.fill();
             //  ctx.stroke(); //繪製相連點的線條
 
@@ -136,7 +138,7 @@ class SkillsTree extends Component {
                 ctx.fillText(item, Xcenter-x1, Ycenter - y1 + fontSize*(index+1) );  //內文
             })
 
-            return {Xcenter, Ycenter, textArr,desciption};
+            return {Xcenter, Ycenter, textArr,index,description};
         }
   
         const arrow = ( direction,...points ) => {
@@ -243,14 +245,14 @@ class SkillsTree extends Component {
         arrow( {begin:'down',end:'down'}, {x:6,y:10}, {x:6,y:12} ); //React > Redux
         arrow( {begin:'up',end:'up'}, {x:6,y:12}, {x:6,y:10} ); //React > Redux
   
-        let skillitems = [];
+        let skilltree = [];
         //畫出技能塊並取得畫出來的itemlist
         skillItemList.forEach((item)=>{
-            skillitems.push(square(item.x, item.y, item.text,item.description));
+            let active = this.props.skillsActive.activeIndex===item.index;
+            skilltree.push(square(item.x, item.y, item.text,active,item.index,item.description));
         })
 
-        //console.log(skillitems)
-        return skillitems;
+        return skilltree;
     }
 
 
@@ -258,7 +260,7 @@ class SkillsTree extends Component {
          return (    
              <div>     
                 <canvas ref="canvas" id="skillcanvas" ></canvas>     
-                <SkillsDescription desc={this.props.skillsDescription}/>   
+                <SkillsDescription desc={this.props.skillsActive.description}/>   
              </div>   
          );    
      }
@@ -268,13 +270,13 @@ class SkillsTree extends Component {
 const mapStateToProps = state => 
     ({
         skillCanvas: state.skillCanvas,
-        skillsDescription: state.skillsDescription
+        skillsActive: state.skillsActive
     })
 
 const mapDispatchToProps = (dispatch) => 
     ({
         updateSkillsCanvas: (skillsTree,canvasWidth,canvasHeight) => dispatch(updateSkillsCanvas(skillsTree,canvasWidth,canvasHeight)),
-        updateSkillsDescription: (desciption) => dispatch(updateSkillsDescription(desciption)),
+        updateSkillsActive: (index,desciption) => dispatch(updateSkillsActive(index,desciption)),
     })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SkillsTree);

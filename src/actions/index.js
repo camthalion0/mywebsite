@@ -11,7 +11,7 @@ export const RECEIVE_WEATHER_ERROR = 'RECEIVE_WEATHER_ERROR';
 export const GET_ABOUT_DATA =  'GET_ABOUT_DATA';
 export const SWITCH_MENU = 'SWITCH_MENU';
 export const UPDATE_SKILLS_CANVAS ='UPDATE_SKILLS_CANVAS';
-export const UPDATE_SKILLS_DESCRIPTION='UPDATE_SKILLS_DESCRIPTION';
+export const UPDATE_SKILLS_ACTIVE='UPDATE_SKILLS_ACTIVE';
 
 //更新時間
 export const updateTime = () => {
@@ -132,11 +132,14 @@ export const updateSkillsCanvas = (skillsTree,canvasWidth,canvasHeight)=>{
 }
 
 //變更SkillsDescription
-export const updateSkillsDescription = (skillsDescription)=>{   
+export const updateSkillsActive = (activeIndex,description)=>{   
     return {
-        type: UPDATE_SKILLS_DESCRIPTION,
+        type: UPDATE_SKILLS_ACTIVE,
         payload:{
-            skillsDescription           
+            skillsActive:{
+                activeIndex,
+                description
+            }         
         }
     }    
 }
