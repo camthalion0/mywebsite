@@ -1,10 +1,4 @@
 import React, { Component } from 'react';
-// import alice from '../img/alice.png'
-// import clouds from '../img/clouds.png';
-import storm from '../img/storm.png';
-// import sun from '../img/sun.png';
-// import rain from '../img/rain.png';
-// import atmosphere from '../img/atmosphere.png';
 import { connect } from 'react-redux'
 import { updateTime, fetchWeather } from '../actions/index'
 
@@ -39,7 +33,8 @@ class DateText extends Component {
             case 'Clouds':      //陰
                 return '\u2601'
             case 'Thunderstorm':    //雷
-                return storm;
+                //return storm;
+                return '\u26c8';
             case 'Clear':       //晴
                 return '\u26c5'
             case 'Rain':        //雨
@@ -68,7 +63,7 @@ class DateText extends Component {
                 <div className='dateText'>{currentTime.dateText}</div>      
                 <div className='temp'>{currentWeather.temp}
                     <span className='weatherIcon'>
-                        {this.getMainImg(currentWeather.weather)}
+                        {this.getMainImg(currentWeather.weather)}                 
                     </span>
                 </div>
                 

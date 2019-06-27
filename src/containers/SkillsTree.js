@@ -125,7 +125,7 @@ class SkillsTree extends Component {
                 fontSize = sh/((textArr.length+1))
             };  
             ctx.font = `bold ${fontSize}px bodytext`;  
-            ctx.fillStyle = "#000000";              //文字顏色
+            ctx.fillStyle = (active)?"#000000":"#505050";              //文字顏色
 
             textArr.forEach((item,index)=>{
                 let textWidth = ctx.measureText(item).width;
