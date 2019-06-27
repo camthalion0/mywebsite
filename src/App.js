@@ -1,6 +1,6 @@
 import React from 'react';
 import './style/style.css';
-import Hello from './components/Hello';
+import Hello from './containers/Hello';
 import Menu from './containers/Menu';
 import About from './containers/About';
 import Skills from './containers/Skills';
@@ -35,7 +35,5 @@ const App =  () => (
           </div>
         </div>
     )
-  
-
 
 export default App;

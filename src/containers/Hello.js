@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import DateText from '../containers/DateText';
+import DateText from './DateText';
 import { switchMenu } from '../actions/index'
 import { connect } from 'react-redux'
 
