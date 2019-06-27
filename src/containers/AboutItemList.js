@@ -22,7 +22,7 @@ class AboutItemList extends Component {
                                 onClick = {()=>this.props.toggleDescription(index,this.props.title,!ifShow)}
                                 className={ifShow? "AboutItemOn":"AboutItemOff"}
                             >
-                                {item.name}
+                                {ifShow?"- ":"+ "}{item.name}
                                 <AboutItemDescription description={item.description}/>
                             </li>                                       
                         )

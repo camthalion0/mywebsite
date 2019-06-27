@@ -72,13 +72,12 @@ class SkillsTree extends Component {
         let h = canvas.height / 15;    //square height
         let sw = w*1.2;
         let sh = h*1.2;
+        let r = 5;  //radius
+        let f = w / 4;
+        let ml = (canvas.width / 11);    //margin left
+        let mt = (canvas.height / 15);    //margin top
   
         const ctx = canvas.getContext('2d');
-
-        let r = 5,  //radius
-            ml = (canvas.width / 11) ,    //margin left
-            mt = (canvas.height / 15) ;    //margin top
-        let f = w / 4.5;
         
         //取得技能框實際位置中心點
         const Realcoor = (x,y) => ({
@@ -109,7 +108,7 @@ class SkillsTree extends Component {
     
             ctx.closePath();  //閉合繪圖區塊    
             //用fillStyle指定填滿色彩
-            ctx.fillStyle = (active)?"rgba(255, 239, 239, 1)": "rgba(255, 239, 239, 0.68)";
+            ctx.fillStyle = (active)?"rgba(255, 239, 239, 1)": "rgba(255, 239, 239, 0.5)";
             
             ctx.fill();
             //  ctx.stroke(); //繪製相連點的線條

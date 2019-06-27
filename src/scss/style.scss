@@ -1,5 +1,5 @@
-$fontsize: 1rem;    //基準文字大小
-$lineheight: $fontsize * 1.6;     //基準行高
+$fontsize: 1.3rem;    //基準文字大小
+$lineheight: $fontsize * 1.7;     //基準行高
 $padWidth: 992px;
 $phoneWidth: 415px;
 $tabletsize: 0.8;   //平板倍數
@@ -239,6 +239,7 @@ $phonesize: 0.5;    //手機倍數
             }
 
             .SkillsDescription{
+                @extend %fontlevel3;
                 position:absolute;
                 z-index: 1;
                 top:80%;

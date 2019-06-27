@@ -7,126 +7,126 @@
 }
 
 .App .pagebody .Hello .time_date_temp_container .timeText {
-  font-size: 3.5rem;
-  line-height: 5.6rem;
+  font-size: 4.55rem;
+  line-height: 7.735rem;
   font-weight: bold;
 }
 
 @media screen and (max-width: 992px) {
   .App .pagebody .Hello .time_date_temp_container .timeText {
-    font-size: 2.8rem;
-    line-height: 4.48rem;
+    font-size: 3.64rem;
+    line-height: 6.188rem;
   }
 }
 
 @media screen and (max-width: 415px) {
   .App .pagebody .Hello .time_date_temp_container .timeText {
-    font-size: 1.75rem;
-    line-height: 2.8rem;
+    font-size: 2.275rem;
+    line-height: 3.8675rem;
   }
 }
 
 .App .pagebody .Hello .time_date_temp_container .dateText, .App .pagebody .Hello .time_date_temp_container .temp {
-  font-size: 2rem;
-  line-height: 3.2rem;
+  font-size: 2.6rem;
+  line-height: 4.42rem;
   font-weight: bold;
 }
 
 @media screen and (max-width: 992px) {
   .App .pagebody .Hello .time_date_temp_container .dateText, .App .pagebody .Hello .time_date_temp_container .temp {
-    font-size: 1.6rem;
-    line-height: 2.56rem;
+    font-size: 2.08rem;
+    line-height: 3.536rem;
   }
 }
 
 @media screen and (max-width: 415px) {
   .App .pagebody .Hello .time_date_temp_container .dateText, .App .pagebody .Hello .time_date_temp_container .temp {
-    font-size: 1rem;
-    line-height: 1.6rem;
+    font-size: 1.3rem;
+    line-height: 2.21rem;
   }
 }
 
-.App .pagebody .About .AboutTitle, .App .pagefoot .Menu {
-  font-size: 1.5rem;
-  line-height: 2.4rem;
+.App .pagebody .About .AboutTitle, .App .pagebody .Skills .SkillsDescription, .App .pagefoot .Menu {
+  font-size: 1.95rem;
+  line-height: 3.315rem;
   font-weight: bold;
 }
 
 @media screen and (max-width: 992px) {
-  .App .pagebody .About .AboutTitle, .App .pagefoot .Menu {
-    font-size: 1.2rem;
-    line-height: 1.92rem;
+  .App .pagebody .About .AboutTitle, .App .pagebody .Skills .SkillsDescription, .App .pagefoot .Menu {
+    font-size: 1.56rem;
+    line-height: 2.652rem;
   }
 }
 
 @media screen and (max-width: 415px) {
-  .App .pagebody .About .AboutTitle, .App .pagefoot .Menu {
-    font-size: 0.75rem;
-    line-height: 1.2rem;
+  .App .pagebody .About .AboutTitle, .App .pagebody .Skills .SkillsDescription, .App .pagefoot .Menu {
+    font-size: 0.975rem;
+    line-height: 1.6575rem;
   }
 }
 
 .App .pagebody .About .AboutSection {
-  font-size: 1.2rem;
-  line-height: 1.92rem;
+  font-size: 1.56rem;
+  line-height: 2.652rem;
 }
 
 @media screen and (max-width: 992px) {
   .App .pagebody .About .AboutSection {
-    font-size: 0.96rem;
-    line-height: 1.536rem;
+    font-size: 1.248rem;
+    line-height: 2.1216rem;
   }
 }
 
 @media screen and (max-width: 415px) {
   .App .pagebody .About .AboutSection {
-    font-size: 0.6rem;
-    line-height: 0.96rem;
+    font-size: 0.78rem;
+    line-height: 1.326rem;
   }
 }
 
 .App .pagebody .About .AboutSection .AboutItemOn > .AboutItemDescription, .App .pagebody .About .AboutSection .AboutItemOff > .AboutItemDescription {
-  font-size: 1rem;
-  line-height: 1.6rem;
+  font-size: 1.3rem;
+  line-height: 2.21rem;
 }
 
 @media screen and (max-width: 992px) {
   .App .pagebody .About .AboutSection .AboutItemOn > .AboutItemDescription, .App .pagebody .About .AboutSection .AboutItemOff > .AboutItemDescription {
-    font-size: 0.8rem;
-    line-height: 1.28rem;
+    font-size: 1.04rem;
+    line-height: 1.768rem;
   }
 }
 
 @media screen and (max-width: 415px) {
   .App .pagebody .About .AboutSection .AboutItemOn > .AboutItemDescription, .App .pagebody .About .AboutSection .AboutItemOff > .AboutItemDescription {
-    font-size: 0.5rem;
-    line-height: 0.8rem;
+    font-size: 0.65rem;
+    line-height: 1.105rem;
   }
 }
 
 .mainImg {
-  max-height: 3rem;
-  max-width: 3rem;
-  margin-bottom: -0.3rem;
-  margin-left: 2rem;
+  max-height: 3.9rem;
+  max-width: 3.9rem;
+  margin-bottom: -0.39rem;
+  margin-left: 2.6rem;
   z-index: -1;
 }
 
 @media screen and (max-width: 992px) {
   .mainImg {
-    max-height: 2.4rem;
-    max-width: 2.4rem;
-    margin-bottom: -0.24rem;
-    margin-left: 1.6rem;
+    max-height: 3.12rem;
+    max-width: 3.12rem;
+    margin-bottom: -0.312rem;
+    margin-left: 2.08rem;
   }
 }
 
 @media screen and (max-width: 415px) {
   .mainImg {
-    max-height: 1.5rem;
-    max-width: 1.5rem;
-    margin-bottom: -0.15rem;
-    margin-left: 1rem;
+    max-height: 1.95rem;
+    max-width: 1.95rem;
+    margin-bottom: -0.195rem;
+    margin-left: 1.3rem;
   }
 }
 
@@ -316,13 +316,13 @@
 
 h1 {
   text-align: center;
-  font-size: 5rem;
+  font-size: 6.5rem;
   margin-bottom: 0;
 }
 
 h3 {
   text-align: center;
-  font-size: 2.5rem;
+  font-size: 3.25rem;
 }
 
 /* 轉場效果 */
