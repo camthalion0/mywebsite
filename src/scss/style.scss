@@ -233,8 +233,16 @@ $phonesize: 0.5;    //手機倍數
             background-repeat:no-repeat;
             background-position: center; 
             background-size: cover;
+            position:relative;
             canvas {
                 overflow: scroll;
+            }
+
+            .SkillsDescription{
+                position:absolute;
+                z-index: 1;
+                top:80%;
+                left:8%;
             }
         }
     }

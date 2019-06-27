@@ -260,10 +260,18 @@
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+  position: relative;
 }
 
 .App .pagebody .Skills canvas {
   overflow: scroll;
+}
+
+.App .pagebody .Skills .SkillsDescription {
+  position: absolute;
+  z-index: 1;
+  top: 80%;
+  left: 8%;
 }
 
 .App .pagefoot {

@@ -3,7 +3,9 @@ import { UPDATE_TIME,
          RECEIVE_WEATHER, 
          RECEIVE_WEATHER_ERROR,
          GET_ABOUT_DATA,
-         SWITCH_MENU
+         SWITCH_MENU,
+         UPDATE_SKILLS_CANVAS,
+         UPDATE_SKILLS_ACTIVE,
         } from '../actions/index'
 
 const initState = {
@@ -23,7 +25,22 @@ const initState = {
             educations:[],
             experiences:[]
         },
-        menuIndex:0,
+        pathname:"/",
+        skillCanvas:{
+            skillsTree: {}, // index:0,
+                            // x:2, 
+                            // y:0,
+                            // text:['C++'],
+                            // xCorrection,
+                            // yCorrection,
+            description:"C++ description",
+            canvasWidth: 0,    
+            canvasHeight: 0,
+        },
+        skillsActive:{
+            activeIndex:0,
+            description:"C++ description"
+        },
     };
 
 //修改時間
@@ -64,9 +81,17 @@ const appReducer = (state = initState, action) => {
 
         case SWITCH_MENU:
             return Object.assign({}, state,{
-                menuIndex: action.payload.menuIndex
+                pathname: action.payload.pathname
             })       
-
+        case UPDATE_SKILLS_CANVAS:
+            return Object.assign({}, state,{
+                skillCanvas: action.payload.skillCanvas
+            })      
+        case UPDATE_SKILLS_ACTIVE:
+            return Object.assign({}, state,{
+                skillsActive: action.payload.skillsActive
+            })               
+            
         default:
             return state;
     }
