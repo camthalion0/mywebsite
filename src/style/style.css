@@ -130,6 +130,36 @@
   }
 }
 
+/* @關鍵影格 動畫名稱 */
+@-webkit-keyframes BigAnime {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  50% {
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+@keyframes BigAnime {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  50% {
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
 .App {
   /* 排列 */
   -webkit-box-orient: vertical;
@@ -151,6 +181,23 @@
 
 .App .pagebody .router-wrapper {
   overflow: hidden;
+}
+
+.App .pagebody .mail {
+  height: 8%;
+  position: absolute;
+  z-index: 1;
+  top: 80%;
+  right: 4%;
+  /*動畫名稱*/
+  -webkit-animation-name: BigAnime;
+          animation-name: BigAnime;
+  /*動畫時間*/
+  -webkit-animation-duration: 2s;
+          animation-duration: 2s;
+  /*撥放次數:無限次*/
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
 }
 
 .App .pagebody .Hello {
@@ -332,8 +379,8 @@ h3 {
 
 .fade-enter-active {
   opacity: 1;
-  -webkit-transition: all 500ms ease-out;
-  transition: all 500ms ease-out;
+  -webkit-transition: opacity 500ms ease-out;
+  transition: opacity 500ms ease-out;
 }
 
 .fade-exit {
@@ -342,8 +389,8 @@ h3 {
 
 .fade-exit-active {
   opacity: 1;
-  -webkit-transition: all 500ms ease-out;
-  transition: all 500ms ease-out;
+  -webkit-transition: opacity 500ms ease-out;
+  transition: opacity 500ms ease-out;
 }
 
 /*天氣icon*/

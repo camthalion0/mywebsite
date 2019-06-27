@@ -117,6 +117,19 @@ $phonesize: 0.5;    //手機倍數
     }
 }
 
+/* @關鍵影格 動畫名稱 */
+@keyframes BigAnime {
+    0%{
+      transform: scale(1);
+    }
+    50%{
+        transform: scale(1.1);
+      }
+    100%{
+      transform: scale(1);
+    }
+}
+
 
 .App {
     /* 排列 */    
@@ -133,6 +146,21 @@ $phonesize: 0.5;    //手機倍數
 
         .router-wrapper{
             overflow: hidden;
+        }
+
+        .mail {
+            height: 8%;
+            position:absolute;
+            z-index: 1;
+            top:80%;
+            right: 4%;
+
+            /*動畫名稱*/
+            animation-name: BigAnime;
+            /*動畫時間*/
+            animation-duration: 2s;
+            /*撥放次數:無限次*/
+            animation-iteration-count: infinite;            
         }
 
         .Hello {
@@ -300,16 +328,16 @@ h3 {
   
 .fade-enter-active {
     opacity: 1;
-    transition: all 500ms ease-out;
+    transition: opacity 500ms ease-out;
 }
   
 .fade-exit {
     opacity: 0;
 }
   
-.fade-exit-active {
+.fade-exit-active {   
     opacity: 1;
-    transition: all 500ms ease-out;
+    transition: opacity 500ms ease-out;
 }
 
 /*天氣icon*/

@@ -7,6 +7,8 @@ import Skills from './containers/Skills';
 import { Route, Switch } from 'react-router-dom';
 import {TransitionGroup,CSSTransition } from 'react-transition-group';
 import {withRouter} from 'react-router';
+import mail from './img/mail.png'
+import { connect } from 'react-redux'
 
 const Routes = withRouter(({location}) => (
   <TransitionGroup className={'router-wrapper'}>
@@ -25,15 +27,26 @@ const Routes = withRouter(({location}) => (
   </TransitionGroup>
 ));
 
-const App =  () => (
-        <div className="App">
-          <div className='pagebody'>       
-            <Routes />
-          </div>     
-          <div className='pagefoot'>       
-            <Menu className="menu"/>           
-          </div>
-        </div>
-    )
+const App =  () => {
+  
+  return (
+    <div className="App">
+      <div className='pagebody'>       
+        <Routes />
+        <img className='mail' src={mail}></img>
+      </div>     
+      <div className='pagefoot'>       
+        <Menu className="menu"/>           
+      </div>
+    </div>
+)}
 
+const mapStateToProps = state => 
+({
+  showCantact:state.showCantact
+})
+
+//const mapDispatchToProps = (dispatch) => {}
+
+//export default connect(mapStateToProps)(App);
 export default App;
