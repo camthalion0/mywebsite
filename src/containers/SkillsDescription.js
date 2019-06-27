@@ -1,10 +1,10 @@
 import React from 'react';
 
-const SkillsDescription = (props) => (
+const SkillsDescription = (props) => {
+        return (          
             <div className='SkillsDescription'>
-            1231231213
-                {props.text}
+                {props.desc}
             </div>
-        );
+        )};
   
 export default SkillsDescription;

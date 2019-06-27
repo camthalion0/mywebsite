@@ -21,6 +21,8 @@ class SkillsTree extends Component {
         let sw = w*1.2;
         let sh = h*1.2;
 
+        
+        this.props.updateSkillsDescription(""); //清空desc
         this.props.updateSkillsCanvas(
                 this.updateCanvas(container.clientWidth,container.clientHeight),
                 container.clientWidth,
@@ -36,14 +38,15 @@ class SkillsTree extends Component {
                 return( x > item.Xcenter - 0.5*sw && x < item.Xcenter +0.5* sw &&
                     y > item.Ycenter -0.5*sh && y < item.Ycenter + 0.5*sh )
             })
-           return sqaure? sqaure.textArr : null;
+           return sqaure? sqaure.desciption : null;
         }
 
         /* 綁定click event */
         canvas.addEventListener("click",(e)=>{
             let result = findSqaure(e.layerX,e.layerY,this.props.skillCanvas.skillsTree);
+          //  console.log(result);
             if(result){
-                this.props.updateSkillsDescription(result.SkillsDescription);
+                this.props.updateSkillsDescription(result);
             }
         })
     }
@@ -87,7 +90,7 @@ class SkillsTree extends Component {
         })
 
         //技能方塊 x座標,y座標,文字內容,x校正,y校正,字體大小
-        const square = (x, y, textArr, fontSize = f ) => {
+        const square = (x, y, textArr,desciption, fontSize = f ) => {
             let {Xcenter,Ycenter} = Realcoor(x,y);  
             
             /* 開始繪製外框 */
@@ -133,7 +136,7 @@ class SkillsTree extends Component {
                 ctx.fillText(item, Xcenter-x1, Ycenter - y1 + fontSize*(index+1) );  //內文
             })
 
-            return {Xcenter, Ycenter, textArr};
+            return {Xcenter, Ycenter, textArr,desciption};
         }
   
         const arrow = ( direction,...points ) => {
@@ -243,9 +246,10 @@ class SkillsTree extends Component {
         let skillitems = [];
         //畫出技能塊並取得畫出來的itemlist
         skillItemList.forEach((item)=>{
-            skillitems.push(square(item.x, item.y, item.text));
+            skillitems.push(square(item.x, item.y, item.text,item.description));
         })
 
+        //console.log(skillitems)
         return skillitems;
     }
 
@@ -254,7 +258,7 @@ class SkillsTree extends Component {
          return (    
              <div>     
                 <canvas ref="canvas" id="skillcanvas" ></canvas>     
-                <SkillsDescription text={this.props.skillCanvas.skillsDescription}/>   
+                <SkillsDescription desc={this.props.skillsDescription}/>   
              </div>   
          );    
      }

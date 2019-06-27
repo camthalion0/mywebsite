@@ -5,6 +5,7 @@ import { UPDATE_TIME,
          GET_ABOUT_DATA,
          SWITCH_MENU,
          UPDATE_SKILLS_CANVAS,
+         UPDATE_SKILLS_DESCRIPTION,
         } from '../actions/index'
 
 const initState = {
@@ -77,6 +78,10 @@ const appReducer = (state = initState, action) => {
             return Object.assign({}, state,{
                 skillCanvas: action.payload.skillCanvas
             })      
+        case UPDATE_SKILLS_DESCRIPTION:
+            return Object.assign({}, state,{
+                skillsDescription: action.payload.skillsDescription
+            })               
             
         default:
             return state;
