@@ -12,6 +12,7 @@ export const GET_ABOUT_DATA =  'GET_ABOUT_DATA';
 export const SWITCH_MENU = 'SWITCH_MENU';
 export const UPDATE_SKILLS_CANVAS ='UPDATE_SKILLS_CANVAS';
 export const UPDATE_SKILLS_ACTIVE='UPDATE_SKILLS_ACTIVE';
+export const TOGGLE_CONTACT = 'TOGGLE_CONTACT';
 
 //更新時間
 export const updateTime = () => {
@@ -130,6 +131,14 @@ export const updateSkillsActive = (activeIndex,description) => ({
             description
         }         
     }   
+})
+
+//是否顯示contact
+export const toggleContact = (ifShow) =>({
+    type: TOGGLE_CONTACT,
+    payload:{
+        showContact: ifShow
+    }
 })
 
  // 取得時間

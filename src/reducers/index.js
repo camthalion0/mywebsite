@@ -6,6 +6,7 @@ import { UPDATE_TIME,
          SWITCH_MENU,
          UPDATE_SKILLS_CANVAS,
          UPDATE_SKILLS_ACTIVE,
+         TOGGLE_CONTACT,
         } from '../actions/index'
 
 const initState = {
@@ -41,6 +42,7 @@ const initState = {
             activeIndex:0,
             description:"C++ description"
         },
+        showContact: false,
     };
 
 //修改時間
@@ -90,8 +92,14 @@ const appReducer = (state = initState, action) => {
         case UPDATE_SKILLS_ACTIVE:
             return Object.assign({}, state,{
                 skillsActive: action.payload.skillsActive
-            })               
+            })          
             
+        case TOGGLE_CONTACT:
+          //  console.log(action.payload.showContact)  
+            return Object.assign({}, state,{
+                showContact: action.payload.showContact
+            })     
+                        
         default:
             return state;
     }
