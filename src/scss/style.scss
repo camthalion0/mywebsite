@@ -197,7 +197,7 @@ $phonesize: 0.5;    //手機倍數
             align-items: center;
             font-weight:bold;
             text-align: center;
-            background-image: url('/Hello_background.jpg');
+            background-image: url('../img/Hello_background.jpg');
             background-repeat:no-repeat;
             background-position: center; 
             background-size: cover;
@@ -232,7 +232,7 @@ $phonesize: 0.5;    //手機倍數
             justify-content: space-around;
             align-items: center;
             // background-color:rgb(197, 121, 121);
-            background-image: url('/About_background.jpg');
+            background-image: url('../img/About_background.jpg');
             background-repeat:no-repeat;
             background-position: center; 
             background-size: cover;
@@ -285,7 +285,7 @@ $phonesize: 0.5;    //手機倍數
         .Skills {
            // @extend %flexbox100; 
             height: 100%;
-            background-image: url('/Skills_background.jpg');
+            background-image: url('../img/Skills_background.jpg');
             background-repeat:no-repeat;
             background-position: center; 
             background-size: cover;
@@ -329,7 +329,7 @@ $phonesize: 0.5;    //手機倍數
             }
 
             .MenuLink_on{
-                background-image: url('/heart2.png');
+                background-image: url('../img/heart2.png');
                 background-repeat:no-repeat;
                 background-position: center; 
                 background-size:contain;

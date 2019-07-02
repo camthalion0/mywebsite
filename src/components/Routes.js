@@ -6,6 +6,8 @@ import React from 'react';
 import {TransitionGroup,CSSTransition } from 'react-transition-group';
 import { Route, Switch } from 'react-router-dom';
 
+const routePath = 'websiteHost'
+
 const Routes = withRouter(({location}) => (
 // const Routes = (location) => (
     <TransitionGroup className={'router-wrapper'}>
@@ -15,10 +17,10 @@ const Routes = withRouter(({location}) => (
         key={location.pathname}
       >
         <Switch location={location}>
-          <Route exact path={'/'} render={(location)=><Hello location={location}/>} />
-          <Route exact path={'/Home'} render={(location)=><Hello location={location}/>} />
-          <Route exact path={'/About'} render={(location)=><About location={location}/>} />
-          <Route exact path={'/Skills'} render={(location)=><Skills location={location}/>} />
+          <Route exact path={`/${routePath}/`} render={(location)=><Hello location={location}/>} />
+          <Route exact path={`/${routePath}/Home`} render={(location)=><Hello location={location}/>} />
+          <Route exact path={`/${routePath}/About`} render={(location)=><About location={location}/>} />
+          <Route exact path={`/${routePath}/Skills`} render={(location)=><Skills location={location}/>} />
         </Switch>
       </CSSTransition>
     </TransitionGroup>

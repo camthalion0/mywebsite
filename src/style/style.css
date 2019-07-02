@@ -240,7 +240,7 @@
           align-items: center;
   font-weight: bold;
   text-align: center;
-  background-image: url("/Hello_background.jpg");
+  background-image: url("../img/Hello_background.jpg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -280,7 +280,7 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  background-image: url("/About_background.jpg");
+  background-image: url("../img/About_background.jpg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -334,7 +334,7 @@
 
 .App .pagebody .Skills {
   height: 100%;
-  background-image: url("/Skills_background.jpg");
+  background-image: url("../img/Skills_background.jpg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -386,7 +386,7 @@
 }
 
 .App .pagefoot .Menu .MenuLink_on {
-  background-image: url("/heart2.png");
+  background-image: url("../img/heart2.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;

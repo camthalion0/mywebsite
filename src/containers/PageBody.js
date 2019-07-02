@@ -7,11 +7,11 @@ import {withRouter} from 'react-router';
 import { toggleContact } from '../actions/index'
 
 const PageBody = (props) => {
-    console.log(props.showContact)
+    // console.log(props.showContact)
     return(
         <div className='pagebody'>       
             <Routes />
-            <img className='mail' src={mail} 
+            <img alt="My Contact" className='mail' src={mail} 
                 onClick={()=>props.toggleContact(true)}></img>
             <Contact showContact={props.showContact} />
         </div>    

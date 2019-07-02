@@ -160,7 +160,7 @@ function getCurrentTime() {
     date = date < 10 ? "0" + date : date.toString();
 
     // Months Names
-    Date.prototype.monthNames = [
+    const monthNames = [
         "January",
         "February",
         "March",
@@ -182,6 +182,6 @@ function getCurrentTime() {
         year,     
         month,
         date, 
-        monthNames:  datetime.monthNames[month - 1]         
+        monthNames:  monthNames[month - 1]         
     }
 }
