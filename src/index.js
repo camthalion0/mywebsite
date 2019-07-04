@@ -2,7 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';    
 import './index.css';
 import App from './App';
-import { BrowserRouter } from 'react-router-dom';
+//import { BrowserRouter } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import appReducer from './reducers/index';
 import { createStore, applyMiddleware, compose } from 'redux';
@@ -16,8 +17,8 @@ export let store = createStore(appReducer, composeEnhancers(applyMiddleware(thun
 ReactDOM.render(
 (
     <Provider store = {store}>
-        <BrowserRouter>
+        <HashRouter>
             <App />
-        </BrowserRouter>
+        </HashRouter>
     </Provider>
 ), document.getElementById('root'));

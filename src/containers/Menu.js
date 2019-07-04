@@ -2,8 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
-const routePath = 'websiteHost'
-
 const getLastPath = (str) => {
     let strArray
     if (str !== '') {
@@ -18,13 +16,13 @@ const getLastPath = (str) => {
     return (
         <nav className="Menu">
             <div className={(pathname===""||pathname==='Home')? "MenuLink_on":"MenuLink_off"}>
-                <Link to={`/${routePath}/`} >Home</Link>
+                <Link to={`/`} >Home</Link>
             </div>
             <div className={pathname==="About"? "MenuLink_on":"MenuLink_off"}>
-                <Link to={`/${routePath}/About`} >About</Link>
+                <Link to={`/About`} >About</Link>
             </div>  
             <div className={pathname==="Skills"? "MenuLink_on":"MenuLink_off"}>
-                <Link to={`/${routePath}/Skills`} >Skills</Link>
+                <Link to={`/Skills`} >Skills</Link>
             </div>    
         </nav>
     )
