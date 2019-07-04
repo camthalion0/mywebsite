@@ -55,7 +55,7 @@ const receiveWeatherError = () => ({    //更新天氣失敗
 export const fetchWeather = () => dispatch => {  
     dispatch(requestWeather()); //api請求前  
     
-    let apiUrl = "http://api.openweathermap.org/data/2.5/weather";
+    let apiUrl = "https://api.openweathermap.org/data/2.5/weather";
 
     let queryObj = {
         APPID:"f8aeb1b2e591f2c787f3c774b6c8f631",
