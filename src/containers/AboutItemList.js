@@ -23,7 +23,7 @@ class AboutItemList extends Component {
                                 className={ifShow? "AboutItemOn":"AboutItemOff"}
                             >
                                 {ifShow?"- ":"+ "}{item.name}
-                                <AboutItemDescription description={item.description}/>
+                                <AboutItemDescription description={item.description} time={item.time}/>
                             </li>                                       
                         )
                     })

@@ -9,6 +9,8 @@ import { UPDATE_TIME,
          TOGGLE_CONTACT,
         } from '../actions/index'
 
+import {skillItemList} from './../data';       
+
 const initState = {
         currentTime:{       //目前時間
             timeText: ``,
@@ -34,13 +36,13 @@ const initState = {
                             // text:['C++'],
                             // xCorrection,
                             // yCorrection,
-            description:"C++ description",
+            // description:"C++ description",
             canvasWidth: 0,    
             canvasHeight: 0,
         },
         skillsActive:{
             activeIndex:0,
-            description:"C++ description"
+            description: skillItemList[0].description
         },
         showContact: false,
     };

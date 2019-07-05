@@ -125,7 +125,7 @@ class SkillsTree extends Component {
                 fontSize = sh/((textArr.length+1))
             };  
             ctx.font = `bold ${fontSize}px bodytext`;  
-            ctx.fillStyle = (active)?"#000000":"#505050";              //文字顏色
+            ctx.fillStyle = (active)?"#000000":"#909090";              //文字顏色
 
             textArr.forEach((item,index)=>{
                 let textWidth = ctx.measureText(item).width;
@@ -240,6 +240,7 @@ class SkillsTree extends Component {
         arrow( {begin:'down',end:'left'},{x:8,y:8}, {x:8,y:10}, {x:6,y:10} ); //JavaScript > React
         arrow( {begin:'down',end:'down'}, {x:6,y:10}, {x:6,y:12} ); //React > Redux
         arrow( {begin:'up',end:'up'}, {x:6,y:12}, {x:6,y:10} ); //React > Redux
+        arrow( {begin:'left',end:'left'}, {x:4,y:4}, {x:2,y:4} ); //C# > Unity 3d
   
         let skilltree = [];
         //畫出技能塊並取得畫出來的itemlist

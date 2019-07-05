@@ -1,6 +1,9 @@
 import React from 'react';
 import { toggleContact } from '../actions/index'
 import { connect } from 'react-redux'
+import emailpng from '../img/email.png'
+import linkedinpng from '../img/linkedin.png'
+import github from '../img/github.png'
 
 const Contact = (props) =>{
  
@@ -9,8 +12,27 @@ const Contact = (props) =>{
     return (      
             <div className={className}>
                 <div className='close'
-                onClick={()=>props.toggleContact(false)}>×</div>
-                1234564
+                // onClick={()=>props.toggleContact(false)}>×</div>
+                onClick={()=>props.toggleContact(false)}>close</div>
+                <div className='content'>
+                    <div className='name'>LALA CHUNG</div>
+                    <div className='job'>front-end developer</div>
+                    <div className='socialMedia'>
+                        <a target='_blank' href='mailto:camthalion1234@gmail.com'>
+                            <img alt='Email' src={emailpng}></img>
+                        </a>
+                        <a target='_blank' href='https://www.linkedin.com/in/huei-hsin-chung-489739155/'>
+                            <img alt='Linkedin' src={linkedinpng} ></img>
+                        </a>
+                        <a target='_blank' href='https://github.com/camthalion0?tab=repositories'>
+                            <img alt='GitHub' src={github}></img>
+                        </a>                       
+                    </div>
+                    {/* <div>Email: camthalion1234@gmail.com</div>
+                    <div>Linkedin: https://www.linkedin.com/in/huei-hsin-chung-489739155/</div>
+                    <div>GitHub: https://github.com/camthalion0?tab=repositories</div>
+                    <div>WebSite: https://camthalion0.github.io/websiteHost/#/</div> */}
+                </div>
             </div>
             )
 }   

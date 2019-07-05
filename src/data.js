@@ -1,32 +1,45 @@
 const data = {
      educations : [
         { 
-            name: `edu1`, 
-            time: `2001~2001`, 
-            description:`edu1_description`
+            name: `National Taiwan University of Science and Technology`, 
+            time: `During 2006~2011.`, 
+            description:[
+                "Majoring in Department of Information Management.",
+            ]
         },
         { 
-            name: `edu2`, 
-            time: `2002~2002`, 
-            description:`edu2_description`
-        },
-        { 
-            name: `edu3`, 
-            time: `2003~2003`, 
-            description:`edu3_description`
+            name: `Taipei Municipal Lishan Senior High School`, 
+            time: `During 2003~2006.`, 
+            description:[
+                "Studying in the 2nd. category of natural sciences."
+            ]
         },
     ],
 
     experiences : [
         { 
-            name: 'exp1', 
-            time:'2011~2011', 
-            description:'exp1_description'
+            name: 'Tian-Xiang Technology Ltd.', 
+            time:'During 2017~2019.', 
+            description:[
+                "As a Front-end Web Developer.",
+                "Develop with Asp.net MVC."
+            ]
         },
         { 
-            name: 'exp2', 
-            time:'2012~2012', 
-            description:'exp2_description'
+            name: 'RT-Mart International Co., Ltd.', 
+            time:'During 2016~2017.', 
+            description:[
+                "As a Programmer.",
+                "Develop with Oracle SQL, Shell Script, Oracle Forms."
+            ]
+        },
+        { 
+            name: 'FLH Co., Ltd.', 
+            time:'During 2015~2016.', 
+            description:[
+                "As a Programmer.",
+                "Develop with Lua, Unity 3D."
+            ]
         },
     ]
 }
@@ -42,7 +55,7 @@ const skillItemList = [
         text:['C++'],
         xCorrection,
         yCorrection,
-        description:"C++ description",
+        description:"C++ is my compulsory subjects at the university.",
     },
     {
         index:1,
@@ -51,7 +64,7 @@ const skillItemList = [
         text:['Linux'],
         xCorrection,
         yCorrection,
-        description:"Linux description"
+        description:"I developed and maintain RT-Mart Information Systems in Linux environment."
     },
     {
         index:2,
@@ -60,7 +73,7 @@ const skillItemList = [
         text:['Shell'],
         xCorrection,
         yCorrection,
-        description:"Shell description"
+        description:"I developed and maintain RT-Mart Information Systems with Shell Script."
     },
     {
         index:3,
@@ -69,7 +82,7 @@ const skillItemList = [
         text:['Pro*C'],
         xCorrection,
         yCorrection,
-        description:"Pro*C description"
+        description:"I developed and maintain RT-Mart Information Systems with Pro*C."
     },
     {
         index:4,
@@ -78,7 +91,7 @@ const skillItemList = [
         text:['Oracle','SQL'],
         xCorrection,
         yCorrection:0,
-        description:"Oracle SQL description"
+        description:"Oracle SQL is at the heart of RT-Mart Information Systems."
     },
     {
         index:5,
@@ -87,7 +100,7 @@ const skillItemList = [
         text:['Oracle','Forms'],
         xCorrection,
         yCorrection:0,
-        description:"Oracle Forms description"
+        description:"RT-Mart uses Oracle Forms for Management."
     },
     {
         index:6,
@@ -96,7 +109,7 @@ const skillItemList = [
         text:['C#'],
         xCorrection,
         yCorrection,
-        description:"C# description"
+        description:"I developed and maintain backend systems with Asp.net MVC(C#) at Tian-Xiang Technology."
     },
     {
         index:7,
@@ -105,7 +118,7 @@ const skillItemList = [
         text:['Linq'],
         xCorrection,
         yCorrection,
-        description:"Linq description"
+        description:"I used Linq in Asp.net MVC project."
     },
     {
         index:8,
@@ -114,25 +127,25 @@ const skillItemList = [
         text:['Asp.net','MVC'],
         xCorrection,
         yCorrection:0,
-        description:"Asp.net MVC description"
+        description:"Most of projects at Tian-Xiang Technology is delovep with Asp.net MVC."
     },
     {
         index:9,
-        x:1,
-        y:5,
-        text:['Shell'],
+        x:0,
+        y:8,
+        text:['Lua'],
         xCorrection,
         yCorrection,
-        description:"Shell description"
+        description:"I developed Smart Home System at FLH with Lua."
     },
     {
         index:10,
-        x:1,
+        x:2,
         y:8,
         text:['Git'],
         xCorrection,
         yCorrection,
-        description:"Git description"
+        description:"Most of my works do Version Control with Git."
     },
     {
         index:11,
@@ -141,7 +154,7 @@ const skillItemList = [
         text:['HTML'],
         xCorrection,
         yCorrection,
-        description:"HTML description"
+        description:"HTML is the basic skill of my work at Tian-Xiang Technology."
     },
     {
         index:12,
@@ -150,7 +163,7 @@ const skillItemList = [
         text:['CSS','SCSS','Bootstrap'],
         xCorrection,
         yCorrection:-5,
-        description:"CSS description"
+        description:"CSS and Bootstrap is the basic skill of my work at Tian-Xiang Technology, And I learned SCSS for my personal website."
     },
     {
         index:13,
@@ -159,7 +172,7 @@ const skillItemList = [
         text:['JavaScript','JQuery'],
         xCorrection,
         yCorrection:0,
-        description:"JavaScript description"
+        description:"JavaScript and JQuery is the basic skill of my work at Tian-Xiang Technology."
     },
     {
         index:14,
@@ -168,7 +181,7 @@ const skillItemList = [
         text:['React'],
         xCorrection,
         yCorrection,
-        description:"React description"
+        description:"I learned React for my personal website."
     },
     {        
         index:15,
@@ -177,7 +190,16 @@ const skillItemList = [
         text:['Redux'],
         xCorrection,
         yCorrection,
-        description:"Redux description"
+        description:"I learned Redux for my React project."
+    },
+    {        
+        index:16,
+        x:2,
+        y:4,
+        text:['Unity 3D'],
+        xCorrection,
+        yCorrection,
+        description:"I learned Unity 3D at FLH."
     },
 ]
 

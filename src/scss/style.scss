@@ -97,6 +97,20 @@ $phonesize: 0.5;    //手機倍數
     }
 }
 
+%fontlevel6{
+    font-size: $fontsize * 1;
+    line-height: $lineheight * 0.7 ;
+
+    @include tablet {
+        font-size: $fontsize * 1 * $tabletsize;
+        line-height: $lineheight *  0.7 * $tabletsize ;
+    }
+    @include phone {
+        font-size: $fontsize * 1 * $phonesize;
+        line-height: $lineheight *  0.7 * $phonesize ;
+    }
+}
+
 %iconsize{
     max-height: $fontsize * 3;
     max-width: $fontsize * 3;
@@ -138,7 +152,8 @@ $phonesize: 0.5;    //手機倍數
 
     .pagebody {
         flex: 1;
-        overflow-x: hidden;
+        overflow: hidden;
+        position: relative;
 
         > div{
             height: 100%;
@@ -149,11 +164,11 @@ $phonesize: 0.5;    //手機倍數
         }
 
         .mailCat {
-            max-height: 15%;
-            max-width: 15%;
+            max-height: 13%;
+            max-width: 13%;
             position:absolute;
             z-index: 1;
-            bottom: 12%;
+            bottom: 8%;
             right: 1.5%;
             cursor: pointer;
 
@@ -166,23 +181,80 @@ $phonesize: 0.5;    //手機倍數
         }
 
         .Contact{
+            background-image: url('../img/card3.png');
+            background-size: cover;
             position:absolute;
-            height: 22vmin;
-            width: 33vmin;
+            height: 24vmin;
+            width: 36vmin;
             // height: 20%;
             // width: 20%;
             z-index: 2;
             right: -16%;
-            bottom: 10%;
+            bottom: 5%;
             background-color: #dee6f7;
-            border-radius: 0.2em;
+            border-radius: 0.5em;
             box-shadow: 0 -1px 10px rgba(0, 0, 0, .7);
+            display: flex;
+            flex-direction: column;
+        
 
             .close{
-                position:absolute;
-                right: 0.3em;
-                top:0.05em;
+                @extend %fontlevel5;
+                color:#565656;
+                // position:absolute;
+                // right: 0.3em;
+                // top:0.05em;
                 cursor: pointer;
+                align-self: flex-end;
+                height: 20%;
+            }
+
+            .content{         
+                @extend %fontlevel6;
+                // position:absolute;
+                height: 60%;
+                width: 70%;
+                // top:20%;
+                // left: 15%;
+                display: flex;
+                flex-direction: column;
+                align-self: center;
+
+                .socialMedia{
+                    display: flex;
+                    justify-content: space-around;
+                    align-items: center;
+                    flex: 1 1;
+                    // height: 20%;                   
+                    border-top:solid 1px; 
+
+                    a{
+                        display: flex;
+                        align-items: center;
+
+                        img{
+                            flex: 1 1;  
+                        }
+                    }
+                }
+
+                .name {       
+                    // height: 70%;         
+                    font-size:1.5em;
+                    font-weight:bold;
+                    // @extend %fontlevel3;
+                    flex: 1 1;    
+                    align-self: center;   
+           
+                }   
+
+                .job {                   
+                    //  @extend %fontlevel4;
+                     flex: 1 2;
+                    // align-self: flex-end;
+                    color: #9e9e9e;
+                    align-self: center;
+                }   
             }
         }
 
@@ -267,7 +339,12 @@ $phonesize: 0.5;    //手機倍數
                         word-break: break-all;
                         transform-origin:50% 0%;
                         transform: scaleY(1);
-                        transition: all 0.5s ease-out;
+                        transition: all 0.5s ease-out;            
+                        display: flex;
+                        justify-content:center;         
+                        > div{
+                            width: 95%; 
+                        }
                     }
                 }
 
@@ -283,6 +360,11 @@ $phonesize: 0.5;    //手機倍數
                         transform: scaleY(0);
                         overflow: hidden;
                         transition: all 0.5s ease-out;
+                        display: flex;
+                        justify-content:center;         
+                        > div{
+                            width: 95%; 
+                        }
                     }
                 }
             }
@@ -301,11 +383,17 @@ $phonesize: 0.5;    //手機倍數
             }
 
             .SkillsDescription{
-                @extend %fontlevel3;
+                @extend %fontlevel4;
                 position:absolute;
                 z-index: 1;
-                top:80%;
-                left:8%;
+                bottom: 1%;
+                height: 20%;
+                left: 2%;
+                width: 60%;
+                text-align: center;
+                display: flex;
+                align-items: center;
+                justify-content: center;
             }
         }
     }
