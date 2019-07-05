@@ -23,6 +23,7 @@ body {
   /* background: url(./img/beach.jpg) fixed no-repeat; */
   /* background: url(./img/europe.jpg) fixed no-repeat; */
   background-size:cover;
+  overflow: hidden;
 }
 
 code {

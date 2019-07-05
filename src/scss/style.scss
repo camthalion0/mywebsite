@@ -1,5 +1,5 @@
 $fontsize: 1.3rem;    //基準文字大小
-$lineheight: $fontsize * 1.7;     //基準行高
+$lineheight: $fontsize * 1.8;     //基準行高
 $padWidth: 992px;
 $phoneWidth: 415px;
 $tabletsize: 0.8;   //平板倍數
@@ -89,11 +89,11 @@ $phonesize: 0.5;    //手機倍數
 
     @include tablet {
         font-size: $fontsize * 1 * $tabletsize;
-        line-height: $lineheight * 1 * $tabletsize;
+        line-height: $lineheight * 1 * $tabletsize ;
     }
     @include phone {
         font-size: $fontsize * 1 * $phonesize;
-        line-height: $lineheight * 1 * $phonesize;
+        line-height: $lineheight * 1 * $phonesize ;
     }
 }
 
@@ -123,7 +123,7 @@ $phonesize: 0.5;    //手機倍數
       transform: scale(1);
     }
     50%{
-        transform: scale(1.1);
+        transform: scale(1.15);
       }
     100%{
       transform: scale(1);
@@ -148,12 +148,14 @@ $phonesize: 0.5;    //手機倍數
             overflow: hidden;
         }
 
-        .mail {
-            height: 8%;
+        .mailCat {
+            max-height: 15%;
+            max-width: 15%;
             position:absolute;
             z-index: 1;
-            top:80%;
-            right: 4%;
+            bottom: 12%;
+            right: 1.5%;
+            cursor: pointer;
 
             /*動畫名稱*/
             animation-name: BigAnime;
@@ -165,8 +167,10 @@ $phonesize: 0.5;    //手機倍數
 
         .Contact{
             position:absolute;
-            height: 20%;
-            width: 20%;
+            height: 22vmin;
+            width: 33vmin;
+            // height: 20%;
+            // width: 20%;
             z-index: 2;
             right: -16%;
             bottom: 10%;
@@ -178,17 +182,18 @@ $phonesize: 0.5;    //手機倍數
                 position:absolute;
                 right: 0.3em;
                 top:0.05em;
+                cursor: pointer;
             }
         }
 
         .ContactOff{
-            right: -16%;           
-            transition: right 0.5s ease-out;
+            right: -50%;         
+            transition: right 0.8s ease-out;
         }
 
         .ContactOn{
             right: 2%;
-            transition: right 0.5s ease-out;
+            transition: right 0.8s ease-out;
         }
 
         .Hello {
@@ -252,9 +257,9 @@ $phonesize: 0.5;    //手機倍數
                 flex-basis: 40%;
 
                 .AboutItemOn {
-                  
                     max-height: 1000px;
                     transition: height 0.5s ease;
+                    cursor: pointer;
 
                     > .AboutItemDescription{
                         @extend %fontlevel5;
@@ -267,8 +272,9 @@ $phonesize: 0.5;    //手機倍數
                 }
 
                 .AboutItemOff {
-                    max-height: 1.2em;
+                    max-height: 1.6em;
                     transition: max-height 0.5s ease;
+                    cursor: pointer;
 
                     > .AboutItemDescription{
                         @extend %fontlevel5;

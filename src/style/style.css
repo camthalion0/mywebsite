@@ -8,99 +8,99 @@
 
 .App .pagebody .Hello .time_date_temp_container .timeText {
   font-size: 4.55rem;
-  line-height: 7.735rem;
+  line-height: 8.19rem;
   font-weight: bold;
 }
 
 @media screen and (max-width: 992px) {
   .App .pagebody .Hello .time_date_temp_container .timeText {
     font-size: 3.64rem;
-    line-height: 6.188rem;
+    line-height: 6.552rem;
   }
 }
 
 @media screen and (max-width: 415px) {
   .App .pagebody .Hello .time_date_temp_container .timeText {
     font-size: 2.275rem;
-    line-height: 3.8675rem;
+    line-height: 4.095rem;
   }
 }
 
 .App .pagebody .Hello .time_date_temp_container .dateText, .App .pagebody .Hello .time_date_temp_container .temp {
   font-size: 2.6rem;
-  line-height: 4.42rem;
+  line-height: 4.68rem;
   font-weight: bold;
 }
 
 @media screen and (max-width: 992px) {
   .App .pagebody .Hello .time_date_temp_container .dateText, .App .pagebody .Hello .time_date_temp_container .temp {
     font-size: 2.08rem;
-    line-height: 3.536rem;
+    line-height: 3.744rem;
   }
 }
 
 @media screen and (max-width: 415px) {
   .App .pagebody .Hello .time_date_temp_container .dateText, .App .pagebody .Hello .time_date_temp_container .temp {
     font-size: 1.3rem;
-    line-height: 2.21rem;
+    line-height: 2.34rem;
   }
 }
 
 .App .pagebody .About .AboutTitle, .App .pagebody .Skills .SkillsDescription, .App .pagefoot .Menu {
   font-size: 1.95rem;
-  line-height: 3.315rem;
+  line-height: 3.51rem;
   font-weight: bold;
 }
 
 @media screen and (max-width: 992px) {
   .App .pagebody .About .AboutTitle, .App .pagebody .Skills .SkillsDescription, .App .pagefoot .Menu {
     font-size: 1.56rem;
-    line-height: 2.652rem;
+    line-height: 2.808rem;
   }
 }
 
 @media screen and (max-width: 415px) {
   .App .pagebody .About .AboutTitle, .App .pagebody .Skills .SkillsDescription, .App .pagefoot .Menu {
     font-size: 0.975rem;
-    line-height: 1.6575rem;
+    line-height: 1.755rem;
   }
 }
 
 .App .pagebody .About .AboutSection {
   font-size: 1.56rem;
-  line-height: 2.652rem;
+  line-height: 2.808rem;
 }
 
 @media screen and (max-width: 992px) {
   .App .pagebody .About .AboutSection {
     font-size: 1.248rem;
-    line-height: 2.1216rem;
+    line-height: 2.2464rem;
   }
 }
 
 @media screen and (max-width: 415px) {
   .App .pagebody .About .AboutSection {
     font-size: 0.78rem;
-    line-height: 1.326rem;
+    line-height: 1.404rem;
   }
 }
 
 .App .pagebody .About .AboutSection .AboutItemOn > .AboutItemDescription, .App .pagebody .About .AboutSection .AboutItemOff > .AboutItemDescription {
   font-size: 1.3rem;
-  line-height: 2.21rem;
+  line-height: 2.34rem;
 }
 
 @media screen and (max-width: 992px) {
   .App .pagebody .About .AboutSection .AboutItemOn > .AboutItemDescription, .App .pagebody .About .AboutSection .AboutItemOff > .AboutItemDescription {
     font-size: 1.04rem;
-    line-height: 1.768rem;
+    line-height: 1.872rem;
   }
 }
 
 @media screen and (max-width: 415px) {
   .App .pagebody .About .AboutSection .AboutItemOn > .AboutItemDescription, .App .pagebody .About .AboutSection .AboutItemOff > .AboutItemDescription {
     font-size: 0.65rem;
-    line-height: 1.105rem;
+    line-height: 1.17rem;
   }
 }
 
@@ -137,8 +137,8 @@
             transform: scale(1);
   }
   50% {
-    -webkit-transform: scale(1.1);
-            transform: scale(1.1);
+    -webkit-transform: scale(1.15);
+            transform: scale(1.15);
   }
   100% {
     -webkit-transform: scale(1);
@@ -151,8 +151,8 @@
             transform: scale(1);
   }
   50% {
-    -webkit-transform: scale(1.1);
-            transform: scale(1.1);
+    -webkit-transform: scale(1.15);
+            transform: scale(1.15);
   }
   100% {
     -webkit-transform: scale(1);
@@ -183,12 +183,14 @@
   overflow: hidden;
 }
 
-.App .pagebody .mail {
-  height: 8%;
+.App .pagebody .mailCat {
+  max-height: 15%;
+  max-width: 15%;
   position: absolute;
   z-index: 1;
-  top: 80%;
-  right: 4%;
+  bottom: 12%;
+  right: 1.5%;
+  cursor: pointer;
   /*動畫名稱*/
   -webkit-animation-name: BigAnime;
           animation-name: BigAnime;
@@ -202,8 +204,8 @@
 
 .App .pagebody .Contact {
   position: absolute;
-  height: 20%;
-  width: 20%;
+  height: 22vmin;
+  width: 33vmin;
   z-index: 2;
   right: -16%;
   bottom: 10%;
@@ -217,18 +219,19 @@
   position: absolute;
   right: 0.3em;
   top: 0.05em;
+  cursor: pointer;
 }
 
 .App .pagebody .ContactOff {
-  right: -16%;
-  -webkit-transition: right 0.5s ease-out;
-  transition: right 0.5s ease-out;
+  right: -50%;
+  -webkit-transition: right 0.8s ease-out;
+  transition: right 0.8s ease-out;
 }
 
 .App .pagebody .ContactOn {
   right: 2%;
-  -webkit-transition: right 0.5s ease-out;
-  transition: right 0.5s ease-out;
+  -webkit-transition: right 0.8s ease-out;
+  transition: right 0.8s ease-out;
 }
 
 .App .pagebody .Hello {
@@ -302,6 +305,7 @@
   max-height: 1000px;
   -webkit-transition: height 0.5s ease;
   transition: height 0.5s ease;
+  cursor: pointer;
 }
 
 .App .pagebody .About .AboutSection .AboutItemOn > .AboutItemDescription {
@@ -316,9 +320,10 @@
 }
 
 .App .pagebody .About .AboutSection .AboutItemOff {
-  max-height: 1.2em;
+  max-height: 1.6em;
   -webkit-transition: max-height 0.5s ease;
   transition: max-height 0.5s ease;
+  cursor: pointer;
 }
 
 .App .pagebody .About .AboutSection .AboutItemOff > .AboutItemDescription {
