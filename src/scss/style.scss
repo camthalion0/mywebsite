@@ -149,6 +149,7 @@ $phonesize: 0.5;    //手機倍數
     /* 排列 */    
     @extend %flexbox100;    
     flex-direction: column;
+    min-width: 320px;
 
     .pagebody {
         flex: 1;
@@ -177,36 +178,50 @@ $phonesize: 0.5;    //手機倍數
             /*動畫時間*/
             animation-duration: 2s;
             /*撥放次數:無限次*/
-            animation-iteration-count: infinite;            
+            animation-iteration-count: infinite;
+            
+            @include phone {
+                right: 3%;
+                max-height: 20%;
+                max-width: 20%;
+            }
         }
 
         .Contact{
+
+            min-width: 288px;
+            min-height: 190px;
             background-image: url('../img/card3.png');
             background-size: cover;
             position:absolute;
-            height: 24vmin;
-            width: 36vmin;
+            height: 260px;
+            width: 390px;
             // height: 20%;
             // width: 20%;
             z-index: 2;
-            right: -16%;
-            bottom: 5%;
+            // right: -16%;
+            // bottom: 5%;
             background-color: #dee6f7;
             border-radius: 0.5em;
             box-shadow: 0 -1px 10px rgba(0, 0, 0, .7);
             display: flex;
-            flex-direction: column;
-        
+            flex-direction: column;      
+
+            @include phone {
+                width: 90vmin;
+                height: 60vmin;
+            }
 
             .close{
-                @extend %fontlevel5;
+                font-size:24px;
                 color:#565656;
-                // position:absolute;
-                // right: 0.3em;
-                // top:0.05em;
                 cursor: pointer;
                 align-self: flex-end;
                 height: 20%;
+
+                @include phone {
+                    font-size:18px; 
+                }   
             }
 
             .content{         
@@ -219,6 +234,7 @@ $phonesize: 0.5;    //手機倍數
                 display: flex;
                 flex-direction: column;
                 align-self: center;
+                line-height: normal;
 
                 .socialMedia{
                     display: flex;
@@ -231,7 +247,6 @@ $phonesize: 0.5;    //手機倍數
                     a{
                         display: flex;
                         align-items: center;
-
                         img{
                             flex: 1 1;  
                         }
@@ -239,18 +254,21 @@ $phonesize: 0.5;    //手機倍數
                 }
 
                 .name {       
-                    // height: 70%;         
-                    font-size:1.5em;
+                    font-size: 32px;
                     font-weight:bold;
-                    // @extend %fontlevel3;
                     flex: 1 1;    
                     align-self: center;   
+
+                    // @include phone {
+                    //     font-size: 32px;
+                    // }
            
                 }   
 
                 .job {                   
                     //  @extend %fontlevel4;
                      flex: 1 2;
+                     font-size: 24px;
                     // align-self: flex-end;
                     color: #9e9e9e;
                     align-self: center;
@@ -259,13 +277,31 @@ $phonesize: 0.5;    //手機倍數
         }
 
         .ContactOff{
-            right: -50%;         
-            transition: right 0.8s ease-out;
+            right: -100%;        
+            bottom: 5%;
+            transition: top 0s, right 1s ease-out;
+
+            @include phone {
+                left: 5%;
+                top: 100%;
+                transition:  right 0s, top 0.5s linear;
+                bottom:auto;
+                right: auto;
+            }
         }
 
         .ContactOn{
             right: 2%;
-            transition: right 0.8s ease-out;
+            bottom: 5%;
+            transition: top 0s,right 1s ease-out;
+
+            @include phone {
+                left: 5%;
+                top: 60%;
+                transition: right 0s, top 0.5s linear;
+                bottom:auto;
+                right: auto;
+            }
         }
 
         .Hello {
