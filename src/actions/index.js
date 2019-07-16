@@ -12,6 +12,7 @@ export const GET_ABOUT_DATA =  'GET_ABOUT_DATA';
 export const SWITCH_MENU = 'SWITCH_MENU';
 export const UPDATE_SKILLS_CANVAS ='UPDATE_SKILLS_CANVAS';
 export const UPDATE_SKILLS_ACTIVE='UPDATE_SKILLS_ACTIVE';
+export const TOGGLE_CONTACT = 'TOGGLE_CONTACT';
 
 //更新時間
 export const updateTime = () => {
@@ -54,7 +55,7 @@ const receiveWeatherError = () => ({    //更新天氣失敗
 export const fetchWeather = () => dispatch => {  
     dispatch(requestWeather()); //api請求前  
     
-    let apiUrl = "http://api.openweathermap.org/data/2.5/weather";
+    let apiUrl = "https://api.openweathermap.org/data/2.5/weather";
 
     let queryObj = {
         APPID:"f8aeb1b2e591f2c787f3c774b6c8f631",
@@ -132,6 +133,14 @@ export const updateSkillsActive = (activeIndex,description) => ({
     }   
 })
 
+//是否顯示contact
+export const toggleContact = (ifShow) =>({
+    type: TOGGLE_CONTACT,
+    payload:{
+        showContact: ifShow
+    }
+})
+
  // 取得時間
 function getCurrentTime() {
     let now = new Date(),
@@ -151,7 +160,7 @@ function getCurrentTime() {
     date = date < 10 ? "0" + date : date.toString();
 
     // Months Names
-    Date.prototype.monthNames = [
+    const monthNames = [
         "January",
         "February",
         "March",
@@ -173,6 +182,6 @@ function getCurrentTime() {
         year,     
         month,
         date, 
-        monthNames:  datetime.monthNames[month - 1]         
+        monthNames:  monthNames[month - 1]         
     }
 }

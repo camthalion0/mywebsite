@@ -8,99 +8,118 @@
 
 .App .pagebody .Hello .time_date_temp_container .timeText {
   font-size: 4.55rem;
-  line-height: 7.735rem;
+  line-height: 8.19rem;
   font-weight: bold;
 }
 
 @media screen and (max-width: 992px) {
   .App .pagebody .Hello .time_date_temp_container .timeText {
     font-size: 3.64rem;
-    line-height: 6.188rem;
+    line-height: 6.552rem;
   }
 }
 
 @media screen and (max-width: 415px) {
   .App .pagebody .Hello .time_date_temp_container .timeText {
     font-size: 2.275rem;
-    line-height: 3.8675rem;
+    line-height: 4.095rem;
   }
 }
 
 .App .pagebody .Hello .time_date_temp_container .dateText, .App .pagebody .Hello .time_date_temp_container .temp {
   font-size: 2.6rem;
-  line-height: 4.42rem;
+  line-height: 4.68rem;
   font-weight: bold;
 }
 
 @media screen and (max-width: 992px) {
   .App .pagebody .Hello .time_date_temp_container .dateText, .App .pagebody .Hello .time_date_temp_container .temp {
     font-size: 2.08rem;
-    line-height: 3.536rem;
+    line-height: 3.744rem;
   }
 }
 
 @media screen and (max-width: 415px) {
   .App .pagebody .Hello .time_date_temp_container .dateText, .App .pagebody .Hello .time_date_temp_container .temp {
     font-size: 1.3rem;
-    line-height: 2.21rem;
+    line-height: 2.34rem;
   }
 }
 
-.App .pagebody .About .AboutTitle, .App .pagebody .Skills .SkillsDescription, .App .pagefoot .Menu {
+.App .pagebody .About .AboutTitle, .App .pagefoot .Menu {
   font-size: 1.95rem;
-  line-height: 3.315rem;
+  line-height: 3.51rem;
   font-weight: bold;
 }
 
 @media screen and (max-width: 992px) {
-  .App .pagebody .About .AboutTitle, .App .pagebody .Skills .SkillsDescription, .App .pagefoot .Menu {
+  .App .pagebody .About .AboutTitle, .App .pagefoot .Menu {
     font-size: 1.56rem;
-    line-height: 2.652rem;
+    line-height: 2.808rem;
   }
 }
 
 @media screen and (max-width: 415px) {
-  .App .pagebody .About .AboutTitle, .App .pagebody .Skills .SkillsDescription, .App .pagefoot .Menu {
+  .App .pagebody .About .AboutTitle, .App .pagefoot .Menu {
     font-size: 0.975rem;
-    line-height: 1.6575rem;
+    line-height: 1.755rem;
   }
 }
 
-.App .pagebody .About .AboutSection {
+.App .pagebody .About .AboutSection, .App .pagebody .Skills .SkillsDescription {
   font-size: 1.56rem;
-  line-height: 2.652rem;
+  line-height: 2.808rem;
 }
 
 @media screen and (max-width: 992px) {
-  .App .pagebody .About .AboutSection {
+  .App .pagebody .About .AboutSection, .App .pagebody .Skills .SkillsDescription {
     font-size: 1.248rem;
-    line-height: 2.1216rem;
+    line-height: 2.2464rem;
   }
 }
 
 @media screen and (max-width: 415px) {
-  .App .pagebody .About .AboutSection {
+  .App .pagebody .About .AboutSection, .App .pagebody .Skills .SkillsDescription {
     font-size: 0.78rem;
-    line-height: 1.326rem;
+    line-height: 1.404rem;
   }
 }
 
 .App .pagebody .About .AboutSection .AboutItemOn > .AboutItemDescription, .App .pagebody .About .AboutSection .AboutItemOff > .AboutItemDescription {
   font-size: 1.3rem;
-  line-height: 2.21rem;
+  line-height: 2.34rem;
 }
 
 @media screen and (max-width: 992px) {
   .App .pagebody .About .AboutSection .AboutItemOn > .AboutItemDescription, .App .pagebody .About .AboutSection .AboutItemOff > .AboutItemDescription {
     font-size: 1.04rem;
-    line-height: 1.768rem;
+    line-height: 1.872rem;
   }
 }
 
 @media screen and (max-width: 415px) {
   .App .pagebody .About .AboutSection .AboutItemOn > .AboutItemDescription, .App .pagebody .About .AboutSection .AboutItemOff > .AboutItemDescription {
     font-size: 0.65rem;
-    line-height: 1.105rem;
+    line-height: 1.17rem;
+  }
+}
+
+.App .pagebody .Contact .content {
+  font-size: 1.3rem;
+  line-height: 1.638rem;
+}
+
+@media screen and (max-width: 992px) {
+  .App .pagebody .Contact .content {
+    font-size: 1.04rem;
+    line-height: 1.3104rem;
+  }
+}
+
+@media screen and (max-width: 415px) {
+  .App .pagebody .Contact .content {
+    font-size: 0.65rem;
+    line-height: 0.819rem;
   }
 }
 
@@ -130,19 +149,51 @@
   }
 }
 
+/* @關鍵影格 動畫名稱 */
+@-webkit-keyframes BigAnime {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  50% {
+    -webkit-transform: scale(1.15);
+            transform: scale(1.15);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+@keyframes BigAnime {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  50% {
+    -webkit-transform: scale(1.15);
+            transform: scale(1.15);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
 .App {
   /* 排列 */
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  min-width: 320px;
 }
 
 .App .pagebody {
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
-  overflow-x: hidden;
+  overflow: hidden;
+  position: relative;
 }
 
 .App .pagebody > div {
@@ -151,6 +202,180 @@
 
 .App .pagebody .router-wrapper {
   overflow: hidden;
+}
+
+.App .pagebody .mailCat {
+  max-height: 13%;
+  max-width: 13%;
+  position: absolute;
+  z-index: 1;
+  bottom: 8%;
+  right: 1.5%;
+  cursor: pointer;
+  /*動畫名稱*/
+  -webkit-animation-name: BigAnime;
+          animation-name: BigAnime;
+  /*動畫時間*/
+  -webkit-animation-duration: 2s;
+          animation-duration: 2s;
+  /*撥放次數:無限次*/
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+}
+
+@media screen and (max-width: 415px) {
+  .App .pagebody .mailCat {
+    right: 3%;
+    max-height: 20%;
+    max-width: 20%;
+  }
+}
+
+.App .pagebody .Contact {
+  min-width: 288px;
+  min-height: 190px;
+  background-image: url("../img/card3.png");
+  background-size: cover;
+  position: absolute;
+  height: 260px;
+  width: 390px;
+  z-index: 2;
+  background-color: #dee6f7;
+  border-radius: 0.5em;
+  -webkit-box-shadow: 0 -1px 10px rgba(0, 0, 0, 0.7);
+          box-shadow: 0 -1px 10px rgba(0, 0, 0, 0.7);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+@media screen and (max-width: 415px) {
+  .App .pagebody .Contact {
+    width: 90vmin;
+    height: 60vmin;
+  }
+}
+
+.App .pagebody .Contact .close {
+  font-size: 24px;
+  color: #565656;
+  cursor: pointer;
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+  height: 20%;
+}
+
+@media screen and (max-width: 415px) {
+  .App .pagebody .Contact .close {
+    font-size: 18px;
+  }
+}
+
+.App .pagebody .Contact .content {
+  height: 60%;
+  width: 70%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-item-align: center;
+      align-self: center;
+  line-height: normal;
+}
+
+.App .pagebody .Contact .content .socialMedia {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1;
+          flex: 1 1;
+  border-top: solid 1px;
+}
+
+.App .pagebody .Contact .content .socialMedia a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.App .pagebody .Contact .content .socialMedia a img {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1;
+          flex: 1 1;
+}
+
+.App .pagebody .Contact .content .name {
+  font-size: 32px;
+  font-weight: bold;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1;
+          flex: 1 1;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+}
+
+.App .pagebody .Contact .content .job {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 2;
+          flex: 1 2;
+  font-size: 24px;
+  color: #9e9e9e;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+}
+
+.App .pagebody .ContactOff {
+  right: -100%;
+  bottom: 5%;
+  -webkit-transition: top 0s, right 1s ease-out;
+  transition: top 0s, right 1s ease-out;
+}
+
+@media screen and (max-width: 415px) {
+  .App .pagebody .ContactOff {
+    left: 5%;
+    top: 100%;
+    -webkit-transition: right 0s, top 0.5s linear;
+    transition: right 0s, top 0.5s linear;
+    bottom: auto;
+    right: auto;
+  }
+}
+
+.App .pagebody .ContactOn {
+  right: 2%;
+  bottom: 5%;
+  -webkit-transition: top 0s,right 1s ease-out;
+  transition: top 0s,right 1s ease-out;
+}
+
+@media screen and (max-width: 415px) {
+  .App .pagebody .ContactOn {
+    left: 5%;
+    top: 60%;
+    -webkit-transition: right 0s, top 0.5s linear;
+    transition: right 0s, top 0.5s linear;
+    bottom: auto;
+    right: auto;
+  }
 }
 
 .App .pagebody .Hello {
@@ -162,7 +387,7 @@
           align-items: center;
   font-weight: bold;
   text-align: center;
-  background-image: url("/Hello_background.jpg");
+  background-image: url("../img/Hello_background.jpg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -202,7 +427,7 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  background-image: url("/About_background.jpg");
+  background-image: url("../img/About_background.jpg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -224,6 +449,7 @@
   max-height: 1000px;
   -webkit-transition: height 0.5s ease;
   transition: height 0.5s ease;
+  cursor: pointer;
 }
 
 .App .pagebody .About .AboutSection .AboutItemOn > .AboutItemDescription {
@@ -235,12 +461,23 @@
           transform: scaleY(1);
   -webkit-transition: all 0.5s ease-out;
   transition: all 0.5s ease-out;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.App .pagebody .About .AboutSection .AboutItemOn > .AboutItemDescription > div {
+  width: 95%;
 }
 
 .App .pagebody .About .AboutSection .AboutItemOff {
-  max-height: 1.2em;
+  max-height: 1.6em;
   -webkit-transition: max-height 0.5s ease;
   transition: max-height 0.5s ease;
+  cursor: pointer;
 }
 
 .App .pagebody .About .AboutSection .AboutItemOff > .AboutItemDescription {
@@ -252,11 +489,21 @@
   overflow: hidden;
   -webkit-transition: all 0.5s ease-out;
   transition: all 0.5s ease-out;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.App .pagebody .About .AboutSection .AboutItemOff > .AboutItemDescription > div {
+  width: 95%;
 }
 
 .App .pagebody .Skills {
   height: 100%;
-  background-image: url("/Skills_background.jpg");
+  background-image: url("../img/Skills_background.jpg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -270,8 +517,20 @@
 .App .pagebody .Skills .SkillsDescription {
   position: absolute;
   z-index: 1;
-  top: 80%;
-  left: 8%;
+  bottom: 1%;
+  height: 20%;
+  left: 2%;
+  width: 60%;
+  text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .App .pagefoot {
@@ -308,7 +567,7 @@
 }
 
 .App .pagefoot .Menu .MenuLink_on {
-  background-image: url("/heart2.png");
+  background-image: url("../img/heart2.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -332,8 +591,8 @@ h3 {
 
 .fade-enter-active {
   opacity: 1;
-  -webkit-transition: all 500ms ease-out;
-  transition: all 500ms ease-out;
+  -webkit-transition: opacity 500ms ease-out;
+  transition: opacity 500ms ease-out;
 }
 
 .fade-exit {
@@ -342,8 +601,8 @@ h3 {
 
 .fade-exit-active {
   opacity: 1;
-  -webkit-transition: all 500ms ease-out;
-  transition: all 500ms ease-out;
+  -webkit-transition: opacity 500ms ease-out;
+  transition: opacity 500ms ease-out;
 }
 
 /*天氣icon*/

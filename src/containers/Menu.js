@@ -2,19 +2,27 @@ import React from 'react';
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
+const getLastPath = (str) => {
+    let strArray
+    if (str !== '') {
+        strArray = str.split('/')
+    }
+    return strArray[strArray.length -1]
+}
+
  const Menu = (props) => {
 
-    let pathname = props.pathname.slice(1);
+    let pathname = getLastPath(props.pathname)
     return (
         <nav className="Menu">
-            <div className={(pathname===""||pathname==="Home")? "MenuLink_on":"MenuLink_off"}>
-                <Link to="/" >Home</Link>
+            <div className={(pathname===""||pathname==='Home')? "MenuLink_on":"MenuLink_off"}>
+                <Link to={`/`} >Home</Link>
             </div>
             <div className={pathname==="About"? "MenuLink_on":"MenuLink_off"}>
-                <Link to="/About" >About</Link>
+                <Link to={`/About`} >About</Link>
             </div>  
             <div className={pathname==="Skills"? "MenuLink_on":"MenuLink_off"}>
-                <Link to="/Skills" >Skills</Link>
+                <Link to={`/Skills`} >Skills</Link>
             </div>    
         </nav>
     )

@@ -1,28 +1,17 @@
 import React from 'react';
 
 const AboutItemDescription = (props) => {
-        let description = props.description;
-
+        let description = props.description.map((element,index) => {
+            return (<div key={index}>{element}</div>)
+        });
+        
         return (
             <div className='AboutItemDescription' >
-                <span>
-                    {description}
-                    {description}{description}
-                    {description}{description}
-                    {description}{description}
-                    {description}{description}
-                    {description}{description}
-                    {description}{description}
-                    {description}{description}
-                    {description}{description}
-                    {description}{description}
-                    {description}{description}
-                    {description}{description}
-                    {description}{description}
-                    {description}{description}
-                    {description}{description}
-                    {description}{description}
-                </span>               
+                <div>
+                    <div>
+                        {description}                    
+                    </div>     
+                </div>          
             </div>
         )    
     }

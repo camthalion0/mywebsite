@@ -1,5 +1,5 @@
 $fontsize: 1.3rem;    //基準文字大小
-$lineheight: $fontsize * 1.7;     //基準行高
+$lineheight: $fontsize * 1.8;     //基準行高
 $padWidth: 992px;
 $phoneWidth: 415px;
 $tabletsize: 0.8;   //平板倍數
@@ -89,11 +89,25 @@ $phonesize: 0.5;    //手機倍數
 
     @include tablet {
         font-size: $fontsize * 1 * $tabletsize;
-        line-height: $lineheight * 1 * $tabletsize;
+        line-height: $lineheight * 1 * $tabletsize ;
     }
     @include phone {
         font-size: $fontsize * 1 * $phonesize;
-        line-height: $lineheight * 1 * $phonesize;
+        line-height: $lineheight * 1 * $phonesize ;
+    }
+}
+
+%fontlevel6{
+    font-size: $fontsize * 1;
+    line-height: $lineheight * 0.7 ;
+
+    @include tablet {
+        font-size: $fontsize * 1 * $tabletsize;
+        line-height: $lineheight *  0.7 * $tabletsize ;
+    }
+    @include phone {
+        font-size: $fontsize * 1 * $phonesize;
+        line-height: $lineheight *  0.7 * $phonesize ;
     }
 }
 
@@ -117,15 +131,30 @@ $phonesize: 0.5;    //手機倍數
     }
 }
 
+/* @關鍵影格 動畫名稱 */
+@keyframes BigAnime {
+    0%{
+      transform: scale(1);
+    }
+    50%{
+        transform: scale(1.15);
+      }
+    100%{
+      transform: scale(1);
+    }
+}
+
 
 .App {
     /* 排列 */    
     @extend %flexbox100;    
     flex-direction: column;
+    min-width: 320px;
 
     .pagebody {
         flex: 1;
-        overflow-x: hidden;
+        overflow: hidden;
+        position: relative;
 
         > div{
             height: 100%;
@@ -135,13 +164,153 @@ $phonesize: 0.5;    //手機倍數
             overflow: hidden;
         }
 
+        .mailCat {
+            max-height: 13%;
+            max-width: 13%;
+            position:absolute;
+            z-index: 1;
+            bottom: 8%;
+            right: 1.5%;
+            cursor: pointer;
+
+            /*動畫名稱*/
+            animation-name: BigAnime;
+            /*動畫時間*/
+            animation-duration: 2s;
+            /*撥放次數:無限次*/
+            animation-iteration-count: infinite;
+            
+            @include phone {
+                right: 3%;
+                max-height: 20%;
+                max-width: 20%;
+            }
+        }
+
+        .Contact{
+
+            min-width: 288px;
+            min-height: 190px;
+            background-image: url('../img/card3.png');
+            background-size: cover;
+            position:absolute;
+            height: 260px;
+            width: 390px;
+            // height: 20%;
+            // width: 20%;
+            z-index: 2;
+            // right: -16%;
+            // bottom: 5%;
+            background-color: #dee6f7;
+            border-radius: 0.5em;
+            box-shadow: 0 -1px 10px rgba(0, 0, 0, .7);
+            display: flex;
+            flex-direction: column;      
+
+            @include phone {
+                width: 90vmin;
+                height: 60vmin;
+            }
+
+            .close{
+                font-size:24px;
+                color:#565656;
+                cursor: pointer;
+                align-self: flex-end;
+                height: 20%;
+
+                @include phone {
+                    font-size:18px; 
+                }   
+            }
+
+            .content{         
+                @extend %fontlevel6;
+                // position:absolute;
+                height: 60%;
+                width: 70%;
+                // top:20%;
+                // left: 15%;
+                display: flex;
+                flex-direction: column;
+                align-self: center;
+                line-height: normal;
+
+                .socialMedia{
+                    display: flex;
+                    justify-content: space-around;
+                    align-items: center;
+                    flex: 1 1;
+                    // height: 20%;                   
+                    border-top:solid 1px; 
+
+                    a{
+                        display: flex;
+                        align-items: center;
+                        img{
+                            flex: 1 1;  
+                        }
+                    }
+                }
+
+                .name {       
+                    font-size: 32px;
+                    font-weight:bold;
+                    flex: 1 1;    
+                    align-self: center;   
+
+                    // @include phone {
+                    //     font-size: 32px;
+                    // }
+           
+                }   
+
+                .job {                   
+                    //  @extend %fontlevel4;
+                     flex: 1 2;
+                     font-size: 24px;
+                    // align-self: flex-end;
+                    color: #9e9e9e;
+                    align-self: center;
+                }   
+            }
+        }
+
+        .ContactOff{
+            right: -100%;        
+            bottom: 5%;
+            transition: top 0s, right 1s ease-out;
+
+            @include phone {
+                left: 5%;
+                top: 100%;
+                transition:  right 0s, top 0.5s linear;
+                bottom:auto;
+                right: auto;
+            }
+        }
+
+        .ContactOn{
+            right: 2%;
+            bottom: 5%;
+            transition: top 0s,right 1s ease-out;
+
+            @include phone {
+                left: 5%;
+                top: 60%;
+                transition: right 0s, top 0.5s linear;
+                bottom:auto;
+                right: auto;
+            }
+        }
+
         .Hello {
             @extend %flexbox100;
             justify-content:center;
             align-items: center;
             font-weight:bold;
             text-align: center;
-            background-image: url('/Hello_background.jpg');
+            background-image: url('../img/Hello_background.jpg');
             background-repeat:no-repeat;
             background-position: center; 
             background-size: cover;
@@ -176,7 +345,7 @@ $phonesize: 0.5;    //手機倍數
             justify-content: space-around;
             align-items: center;
             // background-color:rgb(197, 121, 121);
-            background-image: url('/About_background.jpg');
+            background-image: url('../img/About_background.jpg');
             background-repeat:no-repeat;
             background-position: center; 
             background-size: cover;
@@ -196,9 +365,9 @@ $phonesize: 0.5;    //手機倍數
                 flex-basis: 40%;
 
                 .AboutItemOn {
-                  
                     max-height: 1000px;
                     transition: height 0.5s ease;
+                    cursor: pointer;
 
                     > .AboutItemDescription{
                         @extend %fontlevel5;
@@ -206,13 +375,19 @@ $phonesize: 0.5;    //手機倍數
                         word-break: break-all;
                         transform-origin:50% 0%;
                         transform: scaleY(1);
-                        transition: all 0.5s ease-out;
+                        transition: all 0.5s ease-out;            
+                        display: flex;
+                        justify-content:center;         
+                        > div{
+                            width: 95%; 
+                        }
                     }
                 }
 
                 .AboutItemOff {
-                    max-height: 1.2em;
+                    max-height: 1.6em;
                     transition: max-height 0.5s ease;
+                    cursor: pointer;
 
                     > .AboutItemDescription{
                         @extend %fontlevel5;
@@ -221,6 +396,11 @@ $phonesize: 0.5;    //手機倍數
                         transform: scaleY(0);
                         overflow: hidden;
                         transition: all 0.5s ease-out;
+                        display: flex;
+                        justify-content:center;         
+                        > div{
+                            width: 95%; 
+                        }
                     }
                 }
             }
@@ -229,7 +409,7 @@ $phonesize: 0.5;    //手機倍數
         .Skills {
            // @extend %flexbox100; 
             height: 100%;
-            background-image: url('/Skills_background.jpg');
+            background-image: url('../img/Skills_background.jpg');
             background-repeat:no-repeat;
             background-position: center; 
             background-size: cover;
@@ -239,11 +419,17 @@ $phonesize: 0.5;    //手機倍數
             }
 
             .SkillsDescription{
-                @extend %fontlevel3;
+                @extend %fontlevel4;
                 position:absolute;
                 z-index: 1;
-                top:80%;
-                left:8%;
+                bottom: 1%;
+                height: 20%;
+                left: 2%;
+                width: 60%;
+                text-align: center;
+                display: flex;
+                align-items: center;
+                justify-content: center;
             }
         }
     }
@@ -273,7 +459,7 @@ $phonesize: 0.5;    //手機倍數
             }
 
             .MenuLink_on{
-                background-image: url('/heart2.png');
+                background-image: url('../img/heart2.png');
                 background-repeat:no-repeat;
                 background-position: center; 
                 background-size:contain;
@@ -300,16 +486,16 @@ h3 {
   
 .fade-enter-active {
     opacity: 1;
-    transition: all 500ms ease-out;
+    transition: opacity 500ms ease-out;
 }
   
 .fade-exit {
     opacity: 0;
 }
   
-.fade-exit-active {
+.fade-exit-active {   
     opacity: 1;
-    transition: all 500ms ease-out;
+    transition: opacity 500ms ease-out;
 }
 
 /*天氣icon*/
