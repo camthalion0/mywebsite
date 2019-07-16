@@ -18,13 +18,13 @@ const Contact = (props) =>{
                     <div className='name'>LALA CHUNG</div>
                     <div className='job'>front-end developer</div>
                     <div className='socialMedia'>
-                        <a target='_blank' href='mailto:camthalion1234@gmail.com'>
+                        <a target='_blank' href='mailto:camthalion1234@gmail.com' rel="noopener noreferrer">
                             <img alt='Email' src={emailpng}></img>
                         </a>
-                        <a target='_blank' href='https://www.linkedin.com/in/huei-hsin-chung-489739155/'>
+                        <a target='_blank' href='https://www.linkedin.com/in/huei-hsin-chung-489739155/' rel="noopener noreferrer">
                             <img alt='Linkedin' src={linkedinpng} ></img>
                         </a>
-                        <a target='_blank' href='https://github.com/camthalion0?tab=repositories'>
+                        <a target='_blank' href='https://github.com/camthalion0?tab=repositories' rel="noopener noreferrer">
                             <img alt='GitHub' src={github}></img>
                         </a>                       
                     </div>

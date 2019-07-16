@@ -2,14 +2,14 @@ const data = {
      educations : [
         { 
             name: `National Taiwan University of Science and Technology`, 
-            time: `During 2006~2011.`, 
+            time: `During 2006 ~ 2011`, 
             description:[
-                "Majoring in Department of Information Management.",
+                "Majoring in Information Management.",
             ]
         },
         { 
             name: `Taipei Municipal Lishan Senior High School`, 
-            time: `During 2003~2006.`, 
+            time: `During 2003 ~ 2006`, 
             description:[
                 "Studying in the 2nd. category of natural sciences."
             ]
@@ -19,26 +19,32 @@ const data = {
     experiences : [
         { 
             name: 'Tian-Xiang Technology Ltd.', 
-            time:'During 2017~2019.', 
+            time:'During 2017 ~ 2019', 
             description:[
-                "As a Front-end Web Developer.",
-                "Develop with Asp.net MVC."
+                "As a Front-end Web Developer, I have",
+                "Strong experience in Asp.net MVC",
+                "Strong experience in C#",
+                "Experience in HTML, Javascript, CSS",
+                "Experience in i18n platform"
             ]
         },
         { 
             name: 'RT-Mart International Co., Ltd.', 
-            time:'During 2016~2017.', 
+            time:'During 2016 ~ 2017', 
             description:[
-                "As a Programmer.",
-                "Develop with Oracle SQL, Shell Script, Oracle Forms."
+                "As a Programmer, I have",
+                "Strong experience in developing ERP system",
+                "Experience in PL/SQL",
+                "Experience in Pro* C"
             ]
         },
         { 
             name: 'FLH Co., Ltd.', 
-            time:'During 2015~2016.', 
+            time:'During 2015~2016', 
             description:[
-                "As a Programmer.",
-                "Develop with Lua, Unity 3D."
+                "As a Programmer, I have",
+                "Experience in Lua",
+                "Experience in Unity3D"
             ]
         },
     ]
