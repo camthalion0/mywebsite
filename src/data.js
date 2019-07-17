@@ -58,10 +58,10 @@ const skillItemList = [
         index:0,
         x:2, 
         y:0,
-        text:['C++'],
+        text:['C'],
         xCorrection,
         yCorrection,
-        description:"C++ is my compulsory subjects at the university.",
+        description:"C language is my compulsory subjects at the university",
     },
     {
         index:1,
@@ -70,7 +70,7 @@ const skillItemList = [
         text:['Linux'],
         xCorrection,
         yCorrection,
-        description:"I developed and maintain RT-Mart Information Systems in Linux environment."
+        description:"I developed and maintain RT-Mart Information Systems in Linux environment"
     },
     {
         index:2,
@@ -88,7 +88,7 @@ const skillItemList = [
         text:['Pro*C'],
         xCorrection,
         yCorrection,
-        description:"I developed and maintain RT-Mart Information Systems with Pro*C."
+        description:"In RT-Mart, Pro*C is the key language to communicate with Oracle DB and to analyze business data"
     },
     {
         index:4,
@@ -133,7 +133,7 @@ const skillItemList = [
         text:['Asp.net','MVC'],
         xCorrection,
         yCorrection:0,
-        description:"Most of projects at Tian-Xiang Technology is delovep with Asp.net MVC."
+        description:"Most of the projects at Tian-Xiang Technology is deloveped with Asp.net MVC."
     },
     {
         index:9,
@@ -169,7 +169,7 @@ const skillItemList = [
         text:['CSS','SCSS','Bootstrap'],
         xCorrection,
         yCorrection:-5,
-        description:"CSS and Bootstrap is the basic skill of my work at Tian-Xiang Technology, And I learned SCSS for my personal website."
+        description:"In Tian-Xiang Technology, we leverage CSS and Bootsrap on platform, and I adopt SCSS in my personal project"
     },
     {
         index:13,
@@ -178,7 +178,7 @@ const skillItemList = [
         text:['JavaScript','JQuery'],
         xCorrection,
         yCorrection:0,
-        description:"JavaScript and JQuery is the basic skill of my work at Tian-Xiang Technology."
+        description:"JavaScript and JQuery is the basic skill of my work at Tian-Xiang Technology"
     },
     {
         index:14,
@@ -187,7 +187,7 @@ const skillItemList = [
         text:['React'],
         xCorrection,
         yCorrection,
-        description:"I learned React for my personal website."
+        description:"I learned React for my personal website"
     },
     {        
         index:15,
@@ -196,7 +196,7 @@ const skillItemList = [
         text:['Redux'],
         xCorrection,
         yCorrection,
-        description:"I learned Redux for my React project."
+        description:"I learned Redux for my React project"
     },
     {        
         index:16,
@@ -205,7 +205,7 @@ const skillItemList = [
         text:['Unity 3D'],
         xCorrection,
         yCorrection,
-        description:"I learned Unity 3D at FLH."
+        description:"I learned Unity 3D at FLH"
     },
 ]
 

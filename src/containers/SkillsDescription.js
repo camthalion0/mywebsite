@@ -3,7 +3,7 @@ import React from 'react';
 const SkillsDescription = (props) => {
         return (          
             <div className='SkillsDescription'>
-                <span>{props.desc}</span>              
+                <span className="descPanel">{props.desc}</span>              
             </div>
         )};
   

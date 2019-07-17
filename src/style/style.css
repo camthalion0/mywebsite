@@ -533,6 +533,13 @@
           justify-content: center;
 }
 
+.App .pagebody .Skills .SkillsDescription .descPanel {
+  display: inline-block;
+  padding: 10px;
+  border-radius: 0.5em;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
 .App .pagefoot {
   height: 8%;
   width: 100%;
